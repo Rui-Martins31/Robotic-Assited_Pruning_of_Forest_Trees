@@ -61,7 +61,8 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "description_file",
             default_value=PathJoinSubstitution(
-                [FindPackageShare("manipulator"), "urdf", "ur.urdf.xacro"]
+                # [FindPackageShare("manipulator"), "urdf", "ur.urdf.xacro"]
+                [FindPackageShare("manipulator"), "urdf", "ur_mocked.urdf.xacro"]
             ),
             description="URDF/XACRO description file (absolute path) with the robot.",
         )
@@ -147,13 +148,14 @@ def generate_launch_description():
         output="screen",
         arguments=[
             "-string", robot_description_content,
-            "-name", "ur5",
+            "-name", ur_type,
             "-allow_renaming", "true",
             "-x", "0.0", "-y", "0.0", "-z", "0.0"
         ],
     )
 
     # ROS Nodes
+
     # Publishes the TFs of the robot
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
@@ -168,8 +170,23 @@ def generate_launch_description():
         executable="parameter_bridge",
         arguments=[
             "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
-            "/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model",
         ],
+        output="screen",
+    )
+
+    # Updates values of joints from Gazebo
+    joint_state_broadcaster_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
+        output="screen",
+    )
+
+    # Joint Controller
+    joint_trajectory_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_trajectory_controller", "--controller-manager", "/controller_manager"],
         output="screen",
     )
 
@@ -178,7 +195,9 @@ def generate_launch_description():
         gazebo,
         spawn_entity,
         robot_state_publisher_node,
-        bridge
+        bridge,
+        joint_state_broadcaster_spawner,
+        joint_trajectory_controller_spawner,
     ]
 
     return LaunchDescription(declared_arguments + nodes_to_start)

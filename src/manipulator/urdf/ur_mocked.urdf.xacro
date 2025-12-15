@@ -28,6 +28,13 @@
   <!-- initial position for simulations (Mock Hardware, Gazebo, Ignition) -->
   <xacro:arg name="initial_positions_file" default="$(find manipulator)/config/initial_positions.yaml"/>
 
+  <gazebo>
+    <plugin filename="libgz_ros2_control-system.so"
+            name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <parameters>$(find manipulator)/config/ur_controllers.yaml</parameters>
+    </plugin>
+  </gazebo>
+
   <!-- convert to property to use substitution in function -->
   <xacro:property name="initial_positions_file" default="$(arg initial_positions_file)"/>
 

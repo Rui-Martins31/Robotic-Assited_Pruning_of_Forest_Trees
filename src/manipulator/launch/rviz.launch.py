@@ -149,6 +149,7 @@ def generate_launch_description():
         "robot_description": ParameterValue(value=robot_description_content, value_type=str)
     }
 
+    # ROS Nodes
     joint_state_publisher_node = Node(
         package="joint_state_publisher_gui",
         executable="joint_state_publisher_gui",
