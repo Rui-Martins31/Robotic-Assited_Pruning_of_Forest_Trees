@@ -7,8 +7,8 @@
   <xacro:include filename="$(find manipulator)/urdf/ros2_control_mock_hardware.xacro" />
 
   <!-- possible 'ur_type' values: ur3, ur5, ur10, ur3e, ur5e, ur7e, ur10e, ur12e, ur16e, ur8long, ur15, ur18, ur20, ur30 -->
-  <!-- the default value should raise an error in case this was called without defining the type -->
-  <xacro:arg name="ur_type" default="ur5x"/>
+  <!-- the default value (ur5x) should raise an error in case this was called without defining the type -->
+  <xacro:arg name="ur_type" default="ur5"/>
 
   <!-- parameters -->
   <xacro:arg name="tf_prefix" default="" />
@@ -25,7 +25,7 @@
   <!--When using gazebo simulations absolute paths are necessary.-->
   <xacro:arg name="force_abs_paths" default="false" />
 
-  <!-- initial position for simulations (Mock Hardware, Gazebo, Ignition) -->
+  <!-- initial position for simulations -->
   <xacro:arg name="initial_positions_file" default="$(find manipulator)/config/initial_positions.yaml"/>
 
   <gazebo>
