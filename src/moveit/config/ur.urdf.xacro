@@ -1,12 +1,23 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur">
+
+    <!-- Arguments -->
     <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+    <xacro:arg name="gazebo" default="false" />
 
     <!-- Import ur urdf file -->
     <xacro:include filename="$(find manipulator)/urdf/ur.urdf.xacro" />
 
-    <!-- Import control_xacro -->
-    <xacro:include filename="ur.ros2_control.xacro" />
+    <!-- If gazebo arg is true -->
+    <xacro:if value="$(arg gazebo)">
+        <!-- Import gazebo_xacro -->
+        <xacro:include filename="ur.gazebo_control.xacro" />
+    </xacro:if>
+
+    <xacro:unless value="$(arg gazebo)">  
+        <!-- Import control_xacro -->
+        <xacro:include filename="ur.ros2_control.xacro" />
+    </xacro:unless>
 
 
     <xacro:ur_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
