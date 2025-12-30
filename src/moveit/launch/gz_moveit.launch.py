@@ -4,10 +4,10 @@ from ament_index_python.packages import get_package_share_directory
 
 
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, AppendEnvironmentVariable
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, AppendEnvironmentVariable, RegisterEventHandler, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.event_handlers import OnProcessStart
 from launch_ros.parameter_descriptions import ParameterValue
-
 from launch_ros.actions import Node, SetParameter
 
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
@@ -80,12 +80,12 @@ def generate_launch_description():
     )
 
     # Bridge
-    clock_bridge = Node(
-        package='ros_gz_bridge',
-        executable='parameter_bridge',
-        arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'],
-        output='screen'
-    )
+    # clock_bridge = Node(
+    #     package='ros_gz_bridge',
+    #     executable='parameter_bridge',
+    #     arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'],
+    #     output='screen'
+    # )
 
     # Robot State Publisher
     node_robot_state_publisher = Node(
@@ -162,7 +162,7 @@ def generate_launch_description():
             set_sim_time,
             gazebo_resource_path_env,
             gazebo,
-            clock_bridge,
+            #clock_bridge,
             node_robot_state_publisher,
             spawn_robot,
             joint_state_broadcaster_spawner,
