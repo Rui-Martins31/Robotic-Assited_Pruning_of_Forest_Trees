@@ -75,17 +75,17 @@ def generate_launch_description():
             [os.path.join(get_package_share_directory(pkg_name_gazebo), 'launch', 'gz_sim.launch.py')]
         ),
         launch_arguments={
-            'gz_args': f'-r {gazebo_world}.sdf'
+            'gz_args': f'-r {gazebo_world}.sdf --render-engine ogre'
         }.items()
     )
 
     # Bridge
-    # clock_bridge = Node(
-    #     package='ros_gz_bridge',
-    #     executable='parameter_bridge',
-    #     arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'],
-    #     output='screen'
-    # )
+    clock_bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'],
+        output='screen'
+    )
 
     # Robot State Publisher
     node_robot_state_publisher = Node(
@@ -122,6 +122,9 @@ def generate_launch_description():
             "--controller-manager", "/controller_manager"
         ],
         output="screen",
+        parameters=[
+            {'use_sim_time': use_sim_time}
+        ]
     )
 
     # Joint Controller
@@ -132,7 +135,10 @@ def generate_launch_description():
             "ur5_arm_controller",#"joint_trajectory_controller",
             "--controller-manager", "/controller_manager"
         ],
-        output="screen"
+        output="screen",
+        parameters=[
+            {'use_sim_time': use_sim_time}
+        ]
     )
 
     # MoveIt
@@ -162,7 +168,7 @@ def generate_launch_description():
             set_sim_time,
             gazebo_resource_path_env,
             gazebo,
-            #clock_bridge,
+            clock_bridge,
             node_robot_state_publisher,
             spawn_robot,
             joint_state_broadcaster_spawner,
