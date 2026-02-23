@@ -60,7 +60,7 @@
           <far>100.0</far>
         </clip>
       </camera>
-      <!-- <topic>camera</topic>  -->
+      <topic>camera/image_raw</topic>
       <always_on>1</always_on>
       <update_rate>30</update_rate>
       <visualize>true</visualize>
@@ -70,7 +70,7 @@
   <gazebo>
     <plugin filename="gz-sim-sensors-system" 
             name="gz::sim::systems::Sensors">
-      <render_engine>ogre2</render_engine>
+      <render_engine>ogre</render_engine>
     </plugin>
   </gazebo>
 

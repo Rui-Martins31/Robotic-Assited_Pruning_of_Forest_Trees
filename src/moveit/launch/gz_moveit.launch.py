@@ -34,6 +34,13 @@ def generate_launch_description():
     pkg_name_gazebo      = "ros_gz_sim"
     pkg_name_controller  = "controller_manager"
 
+    # Test
+    # gazebo_world = os.path.join(
+    #     get_package_share_directory(pkg_name_manipulator),
+    #     'worlds',
+    #     'world'
+    # )
+
 
     # Robot Description
     declared_arguments = []
@@ -75,15 +82,25 @@ def generate_launch_description():
             [os.path.join(get_package_share_directory(pkg_name_gazebo), 'launch', 'gz_sim.launch.py')]
         ),
         launch_arguments={
-            'gz_args': f'-r {gazebo_world}.sdf --render-engine ogre'
+            'gz_args': f'-r {gazebo_world}.sdf --render-engine ogre',
+            'on_exit_shutdown': 'True'
         }.items()
     )
 
-    # Bridge
+    # Bridges
     clock_bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
-        arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'],
+        arguments=[
+            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'
+        ],
+        output='screen'
+    )
+
+    image_bridge = Node(
+        package='ros_gz_image',
+        executable='image_bridge',
+        arguments=['/camera/image_raw'],
         output='screen'
     )
 
@@ -168,7 +185,10 @@ def generate_launch_description():
             set_sim_time,
             gazebo_resource_path_env,
             gazebo,
+
             clock_bridge,
+            image_bridge,
+            
             node_robot_state_publisher,
             spawn_robot,
             joint_state_broadcaster_spawner,

@@ -3,6 +3,7 @@
 build/
 install/
 log/
+output/
 
 .claude
 .__pycache__
