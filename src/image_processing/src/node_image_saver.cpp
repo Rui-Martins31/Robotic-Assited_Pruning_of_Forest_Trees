@@ -25,7 +25,7 @@ class ImageSaver : public rclcpp::Node
         {
             // Folder path
             if (fs::exists(PATH_SAVE)) {
-                fs::remove(PATH_SAVE);
+                fs::remove_all(PATH_SAVE);
             }
             fs::create_directories(PATH_SAVE);
 
@@ -57,6 +57,10 @@ class ImageSaver : public rclcpp::Node
         }
 
         void timer_callback() {
+            if (!last_cv_ptr) {
+                return;
+            }
+
             // Construct filename
             std::string filename = (std::string)PATH_SAVE + "/img_" + std::to_string(count_++) + ".png";
 
