@@ -1,33 +1,5 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-
-  <!-- Test Object -->
-  <link name="test_obj_link">
-    <visual>
-      <origin xyz="0 0 1" rpy="0 0 0"/> <geometry>
-        <cylinder radius="1.0" length="2.0"/>
-      </geometry>
-      <material name="bright_red">
-        <color rgba="1 0 0 1"/>
-      </material>
-    </visual>
-    <collision>
-      <origin xyz="0 0 1" rpy="0 0 0"/>
-      <geometry>
-        <cylinder radius="1.0" length="2.0"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="1.0"/>
-      <inertia ixx="0.41" ixy="0" ixz="0" iyy="0.41" iyz="0" izz="0.5"/>
-    </inertial>
-  </link>
-
-  <joint name="test_obj_joint" type="fixed">
-    <parent link="world"/>
-    <child link="test_obj_link"/>
-    <origin xyz="0 5 0" rpy="0 0 0"/>
-  </joint>
     
   <!-- Camera -->
   <link name="camera_link">

@@ -26,20 +26,19 @@ def generate_launch_description():
     set_sim_time = SetParameter(name='use_sim_time', value=use_sim_time)
     use_gazebo   = "true"
 
-    gazebo_world = 'empty'
-
     # Package
     pkg_name_manipulator = "manipulator"
     pkg_name_moveit      = "moveit"
     pkg_name_gazebo      = "ros_gz_sim"
     pkg_name_controller  = "controller_manager"
 
-    # Test
-    # gazebo_world = os.path.join(
-    #     get_package_share_directory(pkg_name_manipulator),
-    #     'worlds',
-    #     'world'
-    # )
+    # World
+    gazebo_world_path = os.path.join(
+        get_package_share_directory(pkg_name_manipulator),
+        'worlds',
+        'world'
+    )
+    gazebo_world = "forest_pruning_world"
 
 
     # Robot Description
@@ -82,7 +81,7 @@ def generate_launch_description():
             [os.path.join(get_package_share_directory(pkg_name_gazebo), 'launch', 'gz_sim.launch.py')]
         ),
         launch_arguments={
-            'gz_args': f'-r {gazebo_world}.sdf --render-engine ogre',
+            'gz_args': f'-r {gazebo_world_path}.sdf --render-engine ogre',
             'on_exit_shutdown': 'True'
         }.items()
     )
