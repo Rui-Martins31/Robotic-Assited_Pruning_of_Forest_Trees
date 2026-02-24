@@ -2,7 +2,6 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 
-
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, AppendEnvironmentVariable, RegisterEventHandler, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -172,6 +171,7 @@ def generate_launch_description():
             [os.path.join(get_package_share_directory(pkg_name_moveit), 'launch', 'moveit_rviz.launch.py')]
         ),
         launch_arguments={
+            'rviz_config': "./src/moveit/config/moveit.rviz",
             'use_sim_time': str(use_sim_time)
         }.items()
     )
@@ -192,7 +192,14 @@ def generate_launch_description():
             spawn_robot,
             joint_state_broadcaster_spawner,
             joint_trajectory_controller_spawner,
-            moveit,
-            rviz
+
+            # Delay moveit start so that all the controllers have time to start up before it
+            # TO BE REMOVED LATER
+            TimerAction(
+                period=5.0,
+                actions=[moveit, rviz]
+            )
+            # moveit,
+            # rviz
         ]
     )
