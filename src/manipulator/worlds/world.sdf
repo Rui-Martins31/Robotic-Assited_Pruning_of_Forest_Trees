@@ -1,6 +1,8 @@
 <?xml version="1.0" ?>
 <sdf version="1.8">
   <world name="forest_pruning_world">
+
+    <!-- Plugins and Physics -->
     <physics name="1ms" type="ignored">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
@@ -10,6 +12,7 @@
     <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
     <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
 
+    <!-- Ligth Source -->
     <light type="directional" name="sun">
       <cast_shadows>true</cast_shadows>
       <pose>0 0 10 0 0 0</pose>
@@ -18,89 +21,62 @@
       <direction>-0.5 0.1 -0.9</direction>
     </light>
 
+    <!-- Ground -->
     <model name="ground_plane">
       <static>true</static>
       <link name="link">
         <collision name="collision">
-          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+          <geometry>
+            <mesh>
+              <uri>package://manipulator/worlds/meshes/Ground_Plane.obj</uri>
+            </mesh>
+          </geometry>
         </collision>
         <visual name="visual">
-          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
-          <material><ambient>0.3 0.3 0.3 1</ambient><diffuse>0.5 0.3 0.1 1</diffuse></material>
+          <geometry>
+            <mesh>
+              <uri>package://manipulator/worlds/meshes/Ground_Plane.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.2 1.0 0.1 1</diffuse>
+          </material>
         </visual>
       </link>
     </model>
 
+    <!-- Trees -->
     <model name="target_tree_01">
-      <pose>5 0 0 0 0 0</pose>
+      <pose>2 0 0 0 0 0</pose>
       <static>true</static>
+
       <link name="trunk">
         <collision name="collision">
           <geometry><cylinder><radius>0.2</radius><length>4.0</length></cylinder></geometry>
         </collision>
         <visual name="visual">
-          <geometry><cylinder><radius>0.2</radius><length>4.0</length></cylinder></geometry>
-          <material><ambient>0.4 0.2 0.0 1</ambient><diffuse>0.35 0.2 0.1 1</diffuse></material>
-        </visual>
-      </link>
-      
-      <link name="branch_01">
-        <pose>0.4 0 1.2 0 1.4 0</pose>
-        <visual name="v1">
-          <geometry><cylinder><radius>0.06</radius><length>1.0</length></cylinder></geometry>
-          <material><ambient>0.2 0.5 0.1 1</ambient></material>
-        </visual>
-      </link>
-
-      <link name="branch_02">
-        <pose>-0.3 0.3 2.2 0.5 1.5 0.8</pose>
-        <visual name="v2">
-          <geometry><cylinder><radius>0.05</radius><length>0.8</length></cylinder></geometry>
-          <material><ambient>0.1 0.4 0.1 1</ambient></material>
+          <geometry>
+            <mesh>
+              <uri>package://manipulator/worlds/meshes/Tree_Trunk.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.6 0.5 0.1 1</ambient>
+          </material>
         </visual>
       </link>
 
-      <link name="branch_03">
-        <pose>0 -0.2 3.0 -0.4 1.57 0</pose>
-        <visual name="v3">
-          <geometry><cylinder><radius>0.03</radius><length>0.6</length></cylinder></geometry>
-          <material><ambient>0.2 0.6 0.2 1</ambient></material>
+      <link name="leaves">
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>package://manipulator/worlds/meshes/Tree_Leaves.obj</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.6 0.8 0.1 1</ambient>
+          </material>
         </visual>
-      </link>
-    </model>
-
-    <model name="forest_tree_02">
-      <pose>7 4 0 0 0 1.2</pose>
-      <static>true</static>
-      <link name="trunk">
-        <visual name="v"><geometry><cylinder><radius>0.18</radius><length>3.5</length></cylinder></geometry>
-        <material><ambient>0.3 0.2 0.1 1</ambient></material></visual>
-      </link>
-      <link name="branch"><pose>0.3 0 1.8 0 1.5 0</pose>
-        <visual name="v"><geometry><cylinder><radius>0.04</radius><length>0.7</length></cylinder></geometry>
-        <material><ambient>0.1 0.3 0.1 1</ambient></material></visual>
-      </link>
-    </model>
-
-    <model name="forest_tree_03">
-      <pose>4 -5 0 0 0 -0.8</pose>
-      <static>true</static>
-      <link name="trunk">
-        <visual name="v"><geometry><cylinder><radius>0.22</radius><length>4.2</length></cylinder></geometry>
-        <material><ambient>0.3 0.2 0.1 1</ambient></material></visual>
-      </link>
-      <link name="branch"><pose>0.4 0 2.0 0 1.4 0.5</pose>
-        <visual name="v"><geometry><cylinder><radius>0.05</radius><length>0.9</length></cylinder></geometry>
-        <material><ambient>0.1 0.3 0.1 1</ambient></material></visual>
-      </link>
-    </model>
-
-    <model name="forest_tree_04">
-      <pose>10 -1 0 0 0 2.5</pose>
-      <static>true</static>
-      <link name="trunk">
-        <visual name="v"><geometry><cylinder><radius>0.15</radius><length>3.8</length></cylinder></geometry>
-        <material><ambient>0.3 0.2 0.1 1</ambient></material></visual>
       </link>
     </model>
 

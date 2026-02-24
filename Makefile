@@ -14,9 +14,8 @@ clean:
 # Source ROS 2 and build
 build:
 	@echo "Sourcing and building..."
-	source /opt/ros/$(shell ls /opt/ros | head -n 1)/setup.bash && \
-	if [ -f install/setup.bash ]; then source install/setup.bash; fi && \
 	colcon build
+	source install/setup.bash
 
 # Build with symlinks
 dev: clean
