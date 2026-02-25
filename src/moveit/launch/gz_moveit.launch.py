@@ -171,7 +171,8 @@ def generate_launch_description():
             [os.path.join(get_package_share_directory(pkg_name_moveit), 'launch', 'moveit_rviz.launch.py')]
         ),
         launch_arguments={
-            'rviz_config': "./src/moveit/config/moveit.rviz",
+            # 'rviz_config': "./src/moveit/config/moveit.rviz",
+            'rviz_config': PathJoinSubstitution([FindPackageShare(pkg_name_moveit), "config/moveit.rviz"]),
             'use_sim_time': str(use_sim_time)
         }.items()
     )
