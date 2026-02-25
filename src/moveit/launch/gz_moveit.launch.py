@@ -86,21 +86,24 @@ def generate_launch_description():
     )
 
     # Bridges
+    # https://github.com/gazebosim/ros_gz/tree/ros2/ros_gz_bridge
     clock_bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
-            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'
+            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+            '/camera/image@sensor_msgs/msg/Image@gz.msgs.Image',
+            '/camera/depth_image@sensor_msgs/msg/Image@gz.msgs.Image'
         ],
         output='screen'
     )
 
-    image_bridge = Node(
-        package='ros_gz_image',
-        executable='image_bridge',
-        arguments=['/camera/image_raw'],
-        output='screen'
-    )
+    # image_bridge = Node(
+    #     package='ros_gz_image',
+    #     executable='image_bridge',
+    #     arguments=['/camera/image'],
+    #     output='screen'
+    # )
 
     # Robot State Publisher
     node_robot_state_publisher = Node(
@@ -187,7 +190,7 @@ def generate_launch_description():
             gazebo,
 
             clock_bridge,
-            image_bridge,
+            # image_bridge,
             
             node_robot_state_publisher,
             spawn_robot,

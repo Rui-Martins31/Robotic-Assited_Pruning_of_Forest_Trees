@@ -1,5 +1,6 @@
 // More information:
 // https://github.com/moveit/moveit2_tutorials/blob/main/doc/examples/move_group_interface/src/move_group_interface_tutorial.cpp
+// https://moveit.picknik.ai/humble/doc/examples/move_group_interface/move_group_interface_tutorial.html
 
 #include <chrono>
 #include <thread>
