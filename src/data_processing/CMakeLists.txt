@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(image_processing)
+project(data_processing)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -14,6 +14,7 @@ find_package(OpenCV REQUIRED)
 
 # Define the executable
 add_executable(node_image_saver src/node_image_saver.cpp)
+add_executable(node_pcd_saver src/node_pcd_saver.cpp)
 
 # Link dependencies
 ament_target_dependencies(node_image_saver
@@ -22,10 +23,14 @@ ament_target_dependencies(node_image_saver
   cv_bridge
   OpenCV
 )
+ament_target_dependencies(node_pcd_saver
+  rclcpp
+)
 
 # Install the executable so "ros2 run" can find it
 install(TARGETS
   node_image_saver
+  node_pcd_saver
   DESTINATION lib/${PROJECT_NAME}
 )
 
