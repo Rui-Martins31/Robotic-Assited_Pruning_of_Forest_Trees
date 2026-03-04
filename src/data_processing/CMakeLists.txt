@@ -11,6 +11,7 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(pcl_conversions REQUIRED)
 
 # Define the executable
 add_executable(node_image_saver src/node_image_saver.cpp)
@@ -25,6 +26,7 @@ ament_target_dependencies(node_image_saver
 )
 ament_target_dependencies(node_pcd_saver
   rclcpp
+  pcl_conversions
 )
 
 # Install the executable so "ros2 run" can find it

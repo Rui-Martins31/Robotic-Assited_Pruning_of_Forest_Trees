@@ -56,12 +56,16 @@ int main(int argc, char** argv)
     std::cout << std::endl;
 
     /*--- Plannning ---*/
+    auto current_pose = move_group.getCurrentPose();
+
     RCLCPP_INFO(LOGGER, "Planning pose 1...");
     geometry_msgs::msg::Pose target_pose1;
-    target_pose1.orientation.w = 1.0;
-    target_pose1.position.x    = 0.28;
-    target_pose1.position.y    = -0.2;
-    target_pose1.position.z    = 0.5;
+    // target_pose1.orientation.w = 1.0;
+    // target_pose1.position.x    = 0.28;
+    // target_pose1.position.y    = -0.2;
+    // target_pose1.position.z    = 0.5;
+    target_pose1 = current_pose.pose;
+    target_pose1.position.z -= 0.1;
     move_group.setPoseTarget(target_pose1);
 
     moveit::planning_interface::MoveGroupInterface::Plan my_plan;

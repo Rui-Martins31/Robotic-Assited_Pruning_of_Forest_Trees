@@ -12,7 +12,9 @@ namespace fs = std::filesystem;
 using namespace std::chrono_literals;
 
 // Constants
-#define PATH_SAVE    "./output/image_processing/images"
+#define NODE_NAME "image_saver_node"
+
+#define PATH_SAVE "./output/image_processing/images"
 
 #define CAMERA_TOPIC_IMAGE "camera/image"
 #define CAMERA_TOPIC_DEPTH "camera/depth_image"
@@ -28,7 +30,7 @@ struct Camera_Content {
 class ImageSaver : public rclcpp::Node
 {
     public:
-        ImageSaver() : Node("image_saver_node"), count_(0)
+        ImageSaver() : Node(NODE_NAME), count_(0)
         {
             // Folder path
             if (fs::exists(PATH_SAVE)) {
