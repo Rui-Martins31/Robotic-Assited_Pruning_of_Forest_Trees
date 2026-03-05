@@ -16,6 +16,7 @@ find_package(pcl_conversions REQUIRED)
 # Define the executable
 add_executable(node_image_saver src/node_image_saver.cpp)
 add_executable(node_pcd_saver src/node_pcd_saver.cpp)
+add_executable(node_pcd_registration src/node_pcd_registration.cpp)
 
 # Link dependencies
 ament_target_dependencies(node_image_saver
@@ -28,11 +29,16 @@ ament_target_dependencies(node_pcd_saver
   rclcpp
   pcl_conversions
 )
+ament_target_dependencies(node_pcd_registration
+  rclcpp
+  pcl_conversions
+)
 
 # Install the executable so "ros2 run" can find it
 install(TARGETS
   node_image_saver
   node_pcd_saver
+  node_pcd_registration
   DESTINATION lib/${PROJECT_NAME}
 )
 

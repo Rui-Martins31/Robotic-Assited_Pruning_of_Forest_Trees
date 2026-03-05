@@ -11,7 +11,7 @@ namespace fs = std::filesystem;
 // Constants
 #define NODE_NAME "pcd_saver_node"
 
-#define PATH_SAVE "./output/pcd_processing/pcds"
+#define PATH_SAVE "./output/pcd_processing/pcds/"
 
 #define CAMERA_TOPIC_PCD "camera/points"
 #define TIMER_DELAY  0.25 // seconds
