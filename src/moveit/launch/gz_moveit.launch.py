@@ -35,7 +35,8 @@ def generate_launch_description():
     gazebo_world_path = os.path.join(
         get_package_share_directory(pkg_name_manipulator),
         'worlds',
-        'world'
+        # 'world.sdf'
+        'forest.world'
     )
     gazebo_world = "forest_pruning_world"
 
@@ -80,7 +81,7 @@ def generate_launch_description():
             [os.path.join(get_package_share_directory(pkg_name_gazebo), 'launch', 'gz_sim.launch.py')]
         ),
         launch_arguments={
-            'gz_args': f'-r {gazebo_world_path}.sdf --render-engine ogre',
+            'gz_args': f'-r {gazebo_world_path} --render-engine ogre',
             'on_exit_shutdown': 'True'
         }.items()
     )
