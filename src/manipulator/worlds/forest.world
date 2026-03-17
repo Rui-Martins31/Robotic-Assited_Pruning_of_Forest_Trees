@@ -11,7 +11,7 @@
     </light>
 
 
-    <!-- <model name="ground_plane">
+    <model name="ground_plane">
       <static>true</static>
       <link name="link">
         <collision name="collision">
@@ -28,8 +28,9 @@
       </link>
     </model>
 
-    <model name="forest_tree">
+    <model name="forest_tree_1">
       <static>true</static>
+      <pose>2.5 1.0 0 0 0 0.3</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
@@ -43,9 +44,315 @@
           <cast_shadows>true</cast_shadows>
         </visual>
       </link>
-    </model> -->
+    </model>
 
-    <model name="forest_environment">
+    <model name="forest_tree_2">
+      <static>true</static>
+      <pose>-3.0 2.5 0 0 0 1.1</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_3">
+      <static>true</static>
+      <pose>1.0 -3.5 0 0 0 2.5</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_4">
+      <static>true</static>
+      <pose>-1.5 -2.0 0 0 0 0.8</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_5">
+      <static>true</static>
+      <pose>4.0 -1.5 0 0 0 1.9</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_6">
+      <static>true</static>
+      <pose>-4.5 -0.5 0 0 0 0.5</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_7">
+      <static>true</static>
+      <pose>3.5 4.0 0 0 0 0.7</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_8">
+      <static>true</static>
+      <pose>-2.0 4.5 0 0 0 2.1</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_9">
+      <static>true</static>
+      <pose>5.5 2.0 0 0 0 1.4</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_10">
+      <static>true</static>
+      <pose>-5.0 3.0 0 0 0 0.2</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_11">
+      <static>true</static>
+      <pose>0.5 5.5 0 0 0 3.0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_12">
+      <static>true</static>
+      <pose>-3.5 -4.5 0 0 0 1.6</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_13">
+      <static>true</static>
+      <pose>2.0 -5.0 0 0 0 0.9</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_14">
+      <static>true</static>
+      <pose>5.0 -3.5 0 0 0 2.3</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_15">
+      <static>true</static>
+      <pose>-5.5 -2.5 0 0 0 1.2</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_16">
+      <static>true</static>
+      <pose>6.0 0.5 0 0 0 2.8</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_17">
+      <static>true</static>
+      <pose>-6.0 1.5 0 0 0 0.4</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <model name="forest_tree_18">
+      <static>true</static>
+      <pose>-1.0 -5.5 0 0 0 1.7</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+          </geometry>
+          <cast_shadows>true</cast_shadows>
+        </visual>
+      </link>
+    </model>
+
+    <!-- <model name="forest_environment">
       <static>true</static>
       <link name="link">
         <collision name="collision">
@@ -60,7 +367,7 @@
           <cast_shadows>true</cast_shadows>
         </visual>
       </link>
-    </model> 
+    </model>  -->
 
   </world>
 </sdf>

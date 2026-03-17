@@ -76,9 +76,8 @@ class ImageSaver : public rclcpp::Node
                 this->camera_cont.depth_image = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::TYPE_32FC1);
 
                 // Invert depth values
-                double minVal, maxVal;
-                cv::minMaxLoc(this->camera_cont.depth_image->image, &minVal, &maxVal);
-                this->camera_cont.depth_image->image = maxVal - this->camera_cont.depth_image->image;
+                double max_pixel_value = 255;
+                this->camera_cont.depth_image->image = (this->camera_cont.depth_image->image - max_pixel_value) * (-1);
 
             } catch (const cv_bridge::Exception & e) {
                 RCLCPP_ERROR(this->get_logger(), "cv_bridge exception: %s", e.what());
@@ -90,13 +89,39 @@ class ImageSaver : public rclcpp::Node
                 return;
             }
 
+            // Depth map to binary mask
+            cv::Mat binary_mask;
+            double thresh_value = 100;
+            double max_value    = 255;
+            int threshold_type  = cv::THRESH_BINARY;
+
+            cv::threshold(
+                this->camera_cont.depth_image->image,
+                binary_mask,
+                thresh_value,
+                max_value,
+                threshold_type
+            );
+            binary_mask.convertTo(binary_mask, CV_8U);
+
+            // Mask new image
+            cv::Mat masked_image;
+            cv::bitwise_and(
+                this->camera_cont.image->image,
+                this->camera_cont.image->image,
+                masked_image,
+                binary_mask
+            );
+
             // Construct filename
             std::string filename = (std::string)PATH_SAVE + "/img_" + std::to_string(count_++);
 
             // Save
-            if (cv::imwrite(filename + "_image.png", this->camera_cont.image->image)
-                && 
+            if (cv::imwrite(filename + "_color_image.png", this->camera_cont.image->image)
+                &&
                 cv::imwrite(filename + "_depth_image.png", this->camera_cont.depth_image->image)
+                &&
+                cv::imwrite(filename + "_masked_image.png", masked_image)
             ) {
                 RCLCPP_INFO(this->get_logger(), "Saved: %s", filename.c_str());
             }
