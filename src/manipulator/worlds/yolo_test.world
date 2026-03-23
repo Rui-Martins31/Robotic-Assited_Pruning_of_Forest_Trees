@@ -53,12 +53,35 @@
             </link>
         </model>
 
-        <include>
-            <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Standing%20person</uri>
-            <name>standing_person</name>
-            <pose>4 0 0 0 0 -1.57</pose>
-            <static>true</static>
-        </include>
+        <actor name="animated_person">
+            <skin>
+                <filename>https://fuel.gazebosim.org/1.0/Mingfei/models/actor/1/files/meshes/walk.dae</filename>
+                <scale>1.0</scale>
+            </skin>
+            <animation name="walking">
+                <filename>https://fuel.gazebosim.org/1.0/Mingfei/models/actor/1/files/meshes/walk.dae</filename>
+                <interpolate_x>true</interpolate_x>
+            </animation>
+            <script>
+                <loop>true</loop>
+                <delay_start>0.0</delay_start>
+                <auto_start>true</auto_start>
+                <trajectory id="0" type="walking">
+                <waypoint>
+                    <time>0</time>
+                    <pose>4 -2 1.0 0 0 3.14</pose>
+                </waypoint>
+                <waypoint>
+                    <time>5</time>
+                    <pose>4 2 1.0 0 0 3.14</pose>
+                </waypoint>
+                <waypoint>
+                    <time>10</time>
+                    <pose>4 -2 1.0 0 0 3.14</pose>
+                </waypoint>
+                </trajectory>
+            </script>
+        </actor>
 
         
         <!-- <model name="test_box">
