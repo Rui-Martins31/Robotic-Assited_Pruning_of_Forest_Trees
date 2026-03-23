@@ -32,13 +32,13 @@ def generate_launch_description():
     pkg_name_controller  = "controller_manager"
 
     # World
+    # gazebo_world = "forest"
+    gazebo_world = "yolo_test_box"
     gazebo_world_path = os.path.join(
         get_package_share_directory(pkg_name_manipulator),
         'worlds',
-        # 'world.sdf'
-        'forest.world'
+        f"{gazebo_world}.world"
     )
-    gazebo_world = "forest_pruning_world"
 
 
     # Robot Description
@@ -95,7 +95,8 @@ def generate_launch_description():
             '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
             '/camera/image@sensor_msgs/msg/Image@gz.msgs.Image',
             '/camera/depth_image@sensor_msgs/msg/Image@gz.msgs.Image',
-            '/camera/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked'
+            '/camera/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked',
+            '/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo'
         ],
         output='screen'
     )
@@ -176,7 +177,6 @@ def generate_launch_description():
             [os.path.join(get_package_share_directory(pkg_name_moveit), 'launch', 'moveit_rviz.launch.py')]
         ),
         launch_arguments={
-            # 'rviz_config': "./src/moveit/config/moveit.rviz",
             'rviz_config': PathJoinSubstitution([FindPackageShare(pkg_name_moveit), "config/moveit.rviz"]),
             'use_sim_time': str(use_sim_time)
         }.items()

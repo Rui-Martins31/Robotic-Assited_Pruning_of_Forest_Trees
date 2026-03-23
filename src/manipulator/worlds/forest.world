@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
-  <world name="forest_pruning_world">
+  <world name="forest">
 
     <light name="sun" type="directional">
       <cast_shadows>true</cast_shadows>
