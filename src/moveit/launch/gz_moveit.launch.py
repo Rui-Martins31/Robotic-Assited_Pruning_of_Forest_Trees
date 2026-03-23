@@ -33,7 +33,7 @@ def generate_launch_description():
 
     # World
     # gazebo_world = "forest"
-    gazebo_world = "yolo_test_box"
+    gazebo_world = "yolo_test"
     gazebo_world_path = os.path.join(
         get_package_share_directory(pkg_name_manipulator),
         'worlds',

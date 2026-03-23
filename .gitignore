@@ -10,6 +10,7 @@ output/
 
 # PyTorch
 *.pth
+*.pt
 
 # Single Files
 
