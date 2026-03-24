@@ -103,6 +103,15 @@ class CameraImageSubscriber(Node):
                     cv2.rectangle(cv_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
                     cv2.circle(cv_image, (int(cx), int(cy)), 5, (0, 0, 255), -1)
 
+                    # DEBUG
+                    cv2.line(
+                        cv_image,
+                        (int(IMAGE_WIDTH/2), int(IMAGE_HEIGHT/2)),
+                        (int(cx), int(cy)),
+                        (255, 0, 0),
+                        5
+                    ) # Line between the bounding box and the center of the image
+
                     # Text label
                     label = f"{self.yolo_model.names[int(cls)]} {conf:.2f}"
                     cv2.putText(cv_image, label, (x1, y1 - 10), 
