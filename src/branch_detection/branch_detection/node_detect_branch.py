@@ -2,6 +2,7 @@ import os
 
 import cv2
 from cv_bridge import CvBridge
+
 import numpy as np
 from ultralytics import YOLO
 
@@ -10,10 +11,14 @@ from rclpy.node import Node
 from ament_index_python.packages import get_package_share_directory
 
 from sensor_msgs.msg import Image
+from geometry_msgs.msg import Point
 
 
 # Constants
-TOPIC_NAME: str      = 'camera/image'
+NODE_NAME: str       = 'detect_branch'
+
+SUB_TOPIC_NAME: str  = 'camera/image'
+PUB_TOPIC_NAME: str  = 'yolo/position_vector'
 TIMER_DELAY: float   = 1.0
 
 PATH_SAVE_IMAGE: str = './output/image_detection/'
@@ -23,16 +28,24 @@ YOLO_MODEL_NAME: str = 'yolov8n.pt'
 class CameraImageSubscriber(Node):
 
     def __init__(self):
-        super().__init__('camera_image_subscriber')
+        super().__init__(NODE_NAME)
 
         # Subscriber
         self.subscription = self.create_subscription(
             Image,
-            TOPIC_NAME,
+            SUB_TOPIC_NAME,
             self.listener_callback,
             10
         )
         self.subscription # prevent unused variable warning
+
+        # Publisher
+        self.publisher = self.create_publisher(
+            Point,
+            PUB_TOPIC_NAME,
+            10
+        )
+        self.publisher # prevent unused variable warning
 
         # Timer
         self.timer = self.create_timer(
@@ -43,8 +56,8 @@ class CameraImageSubscriber(Node):
 
         # Image
         os.makedirs(PATH_SAVE_IMAGE, exist_ok=True) # create dir
-        self.image: Image     = None
-        self.image_count: int = 0
+        self.image: Image | None = None
+        self.image_count: int    = 0
 
         self.bridge: CvBridge = CvBridge()
 
@@ -87,6 +100,10 @@ class CameraImageSubscriber(Node):
                 verbose = False
             )
 
+            # Default values
+            cx: float = float(IMAGE_WIDTH/2)
+            cy: float = float(IMAGE_HEIGHT/2)
+
             # Iterate over detections
             for result in results:
                 boxes = result.boxes
@@ -123,8 +140,15 @@ class CameraImageSubscriber(Node):
             # Save
             self.image_count += 1
             cv2.imwrite(f'{PATH_SAVE_IMAGE}img_{self.image_count}.png', cv_image)
+            self.get_logger().info("Saved image.")
 
-            self.get_logger().info("Saved image.\n")
+            # Publish
+            pub_msg: Point = Point()
+            pub_msg.x = float(cx - IMAGE_WIDTH/2)
+            pub_msg.y = float(cy - IMAGE_HEIGHT/2)
+            pub_msg.z = 0.0
+            self.publisher.publish(pub_msg)
+            self.get_logger().info(f"Publishing: ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})\n")
 
         except Exception as e:
             self.get_logger().error(f"CvBridge Error: {e}\n")
