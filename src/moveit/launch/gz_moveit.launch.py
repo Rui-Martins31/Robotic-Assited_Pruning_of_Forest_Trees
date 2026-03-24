@@ -162,6 +162,20 @@ def generate_launch_description():
         ]
     )
 
+    # Single Joint Controller (wrist_2_joint)
+    single_joint_controller_spawner = Node(
+        package=pkg_name_controller,
+        executable="spawner",
+        arguments=[
+            "forward_position_controller",
+            "--controller-manager", "/controller_manager"
+        ],
+        output="screen",
+        parameters=[
+            {'use_sim_time': use_sim_time}
+        ]
+    )
+
     # MoveIt
     moveit = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -198,6 +212,8 @@ def generate_launch_description():
             spawn_robot,
             joint_state_broadcaster_spawner,
             joint_trajectory_controller_spawner,
+
+            single_joint_controller_spawner,
 
             # Delay moveit start so that all the controllers have time to start up before it
             # TO BE REMOVED LATER

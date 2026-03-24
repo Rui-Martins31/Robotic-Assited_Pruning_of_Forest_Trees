@@ -13,6 +13,7 @@ find_package(moveit_ros_planning_interface REQUIRED)
 
 # Define the executable
 add_executable(node_kinematic_controller src/node_kinematic_controller.cpp)
+add_executable(node_single_joint_controller src/node_single_joint_controller.cpp)
 
 # Link dependencies
 ament_target_dependencies(node_kinematic_controller
@@ -22,9 +23,15 @@ ament_target_dependencies(node_kinematic_controller
   moveit_ros_planning_interface
 )
 
+ament_target_dependencies(node_single_joint_controller
+  rclcpp
+  std_msgs
+)
+
 # Install the executable so "ros2 run" can find it
 install(TARGETS
   node_kinematic_controller
+  node_single_joint_controller
   DESTINATION lib/${PROJECT_NAME}
 )
 
