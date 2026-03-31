@@ -19,9 +19,10 @@ NODE_NAME: str       = 'detect_branch'
 
 SUB_TOPIC_NAME: str  = 'camera/image'
 PUB_TOPIC_NAME: str  = 'yolo/position_vector'
-TIMER_DELAY: float   = 1.0
+TIMER_DELAY: float   = 0.2# 1.0
 
-PATH_SAVE_IMAGE: str = './output/image_detection/'
+PATH_SAVE_IMAGE: str  = './output/image_detection/'
+BOOL_SAVE_IMAGE: bool = False
 
 YOLO_MODEL_NAME: str = 'yolov8n.pt'
 
@@ -103,6 +104,7 @@ class CameraImageSubscriber(Node):
             # Default values
             cx: float = float(IMAGE_WIDTH/2)
             cy: float = float(IMAGE_HEIGHT/2)
+            detected: bool = False
 
             # Iterate over detections
             for result in results:
@@ -135,20 +137,23 @@ class CameraImageSubscriber(Node):
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
                     # DEBUG
+                    detected = True
                     break # Stop at first box
 
             # Save
-            self.image_count += 1
-            cv2.imwrite(f'{PATH_SAVE_IMAGE}img_{self.image_count}.png', cv_image)
-            self.get_logger().info("Saved image.")
+            if BOOL_SAVE_IMAGE:
+                self.image_count += 1
+                cv2.imwrite(f'{PATH_SAVE_IMAGE}img_{self.image_count}.png', cv_image)
+                self.get_logger().info("Saved image.")
 
             # Publish
-            pub_msg: Point = Point()
-            pub_msg.x = float(cx - IMAGE_WIDTH/2)
-            pub_msg.y = float(cy - IMAGE_HEIGHT/2)
-            pub_msg.z = 0.0
-            self.publisher.publish(pub_msg)
-            self.get_logger().info(f"Publishing: ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})\n")
+            if detected:
+                pub_msg: Point = Point()
+                pub_msg.x = float((cx - IMAGE_WIDTH/2)/IMAGE_WIDTH)
+                pub_msg.y = float((cy - IMAGE_HEIGHT/2)/IMAGE_HEIGHT)
+                pub_msg.z = 0.0
+                self.publisher.publish(pub_msg)
+                self.get_logger().info(f"Publishing: ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})\n")
 
         except Exception as e:
             self.get_logger().error(f"CvBridge Error: {e}\n")
