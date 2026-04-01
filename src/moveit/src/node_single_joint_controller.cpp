@@ -93,8 +93,6 @@ private:
         auto msg = std_msgs::msg::Float64MultiArray();
 
         // Joint angle
-        // TO DO: fetch the current wrist_2_joint position and add/subtract the value from there
-        // double joint_angle = -KP*(M_PI * this->position.x) - M_PI/2;
         double joint_angle = this->joint_position_current - KP * this->position.x;
         msg.data = {joint_angle};
 
