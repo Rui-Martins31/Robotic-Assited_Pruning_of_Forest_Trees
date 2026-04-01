@@ -26,6 +26,7 @@ ament_target_dependencies(node_kinematic_controller
 ament_target_dependencies(node_single_joint_controller
   rclcpp
   geometry_msgs
+  sensor_msgs
 )
 
 # Install the executable so "ros2 run" can find it

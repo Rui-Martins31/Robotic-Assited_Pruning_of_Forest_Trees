@@ -19,7 +19,7 @@ NODE_NAME: str       = 'detect_branch'
 
 SUB_TOPIC_NAME: str  = 'camera/image'
 PUB_TOPIC_NAME: str  = 'yolo/position_vector'
-TIMER_DELAY: float   = 0.2# 1.0
+TIMER_DELAY: float   = 0.05# 1.0
 
 PATH_SAVE_IMAGE: str  = './output/image_detection/'
 BOOL_SAVE_IMAGE: bool = False
