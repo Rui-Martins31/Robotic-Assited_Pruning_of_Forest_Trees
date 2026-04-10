@@ -10,7 +10,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + '/models', ['models/yolov8n.pt']),
+        ('share/' + package_name + '/models', ['models/yolov8n.pt', 'models/yolo_tree_detection.pt']),
     ],
     install_requires=['setuptools', 'ultralytics'],
     zip_safe=True,

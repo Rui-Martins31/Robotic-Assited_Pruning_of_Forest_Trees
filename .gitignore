@@ -7,11 +7,11 @@ output/
 
 .claude
 .__pycache__
+__pycache__/
 
 # PyTorch
 *.pth
 *.pt
 
 # Single Files
-
 Forest_Environment.dae

@@ -14,7 +14,7 @@
 static const std::string NODE_NAME = "single_joint_commander";
 
 static const std::string PUB_TOPIC_NAME = "/forward_position_controller/commands";
-static const std::string SUB_TOPIC_NAME_YOLO = "/yolo/position_vector";
+static const std::string SUB_TOPIC_NAME_YOLO = "/yolo/position_vector_image_frame";
 static const std::string SUB_TOPIC_NAME_JOINT_STATE = "/joint_states";
 
 static const std::string JOINT_NAME = "wrist_2_joint";
@@ -54,7 +54,7 @@ public:
             std::bind(&SingleJointCommander::subscribe_joint_state_callback, this, _1)
         );
 
-        // Timer to publish at 50 Hz
+        // Timer to publish
         timer_ = this->create_wall_timer(
             20ms,
             std::bind(&SingleJointCommander::publish_command, this)

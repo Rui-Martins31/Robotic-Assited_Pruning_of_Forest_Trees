@@ -15,16 +15,19 @@ from geometry_msgs.msg import Point
 
 
 # Constants
-NODE_NAME: str       = 'detect_branch'
+NODE_NAME: str        = 'detect_branch'
 
-SUB_TOPIC_NAME: str  = 'camera/image'
-PUB_TOPIC_NAME: str  = 'yolo/position_vector'
-TIMER_DELAY: float   = 0.05# 1.0
+SUB_TOPIC_NAME: str   = 'camera/image'
+PUB_TOPIC_NAME_POS_IMAGE_FRAME: str = 'yolo/position_vector_image_frame'
+PUB_TOPIC_NAME_POS_WORLD_FRAME: str = 'yolo/position_vector_world_frame'
+TIMER_DELAY: float    = 0.05# 1.0
 
 PATH_SAVE_IMAGE: str  = './output/image_detection/'
-BOOL_SAVE_IMAGE: bool = False
+BOOL_SAVE_IMAGE: bool = True
 
-YOLO_MODEL_NAME: str = 'yolov8n.pt'
+YOLO_MODEL_NAME: str  = 'yolo_tree_detection.pt' #'yolov8n.pt'
+
+CAMERA_FOV_HORIZONTAL: float = 1.05
 
 class CameraImageSubscriber(Node):
 
@@ -41,12 +44,18 @@ class CameraImageSubscriber(Node):
         self.subscription # prevent unused variable warning
 
         # Publisher
-        self.publisher = self.create_publisher(
+        self.publisher_image_frame = self.create_publisher(
             Point,
-            PUB_TOPIC_NAME,
+            PUB_TOPIC_NAME_POS_IMAGE_FRAME,
             10
         )
-        self.publisher # prevent unused variable warning
+        self.publisher_world_frame = self.create_publisher(
+            Point,
+            PUB_TOPIC_NAME_POS_WORLD_FRAME,
+            10
+        )
+        self.publisher_image_frame # prevent unused variable warning
+        self.publisher_world_frame
 
         # Timer
         self.timer = self.create_timer(
@@ -63,8 +72,8 @@ class CameraImageSubscriber(Node):
         self.bridge: CvBridge = CvBridge()
 
         # YOLO
-        model_path = os.path.join(get_package_share_directory('branch_detection'), 'models', YOLO_MODEL_NAME)
-        self.yolo_model = YOLO(model_path)
+        model_path: str       = os.path.join(get_package_share_directory('branch_detection'), 'models', YOLO_MODEL_NAME)
+        self.yolo_model: YOLO = YOLO(model_path)
 
 
     def listener_callback(self, msg: Image):
@@ -90,9 +99,9 @@ class CameraImageSubscriber(Node):
             )
 
             # Equalization
-            img_yuv        = cv2.cvtColor(cv_image, cv2.COLOR_BGR2YUV)
-            img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
-            cv_image       = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
+            # img_yuv        = cv2.cvtColor(cv_image, cv2.COLOR_BGR2YUV)
+            # img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
+            # cv_image       = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
 
             # YOLO inference
             results = self.yolo_model(
@@ -148,17 +157,65 @@ class CameraImageSubscriber(Node):
 
             # Publish
             if detected:
+                # Image frame
                 pub_msg: Point = Point()
                 pub_msg.x = float((cx - IMAGE_WIDTH/2)/IMAGE_WIDTH)
                 pub_msg.y = float((cy - IMAGE_HEIGHT/2)/IMAGE_HEIGHT)
                 pub_msg.z = 0.0
-                self.publisher.publish(pub_msg)
-                self.get_logger().info(f"Publishing: ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})\n")
+                self.publisher_image_frame.publish(pub_msg)
+                self.get_logger().info(f"Publishing (image_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})\n")
+
+                # World frame
+                # pub_msg: Point = Point()
+                world_coords: np.ndarray = pixel_to_world_coord(x_pixel = cx, y_pixel = cy, depth = 1.0)
+                pub_msg.x = float(world_coords[0][0])
+                pub_msg.y = float(world_coords[1][0])
+                pub_msg.z = float(world_coords[2][0])
+                self.publisher_world_frame.publish(pub_msg)
+                self.get_logger().info(f"Publishing (world_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})\n")
 
         except Exception as e:
-            self.get_logger().error(f"CvBridge Error: {e}\n")
+            self.get_logger().error(f"Error: {e}\n")
             return
 
+# Utils
+def pixel_to_world_coord(
+    x_pixel: float,
+    y_pixel: float,
+    depth: float,
+
+    fx: float = float(CAMERA_FOV_HORIZONTAL),
+    fy: float = float(CAMERA_FOV_HORIZONTAL),
+    cu: float = 0.0,
+    cv: float = 0.0,
+    s: float  = 0.0
+) -> np.ndarray:
+
+    # Check inputs
+    if (x_pixel < 0.0): return np.asarray([0.0, 0.0, 0.0])
+    if (y_pixel < 0.0): return np.asarray([0.0, 0.0, 0.0])
+    if (depth < 0.0):   return np.asarray([0.0, 0.0, 0.0])
+
+    # Point in pixel frame
+    point_pixel: np.ndarray = np.asarray(
+        [[x_pixel],
+         [y_pixel],
+         [1]]
+    )
+
+    # Pixel frame to camera frame
+    K_matrix: np.ndarray = np.asarray(
+        [[fx, s,  cu],
+         [0,  fy, cv],
+         [0,  0,  1 ]]
+    )
+
+    point_camera: np.ndarray = depth * (np.linalg.inv(K_matrix) @ point_pixel)
+
+    return point_camera
+
+    # Camera frame to world frame
+    # TODO_
 
 
 def main(args=None):
