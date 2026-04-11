@@ -17,7 +17,8 @@ from geometry_msgs.msg import Point
 # Constants
 NODE_NAME: str        = 'detect_branch'
 
-SUB_TOPIC_NAME: str   = 'camera/image'
+SUB_TOPIC_NAME_IMAGE_RGB: str   = 'camera/image'
+SUB_TOPIC_NAME_IMAGE_DEPTH: str = 'camera/depth_image'
 PUB_TOPIC_NAME_POS_IMAGE_FRAME: str = 'yolo/position_vector_image_frame'
 PUB_TOPIC_NAME_POS_WORLD_FRAME: str = 'yolo/position_vector_world_frame'
 TIMER_DELAY: float    = 0.05# 1.0
@@ -27,7 +28,17 @@ BOOL_SAVE_IMAGE: bool = True
 
 YOLO_MODEL_NAME: str  = 'yolo_tree_detection.pt' #'yolov8n.pt'
 
-CAMERA_FOV_HORIZONTAL: float = 1.05
+# Camera and Image
+IMAGE_WIDTH: int  = 400
+IMAGE_HEIGHT: int = 300
+
+CAMERA_FOV_HORIZONTAL: float = 1.05  # rad
+CAMERA_FX: float             = (IMAGE_WIDTH  / 2) / np.tan(CAMERA_FOV_HORIZONTAL / 2)
+CAMERA_FY: float             = CAMERA_FX 
+CAMERA_CU: float             = IMAGE_WIDTH  / 2
+CAMERA_CV: float             = IMAGE_HEIGHT / 2
+CAMERA_MAX_DIST: float       = 100.0
+CAMERA_MIN_DIST: float       = 0.1
 
 class CameraImageSubscriber(Node):
 
@@ -35,13 +46,20 @@ class CameraImageSubscriber(Node):
         super().__init__(NODE_NAME)
 
         # Subscriber
-        self.subscription = self.create_subscription(
+        self.subscription_image_rgb = self.create_subscription(
             Image,
-            SUB_TOPIC_NAME,
-            self.listener_callback,
+            SUB_TOPIC_NAME_IMAGE_RGB,
+            self.listener_image_rgb_callback,
             10
         )
-        self.subscription # prevent unused variable warning
+        self.subscription_image_depth = self.create_subscription(
+            Image,
+            SUB_TOPIC_NAME_IMAGE_DEPTH,
+            self.listener_image_depth_callback,
+            10
+        )
+        self.subscription_image_rgb # prevent unused variable warning
+        self.subscription_image_depth
 
         # Publisher
         self.publisher_image_frame = self.create_publisher(
@@ -66,8 +84,9 @@ class CameraImageSubscriber(Node):
 
         # Image
         os.makedirs(PATH_SAVE_IMAGE, exist_ok=True) # create dir
-        self.image: Image | None = None
-        self.image_count: int    = 0
+        self.image_rgb: Image | None   = None
+        self.image_depth: Image | None = None
+        self.image_count: int          = 0
 
         self.bridge: CvBridge = CvBridge()
 
@@ -76,43 +95,50 @@ class CameraImageSubscriber(Node):
         self.yolo_model: YOLO = YOLO(model_path)
 
 
-    def listener_callback(self, msg: Image):
+    def listener_image_rgb_callback(self, msg: Image):
         # self.get_logger().info(f"Receiving image: {msg.data}")
-        self.image = msg
+        self.image_rgb = msg
+
+    def listener_image_depth_callback(self, msg: Image):
+        self.image_depth = msg
 
     def timer_callback(self):
-        if self.image is None:
+        if (self.image_rgb is None) or (self.image_depth is None):
             return
         
         try:
             # Convert to OpenCV
-            cv_image = self.bridge.imgmsg_to_cv2(self.image, desired_encoding='bgr8')
+            cv_image_rgb   = self.bridge.imgmsg_to_cv2(self.image_rgb, desired_encoding='bgr8')
+            cv_image_depth = self.bridge.imgmsg_to_cv2(self.image_depth, desired_encoding='passthrough')
             
             # Image processing
             # Resize
-            IMAGE_WIDTH: int  = 400
-            IMAGE_HEIGHT: int = 300
-            cv_image = cv2.resize(
-                cv_image,
+            cv_image_rgb = cv2.resize(
+                cv_image_rgb,
+                (IMAGE_WIDTH, IMAGE_HEIGHT),
+                interpolation=cv2.INTER_LINEAR
+            )
+            cv_image_depth = cv2.resize(
+                cv_image_depth,
                 (IMAGE_WIDTH, IMAGE_HEIGHT),
                 interpolation=cv2.INTER_LINEAR
             )
 
             # Equalization
-            # img_yuv        = cv2.cvtColor(cv_image, cv2.COLOR_BGR2YUV)
+            # img_yuv        = cv2.cvtColor(cv_image_rgb, cv2.COLOR_BGR2YUV)
             # img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
-            # cv_image       = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
+            # cv_image_rgb       = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
 
             # YOLO inference
             results = self.yolo_model(
-                cv_image,
+                cv_image_rgb,
                 conf    = 0.5,
                 verbose = False
             )
 
             # Default values
-            cx: float = float(IMAGE_WIDTH/2)
-            cy: float = float(IMAGE_HEIGHT/2)
+            cx: float      = float(IMAGE_WIDTH/2)
+            cy: float      = float(IMAGE_HEIGHT/2)
             detected: bool = False
 
             # Iterate over detections
@@ -128,12 +154,12 @@ class CameraImageSubscriber(Node):
                     self.get_logger().info(f"Center of bounding box: ({cx},{cy})")
 
                     # Draw bounding box and center point
-                    cv2.rectangle(cv_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                    cv2.circle(cv_image, (int(cx), int(cy)), 5, (0, 0, 255), -1)
+                    cv2.rectangle(cv_image_rgb, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                    cv2.circle(cv_image_rgb, (int(cx), int(cy)), 5, (0, 0, 255), -1)
 
                     # DEBUG
                     cv2.line(
-                        cv_image,
+                        cv_image_rgb,
                         (int(IMAGE_WIDTH/2), int(IMAGE_HEIGHT/2)),
                         (int(cx), int(cy)),
                         (255, 0, 0),
@@ -142,7 +168,7 @@ class CameraImageSubscriber(Node):
 
                     # Text label
                     label = f"{self.yolo_model.names[int(cls)]} {conf:.2f}"
-                    cv2.putText(cv_image, label, (x1, y1 - 10), 
+                    cv2.putText(cv_image_rgb, label, (x1, y1 - 10), 
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
                     # DEBUG
@@ -152,7 +178,7 @@ class CameraImageSubscriber(Node):
             # Save
             if BOOL_SAVE_IMAGE:
                 self.image_count += 1
-                cv2.imwrite(f'{PATH_SAVE_IMAGE}img_{self.image_count}.png', cv_image)
+                cv2.imwrite(f'{PATH_SAVE_IMAGE}img_{self.image_count}.png', cv_image_rgb)
                 self.get_logger().info("Saved image.")
 
             # Publish
@@ -163,11 +189,15 @@ class CameraImageSubscriber(Node):
                 pub_msg.y = float((cy - IMAGE_HEIGHT/2)/IMAGE_HEIGHT)
                 pub_msg.z = 0.0
                 self.publisher_image_frame.publish(pub_msg)
-                self.get_logger().info(f"Publishing (image_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})\n")
+                self.get_logger().info(f"Publishing (image_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})")
 
                 # World frame
                 # pub_msg: Point = Point()
-                world_coords: np.ndarray = pixel_to_world_coord(x_pixel = cx, y_pixel = cy, depth = 1.0)
+                world_coords: np.ndarray = pixel_to_world_coord(
+                    x_pixel = cx,
+                    y_pixel = cy,
+                    depth   = cv_image_depth[int(cy), int(cx)]
+                )
                 pub_msg.x = float(world_coords[0][0])
                 pub_msg.y = float(world_coords[1][0])
                 pub_msg.z = float(world_coords[2][0])
@@ -184,17 +214,22 @@ def pixel_to_world_coord(
     y_pixel: float,
     depth: float,
 
-    fx: float = float(CAMERA_FOV_HORIZONTAL),
-    fy: float = float(CAMERA_FOV_HORIZONTAL),
-    cu: float = 0.0,
-    cv: float = 0.0,
-    s: float  = 0.0
+    fx: float = CAMERA_FX,
+    fy: float = CAMERA_FY,
+    cu: float = CAMERA_CU,
+    cv: float = CAMERA_CV,
+    s: float  = 0.0,
+    camera_max_dist: float = CAMERA_MAX_DIST,
+    camera_min_dist: float = CAMERA_MIN_DIST
 ) -> np.ndarray:
 
     # Check inputs
     if (x_pixel < 0.0): return np.asarray([0.0, 0.0, 0.0])
     if (y_pixel < 0.0): return np.asarray([0.0, 0.0, 0.0])
     if (depth < 0.0):   return np.asarray([0.0, 0.0, 0.0])
+
+    if (depth < camera_min_dist): depth = camera_min_dist
+    if (depth > camera_max_dist): depth = camera_max_dist
 
     # Point in pixel frame
     point_pixel: np.ndarray = np.asarray(
@@ -210,6 +245,7 @@ def pixel_to_world_coord(
          [0,  0,  1 ]]
     )
 
+    # Point in camera frame
     point_camera: np.ndarray = depth * (np.linalg.inv(K_matrix) @ point_pixel)
 
     return point_camera
