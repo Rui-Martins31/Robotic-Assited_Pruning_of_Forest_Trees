@@ -25,7 +25,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'node_detect_branch = branch_detection.node_detect_branch:main'
+            'node_detect_branch = branch_detection.node_detect_branch:main',
+            'service_compute_world_coordinates = branch_detection.service_compute_world_position:main'
         ],
     },
 )
