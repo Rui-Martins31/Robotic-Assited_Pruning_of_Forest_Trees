@@ -13,12 +13,14 @@ from ament_index_python.packages import get_package_share_directory
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Point
 
+from . import _globals
+
 
 # Constants
 NODE_NAME: str        = 'detect_branch'
 
-SUB_TOPIC_NAME_IMAGE_RGB: str   = 'camera/image'
-SUB_TOPIC_NAME_IMAGE_DEPTH: str = 'camera/depth_image'
+SUB_TOPIC_NAME_IMAGE_RGB: str       = 'camera/image'
+SUB_TOPIC_NAME_IMAGE_DEPTH: str     = 'camera/depth_image'
 PUB_TOPIC_NAME_POS_IMAGE_FRAME: str = 'yolo/position_vector_image_frame'
 PUB_TOPIC_NAME_POS_WORLD_FRAME: str = 'yolo/position_vector_world_frame'
 TIMER_DELAY: float    = 0.05# 1.0
@@ -27,18 +29,6 @@ PATH_SAVE_IMAGE: str  = './output/image_detection/'
 BOOL_SAVE_IMAGE: bool = True
 
 YOLO_MODEL_NAME: str  = 'yolo_tree_detection.pt' #'yolov8n.pt'
-
-# Camera and Image
-IMAGE_WIDTH: int  = 400
-IMAGE_HEIGHT: int = 300
-
-CAMERA_FOV_HORIZONTAL: float = 1.05  # rad
-CAMERA_FX: float             = (IMAGE_WIDTH  / 2) / np.tan(CAMERA_FOV_HORIZONTAL / 2)
-CAMERA_FY: float             = CAMERA_FX 
-CAMERA_CU: float             = IMAGE_WIDTH  / 2
-CAMERA_CV: float             = IMAGE_HEIGHT / 2
-CAMERA_MAX_DIST: float       = 100.0
-CAMERA_MIN_DIST: float       = 0.1
 
 class CameraImageSubscriber(Node):
 
@@ -74,6 +64,9 @@ class CameraImageSubscriber(Node):
         )
         self.publisher_image_frame # prevent unused variable warning
         self.publisher_world_frame
+
+        # Service
+        
 
         # Timer
         self.timer = self.create_timer(
@@ -115,12 +108,12 @@ class CameraImageSubscriber(Node):
             # Resize
             cv_image_rgb = cv2.resize(
                 cv_image_rgb,
-                (IMAGE_WIDTH, IMAGE_HEIGHT),
+                (_globals.IMAGE_WIDTH, _globals.IMAGE_HEIGHT),
                 interpolation=cv2.INTER_LINEAR
             )
             cv_image_depth = cv2.resize(
                 cv_image_depth,
-                (IMAGE_WIDTH, IMAGE_HEIGHT),
+                (_globals.IMAGE_WIDTH, _globals.IMAGE_HEIGHT),
                 interpolation=cv2.INTER_LINEAR
             )
 
@@ -137,8 +130,8 @@ class CameraImageSubscriber(Node):
             )
 
             # Default values
-            cx: float      = float(IMAGE_WIDTH/2)
-            cy: float      = float(IMAGE_HEIGHT/2)
+            cx: float      = float(_globals.IMAGE_WIDTH/2)
+            cy: float      = float(_globals.IMAGE_HEIGHT/2)
             detected: bool = False
 
             # Iterate over detections
@@ -160,7 +153,7 @@ class CameraImageSubscriber(Node):
                     # DEBUG
                     cv2.line(
                         cv_image_rgb,
-                        (int(IMAGE_WIDTH/2), int(IMAGE_HEIGHT/2)),
+                        (int(_globals.IMAGE_WIDTH/2), int(_globals.IMAGE_HEIGHT/2)),
                         (int(cx), int(cy)),
                         (255, 0, 0),
                         5
@@ -185,8 +178,8 @@ class CameraImageSubscriber(Node):
             if detected:
                 # Image frame
                 pub_msg: Point = Point()
-                pub_msg.x = float((cx - IMAGE_WIDTH/2)/IMAGE_WIDTH)
-                pub_msg.y = float((cy - IMAGE_HEIGHT/2)/IMAGE_HEIGHT)
+                pub_msg.x = float((cx - _globals.IMAGE_WIDTH/2)/_globals.IMAGE_WIDTH)
+                pub_msg.y = float((cy - _globals.IMAGE_HEIGHT/2)/_globals.IMAGE_HEIGHT)
                 pub_msg.z = 0.0
                 self.publisher_image_frame.publish(pub_msg)
                 self.get_logger().info(f"Publishing (image_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})")
@@ -214,13 +207,13 @@ def pixel_to_world_coord(
     y_pixel: float,
     depth: float,
 
-    fx: float = CAMERA_FX,
-    fy: float = CAMERA_FY,
-    cu: float = CAMERA_CU,
-    cv: float = CAMERA_CV,
+    fx: float = _globals.CAMERA_FX,
+    fy: float = _globals.CAMERA_FY,
+    cu: float = _globals.CAMERA_CU,
+    cv: float = _globals.CAMERA_CV,
     s: float  = 0.0,
-    camera_max_dist: float = CAMERA_MAX_DIST,
-    camera_min_dist: float = CAMERA_MIN_DIST
+    camera_max_dist: float = _globals.CAMERA_MAX_DIST,
+    camera_min_dist: float = _globals.CAMERA_MIN_DIST
 ) -> np.ndarray:
 
     # Check inputs
