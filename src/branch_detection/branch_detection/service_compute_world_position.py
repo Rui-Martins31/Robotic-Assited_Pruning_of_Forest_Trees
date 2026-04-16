@@ -131,14 +131,26 @@ class ComputeWorldPosition(Node):
             [0,  0,  1 ]]
         )
 
-        # Point in camera frame
-        point_camera: np.ndarray = depth * (np.linalg.inv(K_matrix) @ point_pixel)
+        # Point in camera optical frame
+        point_camera_optical: np.ndarray = depth * (np.linalg.inv(K_matrix) @ point_pixel)
+        self.get_logger().info(f"(Camera Frame):\n   x: {point_camera_optical[0]}\n   y: {point_camera_optical[1]}\n   z: {point_camera_optical[2]}")
+
+        # Camera optical frame to camera_link body frame
+        R_optical_to_body: np.ndarray = np.array([
+            [ 0,  0,  1],
+            [-1,  0,  0],
+            [ 0, -1,  0]
+        ], dtype=float)
+        point_camera: np.ndarray = R_optical_to_body @ point_camera_optical
 
         # Camera frame to world frame
         point_camera_h: np.ndarray = np.vstack([point_camera, [[1.0]]])  # homogeneous
+        self.get_logger().info(f"{point_camera_h = }")
 
         # Point in world frame
         point_world_h:  np.ndarray = H_camera_to_world @ point_camera_h
+        self.get_logger().info(f"{H_camera_to_world = }")
+        self.get_logger().info(f"{point_world_h = }")
 
         return point_world_h[0:3]
 
