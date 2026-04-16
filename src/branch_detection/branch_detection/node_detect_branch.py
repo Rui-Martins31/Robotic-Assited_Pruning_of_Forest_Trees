@@ -13,6 +13,8 @@ from ament_index_python.packages import get_package_share_directory
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Point
 
+from interfaces.srv import YOLOPoint
+
 from . import _globals
 
 
@@ -66,7 +68,7 @@ class CameraImageSubscriber(Node):
         self.publisher_world_frame
 
         # Service
-        
+        self.client_compute_world_position = self.create_client(YOLOPoint, 'compute_world_position')
 
         # Timer
         self.timer = self.create_timer(
@@ -143,14 +145,17 @@ class CameraImageSubscriber(Node):
                     cx, cy, w, h   = box.xywh[0]
                     conf           = box.conf[0]
                     cls            = box.cls[0]
+
+                    ## DEBUG
                     self.get_logger().info(f"Detected class {cls} with {conf:.2f} confidence.")
                     self.get_logger().info(f"Center of bounding box: ({cx},{cy})")
+                    self.get_logger().info(f"Depth: {float(cv_image_depth[int(cy), int(cx)])}")
 
                     # Draw bounding box and center point
                     cv2.rectangle(cv_image_rgb, (x1, y1), (x2, y2), (0, 255, 0), 2)
                     cv2.circle(cv_image_rgb, (int(cx), int(cy)), 5, (0, 0, 255), -1)
 
-                    # DEBUG
+                    ## DEBUG
                     cv2.line(
                         cv_image_rgb,
                         (int(_globals.IMAGE_WIDTH/2), int(_globals.IMAGE_HEIGHT/2)),
@@ -164,7 +169,7 @@ class CameraImageSubscriber(Node):
                     cv2.putText(cv_image_rgb, label, (x1, y1 - 10), 
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
-                    # DEBUG
+                    ## DEBUG
                     detected = True
                     break # Stop at first box
 
@@ -185,66 +190,31 @@ class CameraImageSubscriber(Node):
                 self.get_logger().info(f"Publishing (image_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})")
 
                 # World frame
-                # pub_msg: Point = Point()
-                world_coords: np.ndarray = pixel_to_world_coord(
-                    x_pixel = cx,
-                    y_pixel = cy,
-                    depth   = cv_image_depth[int(cy), int(cx)]
-                )
-                pub_msg.x = float(world_coords[0][0])
-                pub_msg.y = float(world_coords[1][0])
-                pub_msg.z = float(world_coords[2][0])
-                self.publisher_world_frame.publish(pub_msg)
-                self.get_logger().info(f"Publishing (world_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})\n")
+                request = YOLOPoint.Request()
+                request.x_pixel = float(cx)
+                request.y_pixel = float(cy)
+                request.depth   = float(cv_image_depth[int(cy), int(cx)])
+
+                future = self.client_compute_world_position.call_async(request)
+                future.add_done_callback(self._world_position_callback)
 
         except Exception as e:
             self.get_logger().error(f"Error: {e}\n")
             return
 
-# Utils
-def pixel_to_world_coord(
-    x_pixel: float,
-    y_pixel: float,
-    depth: float,
+    def _world_position_callback(self, future: rclpy.task.Future):
+        try:
+            result: YOLOPoint.Response = future.result()
+            pub_msg   = Point()
+            pub_msg.x = result.x_world
+            pub_msg.y = result.y_world
+            pub_msg.z = result.z_world
+            
+            self.publisher_world_frame.publish(pub_msg)
+            self.get_logger().info(f"Publishing (world_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})\n")
 
-    fx: float = _globals.CAMERA_FX,
-    fy: float = _globals.CAMERA_FY,
-    cu: float = _globals.CAMERA_CU,
-    cv: float = _globals.CAMERA_CV,
-    s: float  = 0.0,
-    camera_max_dist: float = _globals.CAMERA_MAX_DIST,
-    camera_min_dist: float = _globals.CAMERA_MIN_DIST
-) -> np.ndarray:
-
-    # Check inputs
-    if (x_pixel < 0.0): return np.asarray([0.0, 0.0, 0.0])
-    if (y_pixel < 0.0): return np.asarray([0.0, 0.0, 0.0])
-    if (depth < 0.0):   return np.asarray([0.0, 0.0, 0.0])
-
-    if (depth < camera_min_dist): depth = camera_min_dist
-    if (depth > camera_max_dist): depth = camera_max_dist
-
-    # Point in pixel frame
-    point_pixel: np.ndarray = np.asarray(
-        [[x_pixel],
-         [y_pixel],
-         [1]]
-    )
-
-    # Pixel frame to camera frame
-    K_matrix: np.ndarray = np.asarray(
-        [[fx, s,  cu],
-         [0,  fy, cv],
-         [0,  0,  1 ]]
-    )
-
-    # Point in camera frame
-    point_camera: np.ndarray = depth * (np.linalg.inv(K_matrix) @ point_pixel)
-
-    return point_camera
-
-    # Camera frame to world frame
-    # TODO_
+        except Exception as e:
+            self.get_logger().error(f"Service call failed: {e}")
 
 
 def main(args=None):
