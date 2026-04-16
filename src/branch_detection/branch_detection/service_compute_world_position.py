@@ -1,30 +1,49 @@
+# Command to quickly test the service:
+# ros2 service call /compute_world_position interfaces/srv/YOLOPoint "{x_pixel: 100.0, y_pixel: 100.0, depth: 2.0}"
+
 from . import _globals
 
 import rclpy
 from rclpy.node import Node
 
+from tf2_ros import TransformException
+from tf2_ros.buffer import Buffer
+from tf2_ros.transform_listener import TransformListener
+
 import numpy as np
+from scipy.spatial.transform import Rotation as R
 
 from interfaces.srv import YOLOPoint
-
+from tf2_msgs.msg import TFMessage
 
 # Constants
 NODE_NAME: str = 'compute_world_position'
 
 SRV_NAME: str  = 'compute_world_position'
+SUB_TOPIC_NAME_TF: str = '/tf'
 
 class ComputeWorldPosition(Node):
 
     def __init__(self):
         super().__init__(NODE_NAME)
-        self.srv = self.create_service(
+        
+        # Service
+        self.service = self.create_service(
             YOLOPoint, 
             SRV_NAME,
-            self.listener_yolo_result_callback
+            self.service_yolo_result_callback
         )
 
-    def listener_yolo_result_callback(self, request: YOLOPoint.Request, response: YOLOPoint.Response):
-        point: np.ndarray = pixel_to_world_coord(
+        # TF
+        self.tf_buffer   = Buffer()
+        self.tf_listener = TransformListener(self.tf_buffer, self)
+
+    def service_yolo_result_callback(self, request: YOLOPoint.Request, response: YOLOPoint.Response) -> YOLOPoint.Response:
+        # Get current joint pose
+        curr_joint_pose = self.get_current_joint_pose()
+
+        # Compute coordinates
+        point: np.ndarray = self.pixel_to_world_coord(
             x_pixel = request.x_pixel,
             y_pixel = request.y_pixel,
             depth   = request.depth
@@ -36,51 +55,84 @@ class ComputeWorldPosition(Node):
 
         return response
 
+    # Utils
+    def get_current_joint_pose(self):
+        try:
+            now = rclpy.time.Time()
+            t   = self.tf_buffer.lookup_transform(
+                'world',
+                'camera_link',
+                now
+            )
 
-# Utils
-def pixel_to_world_coord(
-    x_pixel: float,
-    y_pixel: float,
-    depth: float,
+            # Get rotation and position
+            pos = t.transform.translation
+            rot = t.transform.rotation
+            self.get_logger().info(f'Joint is at: {pos.x}, {pos.y}, {pos.z}')
 
-    fx: float = _globals.CAMERA_FX,
-    fy: float = _globals.CAMERA_FY,
-    cu: float = _globals.CAMERA_CU,
-    cv: float = _globals.CAMERA_CV,
-    s: float  = 0.0,
-    camera_max_dist: float = _globals.CAMERA_MAX_DIST,
-    camera_min_dist: float = _globals.CAMERA_MIN_DIST
-) -> np.ndarray:
+            return self.get_homogeneous_matrix(pos, rot)
 
-    # Check inputs
-    if (x_pixel < 0.0): return np.zeros((3, 1))
-    if (y_pixel < 0.0): return np.zeros((3, 1))
-    if (depth < 0.0):   return np.zeros((3, 1))
+        except TransformException as ex:
+            self.get_logger().info(f'Could not transform: {ex}')
 
-    if (depth < camera_min_dist): depth = camera_min_dist
-    if (depth > camera_max_dist): depth = camera_max_dist
+            return np.eye(4)
 
-    # Point in pixel frame
-    point_pixel: np.ndarray = np.asarray(
-        [[x_pixel],
-         [y_pixel],
-         [1]]
-    )
+    def get_homogeneous_matrix(self, pos, rot):
+        # Create the rotation matrix from the quaternion (x, y, z, w)
+        quat = [rot.x, rot.y, rot.z, rot.w]
+        rot_matrix = R.from_quat(quat).as_matrix()
 
-    # Pixel frame to camera frame
-    K_matrix: np.ndarray = np.asarray(
-        [[fx, s,  cu],
-         [0,  fy, cv],
-         [0,  0,  1 ]]
-    )
+        # Create a homogeneous matrix
+        T           = np.eye(4)
+        T[0:3, 0:3] = rot_matrix
+        T[0:3, 3]   = [pos.x, pos.y, pos.z]
 
-    # Point in camera frame
-    point_camera: np.ndarray = depth * (np.linalg.inv(K_matrix) @ point_pixel)
+        return T
 
-    return point_camera
+    def pixel_to_world_coord(
+        self,
+        x_pixel: float,
+        y_pixel: float,
+        depth: float,
 
-    # Camera frame to world frame
-    # TODO_
+        fx: float = _globals.CAMERA_FX,
+        fy: float = _globals.CAMERA_FY,
+        cu: float = _globals.CAMERA_CU,
+        cv: float = _globals.CAMERA_CV,
+        s: float  = 0.0,
+        camera_max_dist: float = _globals.CAMERA_MAX_DIST,
+        camera_min_dist: float = _globals.CAMERA_MIN_DIST
+    ) -> np.ndarray:
+
+        # Check inputs
+        if (x_pixel < 0.0): return np.zeros((3, 1))
+        if (y_pixel < 0.0): return np.zeros((3, 1))
+        if (depth < 0.0):   return np.zeros((3, 1))
+
+        if (depth < camera_min_dist): depth = camera_min_dist
+        if (depth > camera_max_dist): depth = camera_max_dist
+
+        # Point in pixel frame
+        point_pixel: np.ndarray = np.asarray(
+            [[x_pixel],
+            [y_pixel],
+            [1]]
+        )
+
+        # Pixel frame to camera frame
+        K_matrix: np.ndarray = np.asarray(
+            [[fx, s,  cu],
+            [0,  fy, cv],
+            [0,  0,  1 ]]
+        )
+
+        # Point in camera frame
+        point_camera: np.ndarray = depth * (np.linalg.inv(K_matrix) @ point_pixel)
+
+        return point_camera
+
+        # Camera frame to world frame
+        # TODO_
 
 
 def main(args=None):
