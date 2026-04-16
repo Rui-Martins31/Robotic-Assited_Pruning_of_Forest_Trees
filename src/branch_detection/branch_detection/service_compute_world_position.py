@@ -44,14 +44,18 @@ class ComputeWorldPosition(Node):
 
         # Compute coordinates
         point: np.ndarray = self.pixel_to_world_coord(
-            x_pixel = request.x_pixel,
-            y_pixel = request.y_pixel,
-            depth   = request.depth
+            x_pixel           = request.x_pixel,
+            y_pixel           = request.y_pixel,
+            depth             = request.depth,
+            H_camera_to_world = curr_joint_pose
         ).flatten()
 
         response.x_world = float(point[0])
         response.y_world = float(point[1])
         response.z_world = float(point[2])
+
+        ## DEBUG
+        self.get_logger().info(f"Reponse (World Frame):\n   x: {response.x_world}\n   y: {response.y_world}\n   z: {response.z_world}")
 
         return response
 
@@ -94,6 +98,7 @@ class ComputeWorldPosition(Node):
         x_pixel: float,
         y_pixel: float,
         depth: float,
+        H_camera_to_world: np.ndarray = np.eye(4),
 
         fx: float = _globals.CAMERA_FX,
         fy: float = _globals.CAMERA_FY,
@@ -129,10 +134,13 @@ class ComputeWorldPosition(Node):
         # Point in camera frame
         point_camera: np.ndarray = depth * (np.linalg.inv(K_matrix) @ point_pixel)
 
-        return point_camera
-
         # Camera frame to world frame
-        # TODO_
+        point_camera_h: np.ndarray = np.vstack([point_camera, [[1.0]]])  # homogeneous
+
+        # Point in world frame
+        point_world_h:  np.ndarray = H_camera_to_world @ point_camera_h
+
+        return point_world_h[0:3]
 
 
 def main(args=None):
