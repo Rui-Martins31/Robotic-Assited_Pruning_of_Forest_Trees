@@ -54,9 +54,6 @@ class ComputeWorldPosition(Node):
         response.y_world = float(point[1])
         response.z_world = float(point[2])
 
-        ## DEBUG
-        self.get_logger().info(f"Reponse (World Frame):\n   x: {response.x_world}\n   y: {response.y_world}\n   z: {response.z_world}")
-
         return response
 
     # Utils
@@ -133,7 +130,6 @@ class ComputeWorldPosition(Node):
 
         # Point in camera optical frame
         point_camera_optical: np.ndarray = depth * (np.linalg.inv(K_matrix) @ point_pixel)
-        self.get_logger().info(f"(Camera Frame):\n   x: {point_camera_optical[0]}\n   y: {point_camera_optical[1]}\n   z: {point_camera_optical[2]}")
 
         # Camera optical frame to camera_link body frame
         R_optical_to_body: np.ndarray = np.array([
@@ -145,12 +141,9 @@ class ComputeWorldPosition(Node):
 
         # Camera frame to world frame
         point_camera_h: np.ndarray = np.vstack([point_camera, [[1.0]]])  # homogeneous
-        self.get_logger().info(f"{point_camera_h = }")
 
         # Point in world frame
         point_world_h:  np.ndarray = H_camera_to_world @ point_camera_h
-        self.get_logger().info(f"{H_camera_to_world = }")
-        self.get_logger().info(f"{point_world_h = }")
 
         return point_world_h[0:3]
 
