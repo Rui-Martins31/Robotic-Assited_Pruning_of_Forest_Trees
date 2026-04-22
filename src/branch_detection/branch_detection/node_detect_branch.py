@@ -13,7 +13,7 @@ from ament_index_python.packages import get_package_share_directory
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Point
 
-from interfaces.srv import YOLOPoint
+from custom_interfaces.srv import YOLOPoint
 
 from . import _globals
 

@@ -1,5 +1,5 @@
 # Command to quickly test the service:
-# ros2 service call /compute_world_position interfaces/srv/YOLOPoint "{x_pixel: 100.0, y_pixel: 100.0, depth: 2.0}"
+# ros2 service call /compute_world_position custom_interfaces/srv/YOLOPoint "{x_pixel: 100.0, y_pixel: 100.0, depth: 2.0}"
 
 from . import _globals
 
@@ -13,7 +13,7 @@ from tf2_ros.transform_listener import TransformListener
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
-from interfaces.srv import YOLOPoint
+from custom_interfaces.srv import YOLOPoint
 from tf2_msgs.msg import TFMessage
 
 # Constants
