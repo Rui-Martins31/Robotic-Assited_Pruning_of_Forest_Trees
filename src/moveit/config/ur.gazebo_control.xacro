@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    
+
+  <xacro:property name="tf_prefix" value="$(arg tf_prefix)"/>
+
   <!-- Camera -->
-  <link name="camera_link">
+  <link name="$(arg tf_prefix)camera_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 1.5707 0"/>
       <geometry><cylinder radius="0.025" length="0.05"/></geometry>
@@ -13,16 +15,16 @@
     </collision>
   </link>
 
-  <joint name="camera_joint" type="fixed">
-    <parent link="wrist_2_link"/>
-    <child link="camera_link"/>
+  <joint name="$(arg tf_prefix)camera_joint" type="fixed">
+    <parent link="$(arg tf_prefix)wrist_2_link"/>
+    <child link="$(arg tf_prefix)camera_link"/>
     <origin xyz="0 0 0.075" rpy="0 0 1.5707"/>
   </joint>
 
-  <gazebo reference="camera_link">
-    <sensor type="rgbd_camera" name="sensor_camera">
-      <gz_frame_id>camera_link</gz_frame_id>
-      <camera name="camera">
+  <gazebo reference="$(arg tf_prefix)camera_link">
+    <sensor type="rgbd_camera" name="$(arg tf_prefix)sensor_camera">
+      <gz_frame_id>${tf_prefix}camera_link</gz_frame_id>
+      <camera name="$(arg tf_prefix)camera">
         <horizontal_fov>1.05</horizontal_fov>
         <image>
           <width>320</width>
@@ -64,37 +66,37 @@
         <!-- Gazebo -->
         <plugin>gz_ros2_control/GazeboSimSystem</plugin>
       </hardware>
-      <joint name="shoulder_pan_joint">
+      <joint name="$(arg tf_prefix)shoulder_pan_joint">
         <command_interface name="position"/>
         <state_interface name="position">
           <param name="initial_value">${initial_positions['shoulder_pan_joint']}</param>
         </state_interface>
       </joint>
-      <joint name="shoulder_lift_joint">
+      <joint name="$(arg tf_prefix)shoulder_lift_joint">
         <command_interface name="position"/>
         <state_interface name="position">
           <param name="initial_value">${initial_positions['shoulder_lift_joint']}</param>
         </state_interface>
       </joint>
-      <joint name="elbow_joint">
+      <joint name="$(arg tf_prefix)elbow_joint">
         <command_interface name="position"/>
         <state_interface name="position">
           <param name="initial_value">${initial_positions['elbow_joint']}</param>
         </state_interface>
       </joint>
-      <joint name="wrist_1_joint">
+      <joint name="$(arg tf_prefix)wrist_1_joint">
         <command_interface name="position"/>
         <state_interface name="position">
           <param name="initial_value">${initial_positions['wrist_1_joint']}</param>
         </state_interface>
       </joint>
-      <joint name="wrist_2_joint">
+      <joint name="$(arg tf_prefix)wrist_2_joint">
         <command_interface name="position"/>
         <state_interface name="position">
           <param name="initial_value">${initial_positions['wrist_2_joint']}</param>
         </state_interface>
       </joint>
-      <joint name="wrist_3_joint">
+      <joint name="$(arg tf_prefix)wrist_3_joint">
         <command_interface name="position"/>
         <state_interface name="position">
           <param name="initial_value">${initial_positions['wrist_3_joint']}</param>

@@ -28,4 +28,11 @@
         initial_positions="${xacro.load_yaml(initial_positions_file)}"
     />
 
+    <gazebo>
+        <plugin filename="gz_ros2_control-system"
+                name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+            <parameters>$(find robot_description_cutter)/config/controllers.yaml</parameters>
+        </plugin>
+    </gazebo>
+
 </robot>

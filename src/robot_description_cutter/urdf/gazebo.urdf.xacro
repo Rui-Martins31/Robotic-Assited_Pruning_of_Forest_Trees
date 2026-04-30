@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_cutter">
+
+    <!-- Arguments -->
+    <xacro:arg name="initial_positions_file" default="$(find robot_description_cutter)/config/initial_positions.yaml" />
+    <xacro:arg name="gazebo" default="true" />
+    <xacro:arg name="arm_base_parent_link" default="base_link"/>
+    <xacro:arg name="origin_xyz" default="0 0 0.1"/>
+
+    <!-- Mobile Platform -->
+    <xacro:include filename="$(find scout_description)/urdf/scout_v2.xacro" />
+
+    <!-- Robotic Arm -->
+    <xacro:include filename="$(find moveit)/config/ur.urdf.xacro" />
+
+</robot>
