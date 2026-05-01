@@ -1,0 +1,35 @@
+# ros2_control config for the combined robot_cutter
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+    use_sim_time: true
+
+    ur5_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    forward_position_controller:
+      type: forward_command_controller/ForwardCommandController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+ur5_arm_controller:
+  ros__parameters:
+    joints:
+      - robot_cutter_arm_shoulder_pan_joint
+      - robot_cutter_arm_shoulder_lift_joint
+      - robot_cutter_arm_elbow_joint
+      - robot_cutter_arm_wrist_1_joint
+      - robot_cutter_arm_wrist_2_joint
+      - robot_cutter_arm_wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+    allow_nonzero_velocity_at_trajectory_end: true
+
+forward_position_controller:
+  ros__parameters:
+    joints:
+      - robot_cutter_arm_wrist_2_joint
+    interface_name: position

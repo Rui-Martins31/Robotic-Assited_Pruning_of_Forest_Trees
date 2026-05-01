@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="$(arg robot_name)">
+
+    <!-- Arguments -->
+    <xacro:arg name="robot_name" default="robot_cutter" />
+    <xacro:arg name="initial_positions_file" default="$(find robot_cutter)/config/initial_positions.yaml" />
+    <xacro:arg name="gazebo" default="true" />
+    <xacro:arg name="tf_prefix" default="robot_cutter_arm_" />
+    <xacro:arg name="arm_base_parent_link" default="base_link"/>
+    <xacro:arg name="origin_xyz" default="0 0 0.1"/> <!-- Origin of arm's base -->
+
+    <!-- Mobile Platform -->
+    <xacro:include filename="$(find scout_description)/urdf/scout_v2.xacro" />
+
+    <!-- Robotic Arm -->
+    <xacro:include filename="$(find manipulator)/urdf/ur.urdf.xacro" />
+    <xacro:if value="$(arg gazebo)">
+        <xacro:include filename="$(find moveit)/config/ur.gazebo_control.xacro" />
+        <xacro:ur_ros2_control name="GazeboSystem" initial_positions_file="$(arg initial_positions_file)"/>
+    </xacro:if>
+
+    <!-- Link both components -->
+    <!-- <joint name="arm_to_scout_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="robot_cutter_arm_base_link"/>
+        <origin xyz="$(arg origin_xyz)" rpy="0 0 0"/>
+    </joint> -->
+
+</robot>

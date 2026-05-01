@@ -7,7 +7,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
     description_file = PathJoinSubstitution(
-        [FindPackageShare("robot_description_cutter"), "urdf", "robot_cutter.urdf.xacro"]
+        [FindPackageShare("robot_cutter"), "urdf", "robot_cutter.urdf.xacro"]
     )
 
     robot_description_content = Command(

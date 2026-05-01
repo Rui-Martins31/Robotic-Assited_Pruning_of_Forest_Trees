@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'robot_description_cutter'
+package_name = 'robot_cutter'
 
 setup(
     name=package_name,
@@ -11,10 +11,9 @@ setup(
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', ['launch/rviz.launch.py']),
         ('share/' + package_name + '/launch', ['launch/gazebo.launch.py']),
-        ('share/' + package_name + '/launch', ['launch/test.launch.py']),
         ('share/' + package_name + '/urdf', ['urdf/robot_cutter.urdf.xacro']),
         ('share/' + package_name + '/urdf', ['urdf/gazebo.urdf.xacro']),
-        ('share/' + package_name + '/config', ['config/initial_positions.yaml', 'config/controllers.yaml']),
+        ('share/' + package_name + '/config', ['config/initial_positions.yaml', 'config/controllers.yaml', 'config/ros2_controllers.yaml', 'config/joint_limits.yaml', 'config/moveit_controllers.yaml']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

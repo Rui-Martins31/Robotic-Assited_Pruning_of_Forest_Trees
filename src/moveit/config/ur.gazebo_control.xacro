@@ -51,10 +51,12 @@
     </plugin>
   </gazebo>
 
-  <!-- ROS2 Control -->  
+  
+  <!-- ROS2 Control -->
+  <xacro:arg name="ros2_controllers_file" default="$(find moveit)/config/ros2_controllers.yaml"/>
   <gazebo>
     <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-      <parameters>$(find moveit)/config/ros2_controllers.yaml</parameters>
+      <parameters>$(arg ros2_controllers_file)</parameters>
     </plugin>
   </gazebo>
 
