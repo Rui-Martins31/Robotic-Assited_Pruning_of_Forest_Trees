@@ -19,18 +19,18 @@ from . import _globals
 
 
 # Constants
-NODE_NAME: str        = 'detect_branch'
+NODE_NAME:       str   = 'detect_branch'
 
-SUB_TOPIC_NAME_IMAGE_RGB: str       = 'camera/image'
-SUB_TOPIC_NAME_IMAGE_DEPTH: str     = 'camera/depth_image'
+SUB_TOPIC_NAME_IMAGE_RGB:       str = 'camera/image'
+SUB_TOPIC_NAME_IMAGE_DEPTH:     str = 'camera/depth_image'
 PUB_TOPIC_NAME_POS_IMAGE_FRAME: str = 'yolo/position_vector_image_frame'
 PUB_TOPIC_NAME_POS_WORLD_FRAME: str = 'yolo/position_vector_world_frame'
-TIMER_DELAY: float    = 0.05# 1.0
+TIMER_DELAY:     float = 0.05# 1.0
 
-PATH_SAVE_IMAGE: str  = './output/image_detection/'
-BOOL_SAVE_IMAGE: bool = True
+PATH_SAVE_IMAGE: str   = './output/image_detection/'
+BOOL_SAVE_IMAGE: bool  = True
 
-YOLO_MODEL_NAME: str  = 'yolo_tree_detection.pt' #'yolov8n.pt'
+YOLO_MODEL_NAME: str   = 'yolo_syn_data_model.pt' #'yolo_tree_detection.pt' #'yolov8n.pt'
 
 class CameraImageSubscriber(Node):
 

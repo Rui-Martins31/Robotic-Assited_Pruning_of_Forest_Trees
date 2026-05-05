@@ -21,20 +21,24 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
 
     # Variables
-    use_sim_time = True
-    set_sim_time = SetParameter(name='use_sim_time', value=use_sim_time)
-    use_gazebo   = "true"
+    use_sim_time: bool         = True
+    set_sim_time: SetParameter = SetParameter(name='use_sim_time', value=use_sim_time)
+    use_gazebo:   str          = "true"
+
+    # Robot
+    robot_name: str            = "ur"
 
     # Package
-    pkg_name_manipulator = "manipulator"
-    pkg_name_moveit      = "moveit"
-    pkg_name_gazebo      = "ros_gz_sim"
-    pkg_name_controller  = "controller_manager"
+    pkg_name_manipulator: str  = "manipulator"
+    pkg_name_moveit:      str  = "moveit"
+    pkg_name_gazebo:      str  = "ros_gz_sim"
+    pkg_name_controller:  str  = "controller_manager"
 
     # World
     # gazebo_world = "forest"
     # gazebo_world = "yolo_test"
-    gazebo_world = "tree"
+    # gazebo_world = "tree"
+    gazebo_world = "tree_single_branch"
     gazebo_world_path = os.path.join(
         get_package_share_directory(pkg_name_manipulator),
         'worlds',
@@ -58,11 +62,9 @@ def generate_launch_description():
     robot_description_content = Command(
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
-            " ",
-            description_file,
-            " ",
-            "gazebo:=",
-            use_gazebo
+            " ", description_file,
+            " gazebo:=", use_gazebo,
+            " robot_name:=", robot_name
         ]
     )
     robot_description = {
