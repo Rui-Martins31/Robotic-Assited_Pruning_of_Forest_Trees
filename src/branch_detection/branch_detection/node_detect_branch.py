@@ -32,6 +32,8 @@ BOOL_SAVE_IMAGE: bool  = True
 
 YOLO_MODEL_NAME: str   = 'yolo_syn_data_model.pt' #'yolo_tree_detection.pt' #'yolov8n.pt'
 
+MAX_BRANCH_DEPTH: float = 10.0  # meters
+
 class CameraImageSubscriber(Node):
 
     def __init__(self):
@@ -147,33 +149,48 @@ class CameraImageSubscriber(Node):
                     conf           = box.conf[0]
                     cls            = box.cls[0]
 
-                    ## DEBUG
-                    self.get_logger().info(f"Detected class {cls} with {conf:.2f} confidence.")
-                    self.get_logger().info(f"Center of bounding box: ({cx},{cy})")
-                    self.get_logger().info(f"Depth: {float(cv_image_depth[int(cy), int(cx)])}")
-
                     # Draw segmentation mask
                     if masks is not None:
                         mask_xy = masks.xy[i]
                         if len(mask_xy) > 0:
 
-                            # Polygon
-                            polygon = mask_xy.astype(np.int32)
-                            overlay = cv_image_rgb.copy()
-                            cv2.fillPoly(overlay, [polygon], (0, 255, 0))
-                            cv2.addWeighted(overlay, 0.4, cv_image_rgb, 0.6, 0, cv_image_rgb)
-                            cv2.polylines(cv_image_rgb, [polygon], isClosed=True, color=(0, 255, 0), thickness=2)
-
                             # Binary mask
+                            polygon     = mask_xy.astype(np.int32)
                             h, w        = cv_image_rgb.shape[:2]
                             binary_mask = np.zeros((h, w), dtype=np.uint8)
                             cv2.fillPoly(binary_mask, [polygon], 255)
 
-                            # Mask's center
+                            # Depth map masks YOLO's mask
+                            # Avoids pixels with huge depth values
+                            depth_valid   = (
+                                np.isfinite(cv_image_depth) &
+                                (cv_image_depth > 0) &
+                                (cv_image_depth < MAX_BRANCH_DEPTH)
+                            ).astype(np.uint8) * 255
+                            combined_mask = cv2.bitwise_and(binary_mask, depth_valid)
+                            if cv2.countNonZero(combined_mask) > 0:
+                                binary_mask = combined_mask
+
+                            ## DEBUG
+                            # Draw mask to image
+                            overlay = cv_image_rgb.copy()
+                            overlay[binary_mask > 0] = (0, 255, 0)
+                            cv2.addWeighted(overlay, 0.4, cv_image_rgb, 0.6, 0, cv_image_rgb)
+                            contours, _ = cv2.findContours(binary_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                            cv2.drawContours(cv_image_rgb, contours, -1, (0, 255, 0), 2)
+
+                            # Mask's centroid
                             M = cv2.moments(binary_mask)
                             if M['m00'] != 0:
                                 cx = M['m10'] / M['m00']
                                 cy = M['m01'] / M['m00']
+                                
+                                # Snap it to mask
+                                if binary_mask[int(cy), int(cx)] == 0:
+                                    yx      = np.argwhere(binary_mask > 0)
+                                    dists   = np.sum((yx - np.array([cy, cx])) ** 2, axis=1)
+                                    nearest = yx[np.argmin(dists)]
+                                    cy, cx  = float(nearest[0]), float(nearest[1])
 
                             # Fit line to mask
                             line_pt1, line_pt2 = self.fit_line_to_mask(binary_mask)
@@ -181,9 +198,14 @@ class CameraImageSubscriber(Node):
                     else:
                         cv2.rectangle(cv_image_rgb, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
-                    cv2.circle(cv_image_rgb, (int(cx), int(cy)), 5, (0, 0, 255), -1)
+                    ## DEBUG
+                    self.get_logger().info(f"Detected class {cls} with {conf:.2f} confidence.")
+                    self.get_logger().info(f"Center of bounding box: ({cx},{cy})")
+                    self.get_logger().info(f"Depth: {float(cv_image_depth[int(cy), int(cx)])}")
 
                     ## DEBUG
+                    # Center point and line
+                    cv2.circle(cv_image_rgb, (int(cx), int(cy)), 5, (0, 0, 255), -1)
                     cv2.line(
                         cv_image_rgb,
                         (int(_globals.IMAGE_WIDTH/2), int(_globals.IMAGE_HEIGHT/2)),
@@ -230,7 +252,7 @@ class CameraImageSubscriber(Node):
             self.get_logger().error(f"Error: {e}\n")
             return
 
-    def _world_position_callback(self, future: rclpy.task.Future):
+    def _world_position_callback(self, future: rclpy.task.Future) -> None:
         try:
             result: YOLOPoint.Response = future.result()
             pub_msg   = Point()
