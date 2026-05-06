@@ -18,6 +18,14 @@ from custom_interfaces.srv import YOLOPoint
 from . import _globals
 
 
+### TODO_
+## Instead of just selecting the first result that comes from YOLO,
+## we should instead filter the results and only process the ones
+## regarding branches.
+##
+## Later use the fitted line to find the cutting points.
+
+
 # Constants
 NODE_NAME:       str   = 'detect_branch'
 
