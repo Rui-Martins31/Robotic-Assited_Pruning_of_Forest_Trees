@@ -139,7 +139,8 @@ class CameraImageSubscriber(Node):
             # Iterate over detections
             for result in results:
                 boxes = result.boxes
-                for box in boxes:
+                masks = result.masks
+                for i, box in enumerate(boxes):
                     # Get coordinates, confidence and class
                     x1, y1, x2, y2 = map(int, box.xyxy[0])
                     cx, cy, w, h   = box.xywh[0]
@@ -151,8 +152,35 @@ class CameraImageSubscriber(Node):
                     self.get_logger().info(f"Center of bounding box: ({cx},{cy})")
                     self.get_logger().info(f"Depth: {float(cv_image_depth[int(cy), int(cx)])}")
 
-                    # Draw bounding box and center point
-                    cv2.rectangle(cv_image_rgb, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                    # Draw segmentation mask
+                    if masks is not None:
+                        mask_xy = masks.xy[i]
+                        if len(mask_xy) > 0:
+
+                            # Polygon
+                            polygon = mask_xy.astype(np.int32)
+                            overlay = cv_image_rgb.copy()
+                            cv2.fillPoly(overlay, [polygon], (0, 255, 0))
+                            cv2.addWeighted(overlay, 0.4, cv_image_rgb, 0.6, 0, cv_image_rgb)
+                            cv2.polylines(cv_image_rgb, [polygon], isClosed=True, color=(0, 255, 0), thickness=2)
+
+                            # Binary mask
+                            h, w        = cv_image_rgb.shape[:2]
+                            binary_mask = np.zeros((h, w), dtype=np.uint8)
+                            cv2.fillPoly(binary_mask, [polygon], 255)
+
+                            # Mask's center
+                            M = cv2.moments(binary_mask)
+                            if M['m00'] != 0:
+                                cx = M['m10'] / M['m00']
+                                cy = M['m01'] / M['m00']
+
+                            # Fit line to mask
+                            line_pt1, line_pt2 = self.fit_line_to_mask(binary_mask)
+                            cv2.line(cv_image_rgb, line_pt1, line_pt2, (0, 165, 255), 2)
+                    else:
+                        cv2.rectangle(cv_image_rgb, (x1, y1), (x2, y2), (0, 255, 0), 2)
+
                     cv2.circle(cv_image_rgb, (int(cx), int(cy)), 5, (0, 0, 255), -1)
 
                     ## DEBUG
@@ -166,7 +194,7 @@ class CameraImageSubscriber(Node):
 
                     # Text label
                     label = f"{self.yolo_model.names[int(cls)]} {conf:.2f}"
-                    cv2.putText(cv_image_rgb, label, (x1, y1 - 10), 
+                    cv2.putText(cv_image_rgb, label, (x1, y1 - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
                     ## DEBUG
@@ -215,6 +243,30 @@ class CameraImageSubscriber(Node):
 
         except Exception as e:
             self.get_logger().error(f"Service call failed: {e}")
+
+    def fit_line_to_mask(
+            self,
+            binary_mask: np.ndarray,
+        ) -> tuple[tuple[int,int], tuple[int,int]]:
+
+        # Scatter points across the mask
+        yx     = np.argwhere(binary_mask > 0)
+        points = yx[:, ::-1].reshape(-1, 1, 2).astype(np.float32)
+
+        # Fit line to points
+        vx, vy, x0, y0 = cv2.fitLine(
+            points,
+            cv2.DIST_L2,
+            0,
+            0.01,
+            0.01
+        ).flatten()
+
+        scale: int           = max(binary_mask.shape[:2])
+        pt1: tuple[int, int] = (int(x0 - vx * scale), int(y0 - vy * scale))
+        pt2: tuple[int, int] = (int(x0 + vx * scale), int(y0 + vy * scale))
+
+        return pt1, pt2
 
 
 def main(args=None):
