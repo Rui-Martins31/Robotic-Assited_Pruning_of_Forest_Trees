@@ -6,7 +6,7 @@
 
 ## Overview
 
-This node is responsible for the branch and trunk detection. It subscribes to both the RGB and Depth image topics that publish the images captured by the camera. The RGB image will be used as the input to the YOLO model that detects and creates a bounding box that surrounds the branch or trunk. It then uses the service `service_compute_world_position` to convert the center of the bounding box to world coordinates. Finally, publishes the point coordinates in both iamge and world frames to two separate topics.
+This node is responsible for the branch and trunk detection. It subscribes to both the RGB and Depth image topics published by the camera. The RGB image is fed to a YOLO segmentation model (`yolo_syn_data_model.pt`, trained on synthetic data) that returns a polygon mask for each detected branch. The mask is converted to a binary image and then filtered using the depth map to discard pixels beyond `MAX_BRANCH_DEPTH`. The centroid of the filtered mask is used as the branch centre (with a nearest-pixel snap if the centroid falls outside the mask). A line is also fitted to the mask to capture the branch orientation. The node calls `service_compute_world_position` to convert the centre pixel and its depth to world coordinates, then publishes both the image-frame and world-frame positions.
 
 ---
 
@@ -15,7 +15,8 @@ This node is responsible for the branch and trunk detection. It subscribes to bo
 | Constant | Description |
 |----------|-------------|
 | `TIMER_DELAY` | Inference frequency |
-| `YOLO_MODEL_NAME` | YOLO model file |
+| `YOLO_MODEL_NAME` | YOLO segmentation model file (currently trained on synthetic data) |
+| `MAX_BRANCH_DEPTH` | Depth threshold (metres); mask pixels beyond this distance are discarded before centroid computation |
 | `BOOL_SAVE_IMAGE` | Whether to write annotated images to disk |
 | `PATH_SAVE_IMAGE` | Directory for saved images |
 
@@ -26,7 +27,7 @@ This node is responsible for the branch and trunk detection. It subscribes to bo
 | Topic | Type | Description |
 |-------|------|-------------|
 | `camera/image` | `sensor_msgs/Image` | RGB image, decoded as `bgr8` |
-| `camera/depth_image` | `sensor_msgs/Image` | Depth image, decoded as `bgr32` |
+| `camera/depth_image` | `sensor_msgs/Image` | Depth image, decoded as `passthrough` (float32, metres) |
 
 ## Publications
 
@@ -51,6 +52,20 @@ A value of `(0, 0, 0)` means the branch is at the exact centre of the image.
 | `x` | World X coordinate (m) |
 | `y` | World Y coordinate (m) |
 | `z` | World Z coordinate (m) |
+
+---
+
+## Methods
+
+### `fit_line_to_mask(binary_mask)`
+
+Fits a line to the foreground pixels of a binary mask using `cv2.fitLine` (L2 distance).
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `binary_mask` | `np.ndarray` | Single-channel uint8 mask (255 = foreground) |
+
+Returns `(pt1, pt2)`, two `(int, int)` endpoints, in image frame, along the fitted line direction. Will later be used to find the cutting points.
 
 ---
 

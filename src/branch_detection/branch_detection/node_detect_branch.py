@@ -172,7 +172,7 @@ class CameraImageSubscriber(Node):
                                 binary_mask = combined_mask
 
                             ## DEBUG
-                            # Draw mask to image
+                            # Draw mask
                             overlay = cv_image_rgb.copy()
                             overlay[binary_mask > 0] = (0, 255, 0)
                             cv2.addWeighted(overlay, 0.4, cv_image_rgb, 0.6, 0, cv_image_rgb)

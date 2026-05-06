@@ -2,7 +2,7 @@
 
 ## Overview
 
-This package is responsible for the detection of branches and trunks using 2D images. These images are published to a topic that is being subscribed by one of the nodes (`detect_branch`). It uses a custom YOLO model to detect and classify the branches/trunks, which then creates a bounding box around those and computes the center. With the center of the bounding box, it convert the coordinates in pixels to the 3D coordinates in the world frame, allowing us to later control the wrist position in the world.
+This package is responsible for the detection of branches and trunks using 2D images. These images are published to a topic subscribed by the `detect_branch` node. It uses a custom YOLO segmentation model (trained on synthetic data) to detect branches/trunks and produce a polygon mask for each detection. The mask is depth-filtered to remove pixels beyond a maximum range, and its centroid is used as the target point. A line is also fitted to the mask to capture branch orientation. The pixel coordinates and depth are then converted to 3D world-frame coordinates by the `compute_world_position` service, allowing the arm to be directed towards the detected branch.
 
 ---
 
