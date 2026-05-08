@@ -224,8 +224,16 @@ class CameraImageSubscriber(Node):
 
                     # Text label
                     label = f"{self.yolo_model.names[int(cls)]} {conf:.2f}"
-                    cv2.putText(cv_image_rgb, label, (x1, y1 - 10),
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                    self.get_logger().info(f"{label = }")
+                    cv2.putText(
+                        cv_image_rgb,
+                        label,
+                        (int(cx), int(cy) + 20),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.5,
+                        (255, 255, 0),
+                        2
+                    )
 
                     ## DEBUG
                     detected = True

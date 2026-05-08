@@ -30,7 +30,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'node_detect_branch = branch_detection.node_detect_branch:main',
+            'node_detect_branch_yolo = branch_detection.node_detect_branch_yolo:main',
+            'node_detect_branch_by_color = branch_detection.node_detect_branch_by_color:main',
             'service_compute_world_coordinates = branch_detection.service_compute_world_position:main'
         ],
     },

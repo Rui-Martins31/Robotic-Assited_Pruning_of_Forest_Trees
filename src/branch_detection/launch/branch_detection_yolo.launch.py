@@ -12,7 +12,7 @@ def generate_launch_description():
         ),
         Node(
             package='branch_detection',
-            executable='node_detect_branch',
+            executable='node_detect_branch_yolo',
             name='detect_branch',
             output='screen',
         ),
