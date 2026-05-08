@@ -16,12 +16,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Ground_Plane.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Ground_Plane.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Ground_Plane.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Ground_Plane.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -34,12 +34,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -52,12 +52,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -70,12 +70,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -88,12 +88,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -106,12 +106,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -124,12 +124,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -142,12 +142,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -160,12 +160,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -178,12 +178,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -196,12 +196,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -214,12 +214,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -232,12 +232,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -250,12 +250,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -268,12 +268,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -286,12 +286,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -304,12 +304,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -322,12 +322,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -340,12 +340,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Tree.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Tree.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>
@@ -357,12 +357,12 @@
       <link name="link">
         <collision name="collision">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Environment.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Environment.dae</uri></mesh>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
-            <mesh><uri>meshes/dae/Forest_Environment.dae</uri></mesh>
+            <mesh><uri>../meshes/dae/Forest_Environment.dae</uri></mesh>
           </geometry>
           <cast_shadows>true</cast_shadows>
         </visual>

@@ -29,10 +29,10 @@ def generate_launch_description():
     robot_name: str            = "ur"
 
     # Package
-    pkg_name_manipulator: str  = "manipulator"
-    pkg_name_moveit:      str  = "moveit"
-    pkg_name_gazebo:      str  = "ros_gz_sim"
-    pkg_name_controller:  str  = "controller_manager"
+    pkg_name_custom_worlds:  str  = "custom_worlds"
+    pkg_name_moveit:         str  = "moveit"
+    pkg_name_gazebo:         str  = "ros_gz_sim"
+    pkg_name_controller:     str  = "controller_manager"
 
     # World
     # gazebo_world = "forest"
@@ -40,7 +40,7 @@ def generate_launch_description():
     # gazebo_world = "tree"
     gazebo_world = "tree_single_branch"
     gazebo_world_path = os.path.join(
-        get_package_share_directory(pkg_name_manipulator),
+        get_package_share_directory(pkg_name_custom_worlds),
         'worlds',
         f"{gazebo_world}.world"
     )
@@ -74,7 +74,9 @@ def generate_launch_description():
     # Environment
     gazebo_resource_path_env = AppendEnvironmentVariable(
         name="GZ_SIM_RESOURCE_PATH",
-        value=PathJoinSubstitution([FindPackageShare(pkg_name_manipulator), ".."]),
+        value=os.path.dirname(get_package_share_directory("manipulator")) +
+              ":" +
+              os.path.dirname(get_package_share_directory(pkg_name_custom_worlds)),
         separator=':'
     )
 

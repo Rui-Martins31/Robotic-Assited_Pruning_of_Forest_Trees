@@ -21,20 +21,23 @@ def generate_launch_description():
     tf_prefix:    str    = "robot_cutter_arm_"
 
     # Packages
-    pkg_name_cutter:      str = "robot_cutter"
-    pkg_name_manipulator: str = "manipulator"
-    pkg_name_moveit:      str = "moveit"
-    pkg_name_gazebo:      str = "ros_gz_sim"
-    pkg_name_controller:  str = "controller_manager"
-    pkg_name_scout_des:   str = "scout_description"
-    pkg_name_robot_state: str = "robot_state_publisher"
+    pkg_name_cutter:        str = "robot_cutter"
+    pkg_name_manipulator:   str = "manipulator"
+    pkg_name_custom_worlds: str = "custom_worlds"
+    pkg_name_moveit:        str = "moveit"
+    pkg_name_gazebo:        str = "ros_gz_sim"
+    pkg_name_controller:    str = "controller_manager"
+    pkg_name_scout_des:     str = "scout_description"
+    pkg_name_robot_state:   str = "robot_state_publisher"
 
     # Env Variables
     gz_resource_path = AppendEnvironmentVariable(
         'GZ_SIM_RESOURCE_PATH',
         os.path.dirname(get_package_share_directory(pkg_name_scout_des)) +
-        ':' + 
-        os.path.dirname(get_package_share_directory(pkg_name_manipulator))
+        ':' +
+        os.path.dirname(get_package_share_directory(pkg_name_manipulator)) +
+        ':' +
+        os.path.dirname(get_package_share_directory(pkg_name_custom_worlds))
     )
 
     # Robot Description

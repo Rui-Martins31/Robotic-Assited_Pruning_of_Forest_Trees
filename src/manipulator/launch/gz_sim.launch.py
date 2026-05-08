@@ -1,5 +1,5 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler, SetEnvironmentVariable
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler, AppendEnvironmentVariable
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
@@ -7,6 +7,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from ament_index_python.packages import get_package_share_directory
 import os
 
 
@@ -85,6 +86,15 @@ def generate_launch_description():
             "have to be updated.",
         )
     )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "world",
+            default_value=PathJoinSubstitution(
+                [FindPackageShare("custom_worlds"), "worlds", "tree_single_branch.world"]
+            ),
+            description="Path to the Gazebo world file to load.",
+        )
+    )
 
     # Initialize Arguments
     ur_type = LaunchConfiguration("ur_type")
@@ -94,6 +104,7 @@ def generate_launch_description():
     description_file = LaunchConfiguration("description_file")
     tf_prefix = LaunchConfiguration("tf_prefix")
     rviz_config_file = LaunchConfiguration("rviz_config_file")
+    world = LaunchConfiguration("world")
 
     robot_description_content = Command(
         [
@@ -124,13 +135,12 @@ def generate_launch_description():
         "robot_description": ParameterValue(value=robot_description_content, value_type=str)
     }
 
-    # Packages
-    pkg_share_path     = FindPackageShare("manipulator")
-    install_share_path = PathJoinSubstitution([FindPackageShare("manipulator"), ".."])
-    
-    gz_resource_path_env = SetEnvironmentVariable(
+    # GZ_SIM_RESOURCE_PATH
+    gz_resource_path_env = AppendEnvironmentVariable(
         name="GZ_SIM_RESOURCE_PATH",
-        value=install_share_path
+        value=os.path.dirname(get_package_share_directory("manipulator")) +
+              ":" +
+              os.path.dirname(get_package_share_directory("custom_worlds"))
     )
 
     # Gazebo
@@ -138,7 +148,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             [PathJoinSubstitution([FindPackageShare("ros_gz_sim"), "launch", "gz_sim.launch.py"])]
         ),
-        launch_arguments={"gz_args": "-r empty.sdf"}.items(),
+        launch_arguments={"gz_args": ["-r ", world]}.items(),
     )
 
     # Robotic Arm
