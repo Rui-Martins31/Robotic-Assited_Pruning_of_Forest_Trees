@@ -38,7 +38,8 @@ def generate_launch_description():
     # gazebo_world = "forest"
     # gazebo_world = "yolo_test"
     # gazebo_world = "tree"
-    gazebo_world = "tree_single_branch"
+    # gazebo_world = "tree_single_branch"
+    gazebo_world = "tree_cylinders"
     gazebo_world_path = os.path.join(
         get_package_share_directory(pkg_name_custom_worlds),
         'worlds',
@@ -76,7 +77,9 @@ def generate_launch_description():
         name="GZ_SIM_RESOURCE_PATH",
         value=os.path.dirname(get_package_share_directory("manipulator")) +
               ":" +
-              os.path.dirname(get_package_share_directory(pkg_name_custom_worlds)),
+              os.path.dirname(get_package_share_directory(pkg_name_custom_worlds)) +
+              ":" +
+              os.path.join(get_package_share_directory(pkg_name_custom_worlds), "models"),
         separator=':'
     )
 

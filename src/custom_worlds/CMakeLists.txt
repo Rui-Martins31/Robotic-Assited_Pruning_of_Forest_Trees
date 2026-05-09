@@ -13,6 +13,7 @@ endif()
 install(DIRECTORY
   worlds
   meshes
+  models
   DESTINATION share/${PROJECT_NAME}
 )
 
