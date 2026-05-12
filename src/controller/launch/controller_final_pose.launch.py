@@ -9,8 +9,17 @@ from moveit_configs_utils import MoveItConfigsBuilder
 
 
 def generate_launch_description():
+
+    # Constants
+    robot_name: str = "ur"
+
+    #
     moveit_config = (
-        MoveItConfigsBuilder("ur", package_name="moveit")
+        MoveItConfigsBuilder(
+            robot_name   = robot_name,
+            package_name = "moveit"
+        )
+        .robot_description(mappings={"robot_name": robot_name})
         .planning_pipelines(pipelines=["ompl", "pilz_industrial_motion_planner"])
         .to_moveit_configs()
     )

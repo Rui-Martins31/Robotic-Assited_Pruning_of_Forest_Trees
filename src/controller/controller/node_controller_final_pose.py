@@ -6,6 +6,7 @@ import numpy as np
 from moveit.planning import MoveItPy
 
 from geometry_msgs.msg import Point, PoseStamped
+from std_msgs.msg import Empty
 
 from tf2_ros import TransformException
 from tf2_ros.buffer import Buffer
@@ -15,6 +16,11 @@ from tf2_ros.transform_listener import TransformListener
 NODE_NAME: str = 'controller_final_pose'
 
 SUB_TOPIC_NAME_WORLD_POSITION: str = '/yolo/position_vector_world_frame'
+
+# This topic is supposed to be temporary.
+# Eventually the simulator will be able to tell
+# if the arm is in touch with the branch.
+PUB_TOPIC_NAME_DETACH_BRANCH:  str = '/detach_branch_02'
 
 POSE_JOINT_NAME: str = "wrist_3_link"
 
@@ -30,7 +36,16 @@ class ArmController(Node):
         self.subscription   = self.create_subscription(
             Point,
             SUB_TOPIC_NAME_WORLD_POSITION,
-            self.plan_and_execute,
+            # self.plan_and_execute,
+            self.subscription_callback,
+            10
+        )
+        self.is_executing: bool = False
+
+        # Publisher
+        self.publisher = self.create_publisher(
+            Empty,
+            PUB_TOPIC_NAME_DETACH_BRANCH,
             10
         )
 
@@ -38,6 +53,15 @@ class ArmController(Node):
         self.tf_buffer   = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
 
+    
+    def subscription_callback(
+        self,
+        msg: Point
+    ) -> None:
+        
+        if not self.is_executing:
+            self.is_executing = True
+            self.plan_and_execute(msg)
 
     def plan_and_execute(
         self,
@@ -45,7 +69,7 @@ class ArmController(Node):
     ) -> None:
         
         ## DEBUG
-        self.get_logger().info(f"Received new point. ---------------------------")
+        self.get_logger().info(f"Received new point...")
 
         # Direction
         current_position = self.get_current_joint_position(POSE_JOINT_NAME)
@@ -80,9 +104,23 @@ class ArmController(Node):
         # Execute
         if plan_result:
             self.get_logger().info("Plan successful, executing...")
-            self.arm.execute(plan_result.trajectory, controllers=[])
+            execute_result = self.arm.execute(plan_result.trajectory, controllers=[])
+
+            ## DEBUG
+            # Detach branch
+            # This is temporary as in the future this task
+            # shall be handled by the simulator itself.
+            if execute_result:
+                self.get_logger().info("Detaching branch...")
+                self.publisher.publish(Empty())
+            else:
+                self.get_logger().error("Execution failed!")
+
         else:
             self.get_logger().error("Planning failed!")
+
+        # Reset variable
+        # self.is_executing = False
 
     def get_direction_to_quaternion(
         self,

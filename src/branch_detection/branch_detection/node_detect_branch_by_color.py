@@ -32,8 +32,8 @@ TIMER_DELAY:     float = 0.05
 PATH_SAVE_IMAGE: str   = './output/image_detection/'
 BOOL_SAVE_IMAGE: bool  = True
 
-COLOR_BRANCH_LOWER: np.ndarray = np.array([20,  20,  20])
-COLOR_BRANCH_UPPER: np.ndarray = np.array([110, 116, 109])
+COLOR_BRANCH_LOWER: np.ndarray = np.array([0, 0, 100])
+COLOR_BRANCH_UPPER: np.ndarray = np.array([0, 0, 255])
 
 MAX_BRANCH_DEPTH: float = 10.0  # meters
 
@@ -188,6 +188,14 @@ class CameraImageSubscriber(Node):
                     (int(cx), int(cy)),
                     (255, 0, 0),
                     5
+                )
+                cv2.putText(
+                    img       = cv_image_rgb,
+                    text      = "Branch",
+                    org       = (int(cx), int(cy - 20.0)),
+                    fontFace  = cv2.FONT_HERSHEY_SIMPLEX,
+                    fontScale = 1,
+                    color     = (0, 255,0)
                 )
 
             # Save

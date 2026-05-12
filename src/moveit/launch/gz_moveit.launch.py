@@ -104,7 +104,8 @@ def generate_launch_description():
             '/camera/image@sensor_msgs/msg/Image@gz.msgs.Image',
             '/camera/depth_image@sensor_msgs/msg/Image@gz.msgs.Image',
             '/camera/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked',
-            '/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo'
+            '/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
+            '/detach_branch_02@std_msgs/msg/Empty]gz.msgs.Empty'
         ],
         output='screen'
     )
