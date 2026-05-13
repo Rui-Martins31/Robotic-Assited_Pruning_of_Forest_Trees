@@ -53,12 +53,18 @@ def generate_launch_description():
         ],
     )
 
-    clock_bridge = Node(
+    bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
-        name='clock_bridge',
+        name='bridge',
         output='screen',
-        arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'],
+        arguments=[
+            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+            '/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist',
+            '/odom@nav_msgs/msg/Odometry[gz.msgs.Odometry',
+            '/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
+            '/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model',
+        ],
     )
 
     return LaunchDescription([
@@ -71,5 +77,5 @@ def generate_launch_description():
         gazebo,
         OpaqueFunction(function=_launch_robot_state_publisher),
         spawn_robot,
-        clock_bridge,
+        bridge,
     ])
