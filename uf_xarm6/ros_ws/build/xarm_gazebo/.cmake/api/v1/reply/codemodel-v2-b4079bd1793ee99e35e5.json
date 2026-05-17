@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "xarm_gazebo",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "gazebo_mimic_joint_plugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gazebo_mimic_joint_plugin-05397cc1fe08ffbfc391.json",
+					"name" : "gazebo_mimic_joint_plugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-e21f7fd18c357dc0c863.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "xarm_gazebo_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-xarm_gazebo_uninstall-5c91f4c0c89c9b5c9995.json",
+					"name" : "xarm_gazebo_uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_gazebo",
+		"source" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/xarm_gazebo"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

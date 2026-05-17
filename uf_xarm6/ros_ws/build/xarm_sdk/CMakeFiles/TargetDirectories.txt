@@ -1,0 +1,10 @@
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk/CMakeFiles/install/strip.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk/CMakeFiles/edit_cache.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk/CMakeFiles/test.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk/CMakeFiles/install.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk/CMakeFiles/list_install_components.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk/CMakeFiles/rebuild_cache.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk/CMakeFiles/xarm_cxx_sdk.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk/CMakeFiles/install/local.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk/CMakeFiles/xarm_sdk_uninstall.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk/CMakeFiles/uninstall.dir

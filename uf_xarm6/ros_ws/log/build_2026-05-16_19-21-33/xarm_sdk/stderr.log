@@ -1,0 +1,9 @@
+CMake Error at CMakeLists.txt:57 (message):
+  xarm_sdk contains sub-modules, Please use the following command to get or
+  update the sub-module code first
+
+    $ git pull
+    $ git submodule sync
+    $ git submodule update --init --remote
+
+

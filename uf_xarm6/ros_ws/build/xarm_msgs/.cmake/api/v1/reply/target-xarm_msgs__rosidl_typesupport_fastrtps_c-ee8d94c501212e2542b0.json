@@ -1,0 +1,1498 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "libxarm_msgs__rosidl_typesupport_fastrtps_c.so"
+		}
+	],
+	"backtrace" : 5,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"include",
+			"ament_execute_extensions",
+			"rosidl_generate_interfaces",
+			"install",
+			"target_link_libraries",
+			"ament_target_dependencies",
+			"add_dependencies",
+			"add_compile_options",
+			"add_definitions",
+			"find_package",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"/opt/ros/foxy/share/rosidl_typesupport_fastrtps_c/cmake/rosidl_typesupport_fastrtps_c_generate_interfaces.cmake",
+			"/opt/ros/foxy/share/ament_cmake_core/cmake/core/ament_execute_extensions.cmake",
+			"/opt/ros/foxy/share/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake",
+			"CMakeLists.txt",
+			"/opt/ros/foxy/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake",
+			"/opt/ros/foxy/share/ament_cmake_ros/cmake/ament_cmake_ros-extras.cmake",
+			"/opt/ros/foxy/share/ament_cmake_ros/cmake/ament_cmake_rosConfig.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 3
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 109,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 286,
+				"parent" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 48,
+				"parent" : 2
+			},
+			{
+				"file" : 0,
+				"parent" : 3
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 94,
+				"parent" : 4
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 182,
+				"parent" : 4
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 102,
+				"parent" : 4
+			},
+			{
+				"command" : 5,
+				"file" : 4,
+				"line" : 145,
+				"parent" : 7
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 154,
+				"parent" : 4
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 149,
+				"parent" : 4
+			},
+			{
+				"command" : 5,
+				"file" : 4,
+				"line" : 145,
+				"parent" : 10
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 149,
+				"parent" : 4
+			},
+			{
+				"command" : 5,
+				"file" : 4,
+				"line" : 145,
+				"parent" : 12
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 149,
+				"parent" : 4
+			},
+			{
+				"command" : 5,
+				"file" : 4,
+				"line" : 145,
+				"parent" : 14
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 166,
+				"parent" : 4
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 162,
+				"parent" : 4
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
+				"command" : 10,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 4
+			},
+			{
+				"file" : 6,
+				"parent" : 19
+			},
+			{
+				"command" : 1,
+				"file" : 6,
+				"line" : 41,
+				"parent" : 20
+			},
+			{
+				"file" : 5,
+				"parent" : 21
+			},
+			{
+				"command" : 9,
+				"file" : 5,
+				"line" : 25,
+				"parent" : 22
+			},
+			{
+				"command" : 11,
+				"file" : 0,
+				"line" : 124,
+				"parent" : 4
+			},
+			{
+				"command" : 11,
+				"file" : 0,
+				"line" : 143,
+				"parent" : 4
+			},
+			{
+				"command" : 11,
+				"file" : 0,
+				"line" : 143,
+				"parent" : 4
+			},
+			{
+				"command" : 11,
+				"file" : 0,
+				"line" : 143,
+				"parent" : 4
+			},
+			{
+				"command" : 11,
+				"file" : 4,
+				"line" : 141,
+				"parent" : 7
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-fPIC  "
+				},
+				{
+					"fragment" : "-Wall -Wextra -Wpedantic"
+				},
+				{
+					"backtrace" : 18,
+					"fragment" : "-Wall"
+				},
+				{
+					"backtrace" : 18,
+					"fragment" : "-Wextra"
+				},
+				{
+					"backtrace" : 18,
+					"fragment" : "-Wpedantic"
+				},
+				{
+					"fragment" : "-std=gnu++14"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 9,
+					"define" : "FOONATHAN_MEMORY=1"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "FOONATHAN_MEMORY_VERSION_MAJOR=0"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "FOONATHAN_MEMORY_VERSION_MINOR=7"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "FOONATHAN_MEMORY_VERSION_PATCH=1"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "RCUTILS_ENABLE_FAULT_INJECTION"
+				},
+				{
+					"backtrace" : 23,
+					"define" : "ROS_PACKAGE_NAME=\"xarm_msgs\""
+				},
+				{
+					"define" : "xarm_msgs__rosidl_typesupport_fastrtps_c_EXPORTS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 24,
+					"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_generator_c"
+				},
+				{
+					"backtrace" : 24,
+					"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_generator_cpp"
+				},
+				{
+					"backtrace" : 24,
+					"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c"
+				},
+				{
+					"backtrace" : 24,
+					"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_cpp"
+				},
+				{
+					"backtrace" : 25,
+					"path" : "/opt/ros/foxy/include/std_msgs/msg/dds_fastrtps_c"
+				},
+				{
+					"backtrace" : 25,
+					"path" : "/opt/ros/foxy/include/std_msgs/srv/dds_fastrtps_c"
+				},
+				{
+					"backtrace" : 25,
+					"path" : "/opt/ros/foxy/include/std_msgs/action/dds_fastrtps_c"
+				},
+				{
+					"backtrace" : 26,
+					"path" : "/opt/ros/foxy/include/builtin_interfaces/msg/dds_fastrtps_c"
+				},
+				{
+					"backtrace" : 26,
+					"path" : "/opt/ros/foxy/include/builtin_interfaces/srv/dds_fastrtps_c"
+				},
+				{
+					"backtrace" : 26,
+					"path" : "/opt/ros/foxy/include/builtin_interfaces/action/dds_fastrtps_c"
+				},
+				{
+					"backtrace" : 27,
+					"path" : "/opt/ros/foxy/include/geometry_msgs/msg/dds_fastrtps_c"
+				},
+				{
+					"backtrace" : 27,
+					"path" : "/opt/ros/foxy/include/geometry_msgs/srv/dds_fastrtps_c"
+				},
+				{
+					"backtrace" : 27,
+					"path" : "/opt/ros/foxy/include/geometry_msgs/action/dds_fastrtps_c"
+				},
+				{
+					"backtrace" : 28,
+					"isSystem" : true,
+					"path" : "/opt/ros/foxy/include"
+				},
+				{
+					"backtrace" : 9,
+					"isSystem" : true,
+					"path" : "/opt/ros/foxy/include/foonathan_memory"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				1,
+				3,
+				5,
+				7,
+				9,
+				11,
+				13,
+				15,
+				17,
+				19,
+				21,
+				23,
+				25,
+				27,
+				29,
+				31,
+				33,
+				35,
+				37,
+				39,
+				41,
+				43,
+				45,
+				47,
+				49,
+				51,
+				53,
+				55,
+				57,
+				59,
+				61,
+				63,
+				65,
+				67,
+				69,
+				71,
+				73,
+				75,
+				77,
+				79,
+				81,
+				83,
+				85,
+				87,
+				89,
+				91,
+				93,
+				95,
+				97,
+				99,
+				101,
+				103,
+				105,
+				107,
+				109
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 9,
+			"id" : "xarm_msgs__rosidl_generator_c::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 16,
+			"id" : "xarm_msgs__cpp::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 17,
+			"id" : "xarm_msgs__rosidl_typesupport_fastrtps_cpp::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "xarm_msgs__rosidl_typesupport_fastrtps_c::@6890427a1f51a3e7e1df",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 6,
+				"path" : "lib"
+			},
+			{
+				"backtrace" : 6,
+				"path" : "lib"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/opt/ros/foxy/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs:",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "/opt/ros/foxy/lib/librosidl_typesupport_fastrtps_c.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_fastrtps_c.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_fastrtps_c.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/libgeometry_msgs__rosidl_typesupport_fastrtps_c.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "libxarm_msgs__rosidl_generator_c.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "libxarm_msgs__rosidl_typesupport_fastrtps_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "/opt/ros/foxy/lib/librmw.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "/opt/ros/foxy/lib/librosidl_typesupport_fastrtps_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_fastrtps_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_fastrtps_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/libgeometry_msgs__rosidl_typesupport_fastrtps_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/opt/ros/foxy/lib/libgeometry_msgs__rosidl_typesupport_introspection_c.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/opt/ros/foxy/lib/libgeometry_msgs__rosidl_generator_c.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/opt/ros/foxy/lib/libgeometry_msgs__rosidl_typesupport_c.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/opt/ros/foxy/lib/libgeometry_msgs__rosidl_typesupport_introspection_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/opt/ros/foxy/lib/libgeometry_msgs__rosidl_typesupport_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
+				"fragment" : "/opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_introspection_c.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
+				"fragment" : "/opt/ros/foxy/lib/libstd_msgs__rosidl_generator_c.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
+				"fragment" : "/opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_c.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
+				"fragment" : "/opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_introspection_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
+				"fragment" : "/opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 15,
+				"fragment" : "/opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_c.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 15,
+				"fragment" : "/opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_generator_c.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 15,
+				"fragment" : "/opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_c.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 15,
+				"fragment" : "/opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/librosidl_typesupport_introspection_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/librosidl_typesupport_introspection_c.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 15,
+				"fragment" : "/opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/librosidl_typesupport_cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/librosidl_typesupport_c.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "/opt/ros/foxy/lib/librosidl_runtime_c.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/librcpputils.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/librcutils.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/libfastrtps.so.2.1.4",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/libfoonathan_memory-0.7.1.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/aarch64-linux-gnu/libtinyxml2.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/aarch64-linux-gnu/libtinyxml2.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/aarch64-linux-gnu/libssl.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/aarch64-linux-gnu/libcrypto.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lrt",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/opt/ros/foxy/lib/libfastcdr.so.1.0.13",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "xarm_msgs__rosidl_typesupport_fastrtps_c",
+	"nameOnDisk" : "libxarm_msgs__rosidl_typesupport_fastrtps_c.so",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0,
+				2,
+				4,
+				6,
+				8,
+				10,
+				12,
+				14,
+				16,
+				18,
+				20,
+				22,
+				24,
+				26,
+				28,
+				30,
+				32,
+				34,
+				36,
+				38,
+				40,
+				42,
+				44,
+				46,
+				48,
+				50,
+				52,
+				54,
+				56,
+				58,
+				60,
+				62,
+				64,
+				66,
+				68,
+				70,
+				72,
+				74,
+				76,
+				78,
+				80,
+				82,
+				84,
+				86,
+				88,
+				90,
+				92,
+				94,
+				96,
+				98,
+				100,
+				102,
+				104,
+				106,
+				108
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				1,
+				3,
+				5,
+				7,
+				9,
+				11,
+				13,
+				15,
+				17,
+				19,
+				21,
+				23,
+				25,
+				27,
+				29,
+				31,
+				33,
+				35,
+				37,
+				39,
+				41,
+				43,
+				45,
+				47,
+				49,
+				51,
+				53,
+				55,
+				57,
+				59,
+				61,
+				63,
+				65,
+				67,
+				69,
+				71,
+				73,
+				75,
+				77,
+				79,
+				81,
+				83,
+				85,
+				87,
+				89,
+				91,
+				93,
+				95,
+				97,
+				99,
+				101,
+				103,
+				105,
+				107,
+				109
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				110
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/msg/detail/robot_msg__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/msg/detail/robot_msg__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/msg/detail/io_state__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/msg/detail/io_state__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/msg/detail/cio_state__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/msg/detail/cio_state__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/msg/detail/move_velocity__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/msg/detail/move_velocity__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/bio_gripper_ctrl__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/bio_gripper_ctrl__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/bio_gripper_enable__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/bio_gripper_enable__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/call__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/call__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_analog_io__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_analog_io__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_digital_io__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_digital_io__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_float32__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_float32__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_float32_list__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_float32_list__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_int16__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_int16__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_int16_list__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_int16_list__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_int32__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_int32__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_int32_by_type__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_int32_by_type__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_set_modbus_data__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/get_set_modbus_data__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/gripper_move__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/gripper_move__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/move_cartesian__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/move_cartesian__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/move_circle__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/move_circle__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/move_home__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/move_home__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/move_joint__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/move_joint__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/move_velocity__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/move_velocity__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/robotiq_activate__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/robotiq_activate__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/robotiq_get_status__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/robotiq_get_status__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/robotiq_move__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/robotiq_move__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/robotiq_reset__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/robotiq_reset__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_analog_io__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_analog_io__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_digital_io__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_digital_io__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_float32__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_float32__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_float32_list__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_float32_list__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_int16__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_int16__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_int16_by_id__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_int16_by_id__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_int16_list__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_int16_list__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_int32__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_int32__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_int32_by_type__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_int32_by_type__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/traj_ctrl__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/traj_ctrl__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/traj_play__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/traj_play__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/vacuum_gripper_ctrl__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/vacuum_gripper_ctrl__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_tcp_load__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_tcp_load__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_modbus_timeout__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/set_modbus_timeout__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/iden_load__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/iden_load__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/ft_cali_load__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/ft_cali_load__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/ft_force_params__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/ft_force_params__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/ft_admittance_params__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/ft_admittance_params__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/linear_motor_back_origin__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/linear_motor_back_origin__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/linear_motor_set_pos__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/linear_motor_set_pos__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/plan_exec__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/plan_exec__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/plan_joint__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/plan_joint__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/plan_pose__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/plan_pose__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/plan_single_straight__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/plan_single_straight__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/ft_force_config__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/ft_force_config__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/ft_force_pid__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/ft_force_pid__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/ft_impedance__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/ft_impedance__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/linear_track_back_origin__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/linear_track_back_origin__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/linear_track_set_pos__rosidl_typesupport_fastrtps_c.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/srv/detail/linear_track_set_pos__type_support_c.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs/rosidl_typesupport_fastrtps_c/xarm_msgs/msg/detail/robot_msg__rosidl_typesupport_fastrtps_c.h.rule",
+			"sourceGroupIndex" : 2
+		}
+	],
+	"type" : "SHARED_LIBRARY"
+}

@@ -1,0 +1,397 @@
+[0.000000] (-) TimerEvent: {}
+[0.000618] (mbot_demo) JobQueued: {'identifier': 'mbot_demo', 'dependencies': OrderedDict()}
+[0.000815] (realsense_gazebo_plugin) JobQueued: {'identifier': 'realsense_gazebo_plugin', 'dependencies': OrderedDict()}
+[0.001326] (uf_ros_lib) JobQueued: {'identifier': 'uf_ros_lib', 'dependencies': OrderedDict()}
+[0.001783] (xarm_description) JobQueued: {'identifier': 'xarm_description', 'dependencies': OrderedDict()}
+[0.001903] (xarm_msgs) JobQueued: {'identifier': 'xarm_msgs', 'dependencies': OrderedDict()}
+[0.002083] (xarm_sdk) JobQueued: {'identifier': 'xarm_sdk', 'dependencies': OrderedDict()}
+[0.002168] (xarm_api) JobQueued: {'identifier': 'xarm_api', 'dependencies': OrderedDict([('xarm_description', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description'), ('xarm_msgs', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs'), ('xarm_sdk', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk')])}
+[0.002241] (xarm_controller) JobQueued: {'identifier': 'xarm_controller', 'dependencies': OrderedDict([('xarm_description', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description'), ('xarm_msgs', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs'), ('xarm_sdk', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk'), ('xarm_api', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api')])}
+[0.002336] (xarm_gazebo) JobQueued: {'identifier': 'xarm_gazebo', 'dependencies': OrderedDict([('uf_ros_lib', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib'), ('xarm_description', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description'), ('xarm_msgs', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs'), ('xarm_sdk', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk'), ('xarm_api', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api'), ('xarm_controller', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller')])}
+[0.002400] (xarm_moveit_config) JobQueued: {'identifier': 'xarm_moveit_config', 'dependencies': OrderedDict([('uf_ros_lib', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib'), ('xarm_description', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description'), ('xarm_msgs', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs'), ('xarm_sdk', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk'), ('xarm_api', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api'), ('xarm_controller', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller'), ('xarm_gazebo', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo')])}
+[0.002481] (xarm_moveit_servo) JobQueued: {'identifier': 'xarm_moveit_servo', 'dependencies': OrderedDict([('uf_ros_lib', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib'), ('xarm_description', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description'), ('xarm_msgs', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs'), ('xarm_sdk', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk'), ('xarm_api', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api'), ('xarm_controller', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller'), ('xarm_gazebo', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo'), ('xarm_moveit_config', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_moveit_config')])}
+[0.003079] (xarm_planner) JobQueued: {'identifier': 'xarm_planner', 'dependencies': OrderedDict([('uf_ros_lib', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib'), ('xarm_description', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description'), ('xarm_msgs', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs'), ('xarm_sdk', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk'), ('xarm_api', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api'), ('xarm_controller', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller'), ('xarm_gazebo', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo'), ('xarm_moveit_config', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_moveit_config')])}
+[0.003202] (xarm_description) JobStarted: {'identifier': 'xarm_description'}
+[0.018254] (xarm_msgs) JobStarted: {'identifier': 'xarm_msgs'}
+[0.030233] (xarm_sdk) JobStarted: {'identifier': 'xarm_sdk'}
+[0.041023] (uf_ros_lib) JobStarted: {'identifier': 'uf_ros_lib'}
+[0.055069] (mbot_demo) JobStarted: {'identifier': 'mbot_demo'}
+[0.066061] (realsense_gazebo_plugin) JobStarted: {'identifier': 'realsense_gazebo_plugin'}
+[0.079248] (xarm_description) JobProgress: {'identifier': 'xarm_description', 'progress': 'cmake'}
+[0.080198] (xarm_description) Command: {'cmd': ['/usr/bin/cmake', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/xarm_description', '-DCMAKE_INSTALL_PREFIX=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description'], 'cwd': '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'castrolab-agx-orin'), ('SSH_CLIENT', '192.168.1.62 51793 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/castrolab-agx-orin'), ('OLDPWD', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6'), ('SSH_TTY', '/dev/pts/1'), ('ROS_PYTHON_VERSION', '3'), ('LC_CTYPE', 'C.UTF-8'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'castrolab-agx-orin'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '12'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_description'), ('SSH_CONNECTION', '192.168.1.62 51793 192.168.1.63 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[0.088661] (xarm_msgs) JobProgress: {'identifier': 'xarm_msgs', 'progress': 'cmake'}
+[0.089602] (xarm_msgs) Command: {'cmd': ['/usr/bin/cmake', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/xarm_msgs', '-DCMAKE_INSTALL_PREFIX=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs'], 'cwd': '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'castrolab-agx-orin'), ('SSH_CLIENT', '192.168.1.62 51793 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/castrolab-agx-orin'), ('OLDPWD', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6'), ('SSH_TTY', '/dev/pts/1'), ('ROS_PYTHON_VERSION', '3'), ('LC_CTYPE', 'C.UTF-8'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'castrolab-agx-orin'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '12'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs'), ('SSH_CONNECTION', '192.168.1.62 51793 192.168.1.63 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[0.095449] (xarm_sdk) JobProgress: {'identifier': 'xarm_sdk', 'progress': 'cmake'}
+[0.096334] (xarm_sdk) Command: {'cmd': ['/usr/bin/cmake', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/xarm_sdk', '-DCMAKE_INSTALL_PREFIX=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk'], 'cwd': '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'castrolab-agx-orin'), ('SSH_CLIENT', '192.168.1.62 51793 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/castrolab-agx-orin'), ('OLDPWD', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6'), ('SSH_TTY', '/dev/pts/1'), ('ROS_PYTHON_VERSION', '3'), ('LC_CTYPE', 'C.UTF-8'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'castrolab-agx-orin'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '12'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk'), ('SSH_CONNECTION', '192.168.1.62 51793 192.168.1.63 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[0.101061] (-) TimerEvent: {}
+[0.202194] (-) TimerEvent: {}
+[0.303082] (-) TimerEvent: {}
+[0.403805] (-) TimerEvent: {}
+[0.504908] (-) TimerEvent: {}
+[0.577866] (mbot_demo) JobProgress: {'identifier': 'mbot_demo', 'progress': 'cmake'}
+[0.579080] (mbot_demo) Command: {'cmd': ['/usr/bin/cmake', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/demo/mbot_demo', '-DCMAKE_INSTALL_PREFIX=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/mbot_demo'], 'cwd': '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/mbot_demo', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'castrolab-agx-orin'), ('SSH_CLIENT', '192.168.1.62 51793 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/castrolab-agx-orin'), ('OLDPWD', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6'), ('SSH_TTY', '/dev/pts/1'), ('ROS_PYTHON_VERSION', '3'), ('LC_CTYPE', 'C.UTF-8'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'castrolab-agx-orin'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '12'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/mbot_demo'), ('SSH_CONNECTION', '192.168.1.62 51793 192.168.1.63 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[0.588456] (xarm_description) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[0.589480] (xarm_description) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[0.589640] (xarm_description) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[0.589769] (xarm_description) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[0.589891] (xarm_description) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.590010] (xarm_description) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.590144] (xarm_description) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.590254] (xarm_description) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.590362] (xarm_description) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[0.592100] (xarm_msgs) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[0.592846] (xarm_msgs) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[0.593007] (xarm_msgs) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[0.593138] (xarm_msgs) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[0.593259] (xarm_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.593373] (xarm_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.593483] (xarm_msgs) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.593590] (xarm_msgs) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.593696] (xarm_msgs) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[0.593804] (xarm_sdk) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[0.593972] (xarm_sdk) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[0.594079] (xarm_sdk) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[0.594181] (xarm_sdk) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[0.594284] (xarm_sdk) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.594385] (xarm_sdk) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.594485] (xarm_sdk) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.594587] (xarm_sdk) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.594685] (xarm_sdk) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[0.596871] (realsense_gazebo_plugin) JobProgress: {'identifier': 'realsense_gazebo_plugin', 'progress': 'cmake'}
+[0.597849] (realsense_gazebo_plugin) Command: {'cmd': ['/usr/bin/cmake', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/thirdparty/realsense_gazebo_plugin', '-DCMAKE_INSTALL_PREFIX=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/realsense_gazebo_plugin'], 'cwd': '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/realsense_gazebo_plugin', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'castrolab-agx-orin'), ('SSH_CLIENT', '192.168.1.62 51793 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/castrolab-agx-orin'), ('OLDPWD', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6'), ('SSH_TTY', '/dev/pts/1'), ('ROS_PYTHON_VERSION', '3'), ('LC_CTYPE', 'C.UTF-8'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'castrolab-agx-orin'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '12'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/realsense_gazebo_plugin'), ('SSH_CONNECTION', '192.168.1.62 51793 192.168.1.63 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[0.605093] (-) TimerEvent: {}
+[0.693089] (mbot_demo) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[0.705265] (-) TimerEvent: {}
+[0.716914] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[0.722192] (xarm_description) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[0.724083] (xarm_description) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.724793] (xarm_msgs) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[0.726347] (xarm_sdk) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[0.726730] (xarm_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.726984] (xarm_sdk) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.798768] (mbot_demo) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[0.805410] (-) TimerEvent: {}
+[0.807250] (mbot_demo) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[0.818629] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[0.828571] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[0.876848] (xarm_description) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.877366] (xarm_sdk) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.880019] (xarm_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.894151] (xarm_description) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.894878] (xarm_description) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.895126] (xarm_sdk) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.895921] (xarm_sdk) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.898863] (xarm_description) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.899472] (xarm_sdk) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.900659] (xarm_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.901437] (xarm_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.905569] (-) TimerEvent: {}
+[0.908167] (xarm_msgs) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.945852] (xarm_sdk) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[0.946428] (xarm_sdk) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.947309] (xarm_description) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[0.947739] (xarm_description) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.948829] (mbot_demo) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[0.950382] (mbot_demo) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.960671] (xarm_msgs) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[0.961098] (xarm_msgs) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.977984] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[0.980554] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[1.005726] (-) TimerEvent: {}
+[1.090301] (mbot_demo) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.105886] (-) TimerEvent: {}
+[1.107768] (mbot_demo) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.108276] (mbot_demo) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.113240] (mbot_demo) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[1.128822] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.145620] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.146161] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.150556] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[1.206028] (-) TimerEvent: {}
+[1.278072] (mbot_demo) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[1.280074] (mbot_demo) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.306328] (-) TimerEvent: {}
+[1.307687] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[1.309344] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.348133] (xarm_description) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[1.349481] (xarm_sdk) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[1.374499] (xarm_msgs) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[1.406519] (-) TimerEvent: {}
+[1.445163] (uf_ros_lib) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/uf_ros_lib', 'build', '--build-base', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build', 'install', '--record', '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/install.log', '--install-scripts', '$base/lib/uf_ros_lib', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/uf_ros_lib', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'castrolab-agx-orin', 'SSH_CLIENT': '192.168.1.62 51793 22', 'XDG_SESSION_TYPE': 'tty', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib', 'MOTD_SHOWN': 'pam', 'HOME': '/home/castrolab-agx-orin', 'OLDPWD': '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6', 'SSH_TTY': '/dev/pts/1', 'ROS_PYTHON_VERSION': '3', 'LC_CTYPE': 'C.UTF-8', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'castrolab-agx-orin', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '12', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/opt/ros/foxy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PWD': '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib', 'SSH_CONNECTION': '192.168.1.62 51793 192.168.1.63 22', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1'}, 'shell': False}
+[1.452048] (mbot_demo) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.465672] (mbot_demo) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.466404] (mbot_demo) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.470607] (mbot_demo) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[1.474379] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.493759] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.494508] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.497084] (xarm_sdk) StderrLine: {'line': b'CMake Error at CMakeLists.txt:57 (message):\n'}
+[1.497491] (xarm_sdk) StderrLine: {'line': b'  xarm_sdk contains sub-modules, Please use the following command to get or\n'}
+[1.497653] (xarm_sdk) StderrLine: {'line': b'  update the sub-module code first\n'}
+[1.497779] (xarm_sdk) StderrLine: {'line': b'\n'}
+[1.497892] (xarm_sdk) StderrLine: {'line': b'    $ git pull\n'}
+[1.498001] (xarm_sdk) StderrLine: {'line': b'    $ git submodule sync\n'}
+[1.498106] (xarm_sdk) StderrLine: {'line': b'    $ git submodule update --init --remote\n'}
+[1.498211] (xarm_sdk) StderrLine: {'line': b'\n'}
+[1.498393] (xarm_sdk) StderrLine: {'line': b'\n'}
+[1.498502] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[1.498961] (xarm_sdk) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[1.499116] (xarm_sdk) StdoutLine: {'line': b'See also "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk/CMakeFiles/CMakeOutput.log".\n'}
+[1.502309] (xarm_description) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[1.506646] (-) TimerEvent: {}
+[1.509099] (xarm_sdk) CommandEnded: {'returncode': 1}
+[1.522736] (mbot_demo) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[1.523661] (mbot_demo) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[1.525063] (xarm_description) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[1.525412] (xarm_msgs) StdoutLine: {'line': b'-- Found std_msgs: 2.0.5 (/opt/ros/foxy/share/std_msgs/cmake)\n'}
+[1.528732] (xarm_description) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[1.531289] (xarm_description) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the style conventions in PEP 257\n"}
+[1.543641] (xarm_description) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[1.544967] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[1.545633] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[1.547763] (xarm_description) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.553635] (xarm_description) StdoutLine: {'line': b'-- Generating done\n'}
+[1.557468] (xarm_description) StdoutLine: {'line': b'-- Build files have been written to: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_description\n'}
+[1.565782] (xarm_sdk) JobEnded: {'identifier': 'xarm_sdk', 'rc': 1}
+[1.568001] (xarm_description) JobEnded: {'identifier': 'xarm_description', 'rc': 'SIGINT'}
+[1.577918] (xarm_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.588217] (xarm_msgs) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[1.606806] (-) TimerEvent: {}
+[1.707427] (-) TimerEvent: {}
+[1.742131] (xarm_msgs) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "1.1.1f")  \n'}
+[1.794934] (xarm_msgs) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/foxy/include  \n'}
+[1.807579] (-) TimerEvent: {}
+[1.864264] (uf_ros_lib) StdoutLine: {'line': b'running egg_info\n'}
+[1.866093] (uf_ros_lib) StdoutLine: {'line': b'creating ../../build/uf_ros_lib/uf_ros_lib.egg-info\n'}
+[1.866438] (uf_ros_lib) StdoutLine: {'line': b'writing ../../build/uf_ros_lib/uf_ros_lib.egg-info/PKG-INFO\n'}
+[1.867096] (uf_ros_lib) StdoutLine: {'line': b'writing dependency_links to ../../build/uf_ros_lib/uf_ros_lib.egg-info/dependency_links.txt\n'}
+[1.867360] (uf_ros_lib) StdoutLine: {'line': b'writing entry points to ../../build/uf_ros_lib/uf_ros_lib.egg-info/entry_points.txt\n'}
+[1.867550] (uf_ros_lib) StdoutLine: {'line': b'writing requirements to ../../build/uf_ros_lib/uf_ros_lib.egg-info/requires.txt\n'}
+[1.867726] (uf_ros_lib) StdoutLine: {'line': b'writing top-level names to ../../build/uf_ros_lib/uf_ros_lib.egg-info/top_level.txt\n'}
+[1.870893] (uf_ros_lib) StdoutLine: {'line': b"writing manifest file '../../build/uf_ros_lib/uf_ros_lib.egg-info/SOURCES.txt'\n"}
+[1.901309] (mbot_demo) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[1.907737] (-) TimerEvent: {}
+[1.922580] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[1.930749] (uf_ros_lib) StdoutLine: {'line': b"reading manifest file '../../build/uf_ros_lib/uf_ros_lib.egg-info/SOURCES.txt'\n"}
+[1.932344] (uf_ros_lib) StdoutLine: {'line': b"writing manifest file '../../build/uf_ros_lib/uf_ros_lib.egg-info/SOURCES.txt'\n"}
+[1.932663] (uf_ros_lib) StdoutLine: {'line': b'running build\n'}
+[1.932842] (uf_ros_lib) StdoutLine: {'line': b'running build_py\n'}
+[1.933071] (uf_ros_lib) StdoutLine: {'line': b'creating /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build\n'}
+[1.933249] (uf_ros_lib) StdoutLine: {'line': b'creating /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib\n'}
+[1.933401] (uf_ros_lib) StdoutLine: {'line': b'creating /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib\n'}
+[1.935482] (xarm_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.935858] (uf_ros_lib) StdoutLine: {'line': b'copying uf_ros_lib/uf_robot_utils.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib\n'}
+[1.937661] (uf_ros_lib) StdoutLine: {'line': b'copying uf_ros_lib/__init__.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib\n'}
+[1.938002] (uf_ros_lib) StdoutLine: {'line': b'copying uf_ros_lib/parameter_descriptions.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib\n'}
+[1.938232] (uf_ros_lib) StdoutLine: {'line': b'copying uf_ros_lib/moveit_configs_builder.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib\n'}
+[1.939112] (uf_ros_lib) StdoutLine: {'line': b'creating /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/substitutions\n'}
+[1.939389] (uf_ros_lib) StdoutLine: {'line': b'copying uf_ros_lib/substitutions/joint_limits.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/substitutions\n'}
+[1.939636] (uf_ros_lib) StdoutLine: {'line': b'copying uf_ros_lib/substitutions/__init__.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/substitutions\n'}
+[1.939845] (uf_ros_lib) StdoutLine: {'line': b'copying uf_ros_lib/substitutions/common.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/substitutions\n'}
+[1.939972] (uf_ros_lib) StdoutLine: {'line': b'copying uf_ros_lib/substitutions/controllers.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/substitutions\n'}
+[1.940124] (uf_ros_lib) StdoutLine: {'line': b'copying uf_ros_lib/substitutions/kinematics.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/substitutions\n'}
+[1.940290] (uf_ros_lib) StdoutLine: {'line': b'copying uf_ros_lib/substitutions/planning_pipelines.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/substitutions\n'}
+[1.940832] (uf_ros_lib) StdoutLine: {'line': b'running install\n'}
+[1.942589] (uf_ros_lib) StdoutLine: {'line': b'running install_lib\n'}
+[1.944372] (uf_ros_lib) StdoutLine: {'line': b'creating /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib\n'}
+[1.944719] (uf_ros_lib) StdoutLine: {'line': b'copying /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/uf_robot_utils.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib\n'}
+[1.944894] (uf_ros_lib) StdoutLine: {'line': b'copying /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/__init__.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib\n'}
+[1.945048] (uf_ros_lib) StdoutLine: {'line': b'copying /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/parameter_descriptions.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib\n'}
+[1.945305] (uf_ros_lib) StdoutLine: {'line': b'creating /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/substitutions\n'}
+[1.945504] (uf_ros_lib) StdoutLine: {'line': b'copying /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/substitutions/joint_limits.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/substitutions\n'}
+[1.945683] (uf_ros_lib) StdoutLine: {'line': b'copying /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/substitutions/__init__.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/substitutions\n'}
+[1.945851] (uf_ros_lib) StdoutLine: {'line': b'copying /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/substitutions/common.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/substitutions\n'}
+[1.946036] (uf_ros_lib) StdoutLine: {'line': b'copying /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/substitutions/controllers.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/substitutions\n'}
+[1.946218] (uf_ros_lib) StdoutLine: {'line': b'copying /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/substitutions/kinematics.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/substitutions\n'}
+[1.946409] (uf_ros_lib) StdoutLine: {'line': b'copying /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/substitutions/planning_pipelines.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/substitutions\n'}
+[1.946623] (uf_ros_lib) StdoutLine: {'line': b'copying /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/build/lib/uf_ros_lib/moveit_configs_builder.py -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib\n'}
+[1.947806] (uf_ros_lib) StdoutLine: {'line': b'byte-compiling /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/uf_robot_utils.py to uf_robot_utils.cpython-38.pyc\n'}
+[1.953010] (uf_ros_lib) StdoutLine: {'line': b'byte-compiling /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/__init__.py to __init__.cpython-38.pyc\n'}
+[1.954366] (uf_ros_lib) StdoutLine: {'line': b'byte-compiling /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/parameter_descriptions.py to parameter_descriptions.cpython-38.pyc\n'}
+[1.954574] (uf_ros_lib) StdoutLine: {'line': b'byte-compiling /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/substitutions/joint_limits.py to joint_limits.cpython-38.pyc\n'}
+[1.956060] (uf_ros_lib) StdoutLine: {'line': b'byte-compiling /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/substitutions/__init__.py to __init__.cpython-38.pyc\n'}
+[1.956435] (uf_ros_lib) StdoutLine: {'line': b'byte-compiling /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/substitutions/common.py to common.cpython-38.pyc\n'}
+[1.957970] (uf_ros_lib) StdoutLine: {'line': b'byte-compiling /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/substitutions/controllers.py to controllers.cpython-38.pyc\n'}
+[1.960513] (uf_ros_lib) StdoutLine: {'line': b'byte-compiling /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/substitutions/kinematics.py to kinematics.cpython-38.pyc\n'}
+[1.961963] (uf_ros_lib) StdoutLine: {'line': b'byte-compiling /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/substitutions/planning_pipelines.py to planning_pipelines.cpython-38.pyc\n'}
+[1.964298] (uf_ros_lib) StdoutLine: {'line': b'byte-compiling /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib/moveit_configs_builder.py to moveit_configs_builder.cpython-38.pyc\n'}
+[1.978815] (uf_ros_lib) StdoutLine: {'line': b'running install_data\n'}
+[1.979311] (uf_ros_lib) StdoutLine: {'line': b'creating /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/share/ament_index\n'}
+[1.979462] (uf_ros_lib) StdoutLine: {'line': b'creating /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/share/ament_index/resource_index\n'}
+[1.979621] (uf_ros_lib) StdoutLine: {'line': b'creating /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/share/ament_index/resource_index/packages\n'}
+[1.979785] (uf_ros_lib) StdoutLine: {'line': b'copying resource/uf_ros_lib -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/share/ament_index/resource_index/packages\n'}
+[1.979903] (uf_ros_lib) StdoutLine: {'line': b'copying package.xml -> /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/share/uf_ros_lib\n'}
+[1.980014] (uf_ros_lib) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.983099] (uf_ros_lib) StdoutLine: {'line': b'Copying ../../build/uf_ros_lib/uf_ros_lib.egg-info to /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages/uf_ros_lib-0.0.0-py3.8.egg-info\n'}
+[1.984860] (uf_ros_lib) StdoutLine: {'line': b'running install_scripts\n'}
+[2.000015] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.007895] (-) TimerEvent: {}
+[2.011022] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[2.014867] (xarm_msgs) StdoutLine: {'line': b'-- Found geometry_msgs: 2.0.5 (/opt/ros/foxy/share/geometry_msgs/cmake)\n'}
+[2.019416] (uf_ros_lib) StdoutLine: {'line': b"writing list of installed files to '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/uf_ros_lib/install.log'\n"}
+[2.037854] (mbot_demo) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[2.043530] (mbot_demo) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[2.044715] (mbot_demo) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[2.045652] (mbot_demo) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the style conventions in PEP 257\n"}
+[2.048846] (mbot_demo) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[2.053015] (mbot_demo) StdoutLine: {'line': b'-- Configuring done\n'}
+[2.057406] (mbot_demo) StdoutLine: {'line': b'-- Generating done\n'}
+[2.061074] (mbot_demo) StdoutLine: {'line': b'-- Build files have been written to: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/mbot_demo\n'}
+[2.070061] (mbot_demo) JobEnded: {'identifier': 'mbot_demo', 'rc': 'SIGINT'}
+[2.072991] (xarm_msgs) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)\n'}
+[2.078433] (uf_ros_lib) JobEnded: {'identifier': 'uf_ros_lib', 'rc': 'SIGINT'}
+[2.108073] (-) TimerEvent: {}
+[2.143715] (xarm_msgs) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") \n'}
+[2.158241] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "1.1.1f")  \n'}
+[2.206893] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/foxy/include  \n'}
+[2.208120] (-) TimerEvent: {}
+[2.308513] (-) TimerEvent: {}
+[2.337799] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.408652] (-) TimerEvent: {}
+[2.427935] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[2.430107] (realsense_gazebo_plugin) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[2.431661] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[2.508802] (-) TimerEvent: {}
+[2.560166] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[2.561002] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[2.608967] (-) TimerEvent: {}
+[2.696131] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed\n'}
+[2.696923] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads\n'}
+[2.709068] (-) TimerEvent: {}
+[2.809678] (-) TimerEvent: {}
+[2.824939] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads - not found\n'}
+[2.825574] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for pthread_create in pthread\n'}
+[2.909838] (-) TimerEvent: {}
+[2.961526] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for pthread_create in pthread - found\n'}
+[2.965293] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[3.009985] (-) TimerEvent: {}
+[3.110590] (-) TimerEvent: {}
+[3.149505] (xarm_msgs) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.9.2 (/opt/ros/foxy/share/ament_cmake_ros/cmake)\n'}
+[3.210756] (-) TimerEvent: {}
+[3.222674] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found gazebo_ros: 3.5.3 (/opt/ros/foxy/share/gazebo_ros/cmake)\n'}
+[3.240736] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.1") \n'}
+[3.243978] (realsense_gazebo_plugin) StdoutLine: {'line': b"-- Checking for module 'bullet>=2.82'\n"}
+[3.271758] (realsense_gazebo_plugin) StdoutLine: {'line': b'--   Found bullet, version 2.88\n'}
+[3.310909] (-) TimerEvent: {}
+[3.411534] (-) TimerEvent: {}
+[3.483840] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found ccd: /usr/include (found suitable version "2.0", minimum required is "2.0") \n'}
+[3.511707] (-) TimerEvent: {}
+[3.587114] (xarm_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[3.590461] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found fcl: /usr/include (found suitable version "0.5.0", minimum required is "0.3.2") \n'}
+[3.611861] (-) TimerEvent: {}
+[3.709921] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found assimp: /usr/include (found version "5.0.0") \n'}
+[3.711925] (-) TimerEvent: {}
+[3.748687] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found DART: /usr/include (Required is at least version "6.6") found components: dart \n'}
+[3.788289] (xarm_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[3.792204] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found suitable version "1.71.0", minimum required is "1.40.0") found components: thread system filesystem program_options regex iostreams date_time \n'}
+[3.812085] (-) TimerEvent: {}
+[3.825206] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found Protobuf: /usr/lib/aarch64-linux-gnu/libprotobuf.so;-lpthread (found version "3.6.1") \n'}
+[3.833012] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[3.835500] (xarm_msgs) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3.5") \n'}
+[3.838012] (xarm_msgs) StdoutLine: {'line': b'-- Found python_cmake_module: 0.8.1 (/opt/ros/foxy/share/python_cmake_module/cmake)\n'}
+[3.842597] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Searching for dependencies of ignition-math6\n'}
+[3.845485] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for OGRE...\n'}
+[3.846275] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- OGRE_PREFIX_WATCH changed.\n'}
+[3.855202] (realsense_gazebo_plugin) StdoutLine: {'line': b"-- Checking for module 'OGRE'\n"}
+[3.884154] (realsense_gazebo_plugin) StdoutLine: {'line': b'--   Found OGRE, version 1.9.0\n'}
+[3.885891] (xarm_msgs) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.8.so (found suitable version "3.8.10", minimum required is "3.5") \n'}
+[3.886246] (xarm_msgs) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[3.886422] (xarm_msgs) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.8\n'}
+[3.886550] (xarm_msgs) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.8.so\n'}
+[3.912232] (-) TimerEvent: {}
+[3.926065] (xarm_msgs) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[3.958725] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found Ogre Ghadamon (1.9.0)\n'}
+[3.972455] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found OGRE: optimized;/usr/lib/aarch64-linux-gnu/libOgreMain.so;debug;/usr/lib/aarch64-linux-gnu/libOgreMain.so\n'}
+[3.989932] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for OGRE_Paging...\n'}
+[3.999530] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found OGRE_Paging: optimized;/usr/lib/aarch64-linux-gnu/libOgrePaging.so;debug;/usr/lib/aarch64-linux-gnu/libOgrePaging.so\n'}
+[3.999844] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for OGRE_Terrain...\n'}
+[4.008537] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found OGRE_Terrain: optimized;/usr/lib/aarch64-linux-gnu/libOgreTerrain.so;debug;/usr/lib/aarch64-linux-gnu/libOgreTerrain.so\n'}
+[4.008803] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for OGRE_Property...\n'}
+[4.012292] (-) TimerEvent: {}
+[4.017547] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found OGRE_Property: optimized;/usr/lib/aarch64-linux-gnu/libOgreProperty.so;debug;/usr/lib/aarch64-linux-gnu/libOgreProperty.so\n'}
+[4.017793] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for OGRE_RTShaderSystem...\n'}
+[4.026249] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found OGRE_RTShaderSystem: optimized;/usr/lib/aarch64-linux-gnu/libOgreRTShaderSystem.so;debug;/usr/lib/aarch64-linux-gnu/libOgreRTShaderSystem.so\n'}
+[4.026489] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for OGRE_Volume...\n'}
+[4.034875] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found OGRE_Volume: optimized;/usr/lib/aarch64-linux-gnu/libOgreVolume.so;debug;/usr/lib/aarch64-linux-gnu/libOgreVolume.so\n'}
+[4.035115] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for OGRE_Overlay...\n'}
+[4.043603] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found OGRE_Overlay: optimized;/usr/lib/aarch64-linux-gnu/libOgreOverlay.so;debug;/usr/lib/aarch64-linux-gnu/libOgreOverlay.so\n'}
+[4.079547] (xarm_msgs) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[4.089050] (xarm_msgs) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[4.093943] (xarm_msgs) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[4.108537] (xarm_msgs) StdoutLine: {'line': b'-- Configuring done\n'}
+[4.112374] (-) TimerEvent: {}
+[4.212911] (-) TimerEvent: {}
+[4.237338] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[4.239631] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for ignition-transport8 -- found version 8.3.0\n'}
+[4.240470] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Searching for dependencies of ignition-transport8\n'}
+[4.272375] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found Protobuf: /usr/lib/aarch64-linux-gnu/libprotobuf.so;-lpthread (found suitable version "3.6.1", minimum required is "3") \n'}
+[4.291594] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Config-file not installed for ZeroMQ -- checking for pkg-config\n'}
+[4.299915] (realsense_gazebo_plugin) StdoutLine: {'line': b"-- Checking for module 'libzmq >= 4'\n"}
+[4.313040] (-) TimerEvent: {}
+[4.330554] (realsense_gazebo_plugin) StdoutLine: {'line': b'--   Found libzmq , version 4.3.2\n'}
+[4.408249] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found ZeroMQ: TRUE (Required is at least version "4") \n'}
+[4.413139] (-) TimerEvent: {}
+[4.417150] (xarm_msgs) StdoutLine: {'line': b'-- Generating done\n'}
+[4.418079] (realsense_gazebo_plugin) StdoutLine: {'line': b"-- Checking for module 'uuid'\n"}
+[4.448246] (realsense_gazebo_plugin) StdoutLine: {'line': b'--   Found uuid, version 2.34.0\n'}
+[4.474049] (xarm_msgs) StdoutLine: {'line': b'-- Build files have been written to: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_msgs\n'}
+[4.503234] (xarm_msgs) JobEnded: {'identifier': 'xarm_msgs', 'rc': 'SIGINT'}
+[4.513323] (-) TimerEvent: {}
+[4.535765] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found UUID: TRUE  \n'}
+[4.539002] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for ignition-msgs5 -- found version 5.10.0\n'}
+[4.539863] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Searching for dependencies of ignition-msgs5\n'}
+[4.574733] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[4.585036] (realsense_gazebo_plugin) StdoutLine: {'line': b"-- Checking for module 'tinyxml2'\n"}
+[4.613481] (-) TimerEvent: {}
+[4.617948] (realsense_gazebo_plugin) StdoutLine: {'line': b'--   Found tinyxml2, version 6.2.0\n'}
+[4.711779] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for ignition-msgs5 -- found version 5.10.0\n'}
+[4.713574] (-) TimerEvent: {}
+[4.714073] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for ignition-common3 -- found version 3.14.2\n'}
+[4.714801] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common3\n'}
+[4.715336] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[4.717044] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[4.719419] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found DL: TRUE  \n'}
+[4.735619] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Searching for <ignition-common3> component [graphics]\n'}
+[4.738498] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for ignition-common3-graphics -- found version 3.14.2\n'}
+[4.739496] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common3-graphics\n'}
+[4.740070] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[4.744192] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for ignition-fuel_tools4 -- found version 4.6.0\n'}
+[4.744956] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Searching for dependencies of ignition-fuel_tools4\n'}
+[4.813760] (-) TimerEvent: {}
+[4.912193] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found CURL: /usr/lib/aarch64-linux-gnu/libcurl.so (found version "7.68.0")  \n'}
+[4.913814] (-) TimerEvent: {}
+[4.925985] (realsense_gazebo_plugin) StdoutLine: {'line': b"-- Checking for module 'jsoncpp'\n"}
+[4.963763] (realsense_gazebo_plugin) StdoutLine: {'line': b'--   Found jsoncpp, version 1.7.4\n'}
+[5.014004] (-) TimerEvent: {}
+[5.056123] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found JSONCPP: TRUE  \n'}
+[5.066966] (realsense_gazebo_plugin) StdoutLine: {'line': b"-- Checking for module 'libzip'\n"}
+[5.103134] (realsense_gazebo_plugin) StdoutLine: {'line': b'--   Found libzip, version 1.5.1\n'}
+[5.114121] (-) TimerEvent: {}
+[5.202850] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found ZIP: TRUE  \n'}
+[5.203802] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for ignition-common3 -- found version 3.14.2\n'}
+[5.204858] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[5.205727] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Looking for ignition-msgs5 -- found version 5.10.0\n'}
+[5.208354] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Gazebo version: 11.11\n'}
+[5.214187] (-) TimerEvent: {}
+[5.218705] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found image_transport: 2.4.0 (/opt/ros/foxy/share/image_transport/cmake)\n'}
+[5.314423] (-) TimerEvent: {}
+[5.415257] (-) TimerEvent: {}
+[5.486821] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found camera_info_manager: 2.4.0 (/opt/ros/foxy/share/camera_info_manager/cmake)\n'}
+[5.515364] (-) TimerEvent: {}
+[5.518589] (realsense_gazebo_plugin) StdoutLine: {'line': b"-- Setting yaml-cpp_DIR to: '/opt/ros/foxy/share/yaml_cpp_vendor/cmake/../../../opt/yaml_cpp_vendor/lib/cmake/yaml-cpp'\n"}
+[5.615588] (-) TimerEvent: {}
+[5.687939] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[5.715930] (-) TimerEvent: {}
+[5.811503] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Configuring done\n'}
+[5.816031] (-) TimerEvent: {}
+[5.874315] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Generating done\n'}
+[5.905641] (realsense_gazebo_plugin) StdoutLine: {'line': b'-- Build files have been written to: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/realsense_gazebo_plugin\n'}
+[5.916138] (-) TimerEvent: {}
+[5.939737] (realsense_gazebo_plugin) JobEnded: {'identifier': 'realsense_gazebo_plugin', 'rc': 'SIGINT'}
+[5.943377] (xarm_api) JobSkipped: {'identifier': 'xarm_api'}
+[5.943561] (xarm_controller) JobSkipped: {'identifier': 'xarm_controller'}
+[5.943657] (xarm_gazebo) JobSkipped: {'identifier': 'xarm_gazebo'}
+[5.943962] (xarm_moveit_config) JobSkipped: {'identifier': 'xarm_moveit_config'}
+[5.944117] (xarm_moveit_servo) JobSkipped: {'identifier': 'xarm_moveit_servo'}
+[5.944214] (xarm_planner) JobSkipped: {'identifier': 'xarm_planner'}
+[5.944295] (-) EventReactorShutdown: {}

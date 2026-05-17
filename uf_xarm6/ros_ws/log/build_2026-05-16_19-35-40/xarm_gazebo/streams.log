@@ -1,0 +1,133 @@
+[0.042s] Invoking command in '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_gazebo': AMENT_PREFIX_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description:/opt/ros/foxy LD_LIBRARY_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs/lib/python3.8/site-packages:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/xarm_gazebo -DCMAKE_INSTALL_PREFIX=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo
+[0.067s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.108s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.477s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.532s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.538s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.751s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.831s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.833s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.063s] -- Found control_toolbox: 2.2.0 (/opt/ros/foxy/share/control_toolbox/cmake)
+[1.822s] -- Found controller_manager: 0.11.0 (/opt/ros/foxy/share/controller_manager/cmake)
+[2.212s] -- Found gazebo_ros: 3.5.3 (/opt/ros/foxy/share/gazebo_ros/cmake)
+[2.233s] -- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.1") 
+[2.236s] -- Checking for module 'bullet>=2.82'
+[2.271s] --   Found bullet, version 2.88
+[2.555s] -- Found ccd: /usr/include (found suitable version "2.0", minimum required is "2.0") 
+[2.693s] -- Found fcl: /usr/include (found suitable version "0.5.0", minimum required is "0.3.2") 
+[2.835s] -- Found assimp: /usr/include (found version "5.0.0") 
+[2.878s] -- Found DART: /usr/include (Required is at least version "6.6") found components: dart 
+[2.924s] -- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found suitable version "1.71.0", minimum required is "1.40.0") found components: thread system filesystem program_options regex iostreams date_time 
+[2.958s] -- Found Protobuf: /usr/lib/aarch64-linux-gnu/libprotobuf.so;-lpthread (found version "3.6.1") 
+[2.967s] -- Looking for ignition-math6 -- found version 6.15.1
+[2.979s] -- Searching for dependencies of ignition-math6
+[2.981s] -- Looking for OGRE...
+[2.982s] -- OGRE_PREFIX_WATCH changed.
+[2.992s] -- Checking for module 'OGRE'
+[3.028s] --   Found OGRE, version 1.9.0
+[3.123s] -- Found Ogre Ghadamon (1.9.0)
+[3.139s] -- Found OGRE: optimized;/usr/lib/aarch64-linux-gnu/libOgreMain.so;debug;/usr/lib/aarch64-linux-gnu/libOgreMain.so
+[3.157s] -- Looking for OGRE_Paging...
+[3.167s] -- Found OGRE_Paging: optimized;/usr/lib/aarch64-linux-gnu/libOgrePaging.so;debug;/usr/lib/aarch64-linux-gnu/libOgrePaging.so
+[3.168s] -- Looking for OGRE_Terrain...
+[3.179s] -- Found OGRE_Terrain: optimized;/usr/lib/aarch64-linux-gnu/libOgreTerrain.so;debug;/usr/lib/aarch64-linux-gnu/libOgreTerrain.so
+[3.179s] -- Looking for OGRE_Property...
+[3.190s] -- Found OGRE_Property: optimized;/usr/lib/aarch64-linux-gnu/libOgreProperty.so;debug;/usr/lib/aarch64-linux-gnu/libOgreProperty.so
+[3.190s] -- Looking for OGRE_RTShaderSystem...
+[3.200s] -- Found OGRE_RTShaderSystem: optimized;/usr/lib/aarch64-linux-gnu/libOgreRTShaderSystem.so;debug;/usr/lib/aarch64-linux-gnu/libOgreRTShaderSystem.so
+[3.200s] -- Looking for OGRE_Volume...
+[3.211s] -- Found OGRE_Volume: optimized;/usr/lib/aarch64-linux-gnu/libOgreVolume.so;debug;/usr/lib/aarch64-linux-gnu/libOgreVolume.so
+[3.211s] -- Looking for OGRE_Overlay...
+[3.220s] -- Found OGRE_Overlay: optimized;/usr/lib/aarch64-linux-gnu/libOgreOverlay.so;debug;/usr/lib/aarch64-linux-gnu/libOgreOverlay.so
+[3.452s] -- Looking for ignition-math6 -- found version 6.15.1
+[3.456s] -- Looking for ignition-transport8 -- found version 8.3.0
+[3.457s] -- Searching for dependencies of ignition-transport8
+[3.491s] -- Found Protobuf: /usr/lib/aarch64-linux-gnu/libprotobuf.so;-lpthread (found suitable version "3.6.1", minimum required is "3") 
+[3.512s] -- Config-file not installed for ZeroMQ -- checking for pkg-config
+[3.522s] -- Checking for module 'libzmq >= 4'
+[3.558s] --   Found libzmq , version 4.3.2
+[3.655s] -- Found ZeroMQ: TRUE (Required is at least version "4") 
+[3.666s] -- Checking for module 'uuid'
+[3.702s] --   Found uuid, version 2.34.0
+[3.800s] -- Found UUID: TRUE  
+[3.804s] -- Looking for ignition-msgs5 -- found version 5.10.0
+[3.805s] -- Searching for dependencies of ignition-msgs5
+[3.842s] -- Looking for ignition-math6 -- found version 6.15.1
+[3.852s] -- Checking for module 'tinyxml2'
+[3.886s] --   Found tinyxml2, version 6.2.0
+[3.988s] -- Looking for ignition-msgs5 -- found version 5.10.0
+[3.992s] -- Looking for ignition-common3 -- found version 3.14.2
+[3.993s] -- Searching for dependencies of ignition-common3
+[3.993s] -- Looking for dlfcn.h - found
+[3.995s] -- Looking for libdl - found
+[3.998s] -- Found DL: TRUE  
+[4.016s] -- Searching for <ignition-common3> component [graphics]
+[4.020s] -- Looking for ignition-common3-graphics -- found version 3.14.2
+[4.020s] -- Searching for dependencies of ignition-common3-graphics
+[4.021s] -- Looking for ignition-math6 -- found version 6.15.1
+[4.026s] -- Looking for ignition-fuel_tools4 -- found version 4.6.0
+[4.027s] -- Searching for dependencies of ignition-fuel_tools4
+[4.211s] -- Found CURL: /usr/lib/aarch64-linux-gnu/libcurl.so (found version "7.68.0")  
+[4.226s] -- Checking for module 'jsoncpp'
+[4.264s] --   Found jsoncpp, version 1.7.4
+[4.359s] -- Found JSONCPP: TRUE  
+[4.371s] -- Checking for module 'libzip'
+[4.408s] --   Found libzip, version 1.5.1
+[4.510s] -- Found ZIP: TRUE  
+[4.510s] -- Looking for ignition-common3 -- found version 3.14.2
+[4.511s] -- Looking for ignition-math6 -- found version 6.15.1
+[4.512s] -- Looking for ignition-msgs5 -- found version 5.10.0
+[4.514s] -- Gazebo version: 11.11
+[4.525s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[4.796s] -- Added test 'copyright' to check source files copyright and LICENSE
+[4.798s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[4.800s] -- Configured cppcheck include dirs: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/xarm_gazebo/include
+[4.800s] -- Configured cppcheck exclude dirs and/or files: 
+[4.802s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[4.802s] -- Configured cpplint exclude dirs and/or files: 
+[4.803s] -- Added test 'flake8' to check Python code syntax and style conventions
+[4.804s] -- Added test 'lint_cmake' to check CMake code style
+[4.805s] -- Added test 'pep257' to check Python code against some of the style conventions in PEP 257
+[4.807s] -- Added test 'uncrustify' to check C / C++ code style
+[4.807s] -- Configured uncrustify additional arguments: 
+[4.808s] -- Added test 'xmllint' to check XML markup files
+[4.817s] -- Configuring done
+[4.895s] -- Generating done
+[4.933s] -- Build files have been written to: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_gazebo
+[4.964s] Invoked command in '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_gazebo' returned '0': AMENT_PREFIX_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description:/opt/ros/foxy LD_LIBRARY_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs/lib/python3.8/site-packages:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/xarm_gazebo -DCMAKE_INSTALL_PREFIX=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo
+[4.974s] Invoking command in '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_gazebo': AMENT_PREFIX_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description:/opt/ros/foxy LD_LIBRARY_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs/lib/python3.8/site-packages:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_gazebo -- -j8 -l8
+[5.062s] [35m[1mScanning dependencies of target gazebo_mimic_joint_plugin[0m
+[5.287s] [ 50%] [32mBuilding CXX object CMakeFiles/gazebo_mimic_joint_plugin.dir/src/mimic_joint_plugin.cpp.o[0m
+[27.991s] [100%] [32m[1mLinking CXX shared library libgazebo_mimic_joint_plugin.so[0m
+[29.216s] [100%] Built target gazebo_mimic_joint_plugin
+[29.243s] Invoked command in '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_gazebo' returned '0': AMENT_PREFIX_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description:/opt/ros/foxy LD_LIBRARY_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs/lib/python3.8/site-packages:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_gazebo -- -j8 -l8
+[29.252s] Invoking command in '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_gazebo': AMENT_PREFIX_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description:/opt/ros/foxy LD_LIBRARY_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs/lib/python3.8/site-packages:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_gazebo
+[29.272s] -- Install configuration: ""
+[29.273s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/include
+[29.273s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/include/xarm_gazebo
+[29.273s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/include/xarm_gazebo/mimic_joint_plugin.h
+[29.273s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/lib/libgazebo_mimic_joint_plugin.so
+[29.277s] -- Set runtime path of "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/lib/libgazebo_mimic_joint_plugin.so" to ""
+[29.277s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo//worlds
+[29.278s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo//worlds/table.world
+[29.278s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo//worlds/table_gz.world
+[29.278s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo//launch
+[29.278s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo//launch/xarm6_beside_table_gazebo.launch.py
+[29.278s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo//launch/_dual_robot_beside_table_gazebo.launch.py
+[29.278s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo//launch/_robot_beside_table_gazebo.launch.py
+[29.279s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/ament_index/resource_index/package_run_dependencies/xarm_gazebo
+[29.279s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/ament_index/resource_index/parent_prefix_path/xarm_gazebo
+[29.280s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo/environment/ament_prefix_path.sh
+[29.280s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo/environment/ament_prefix_path.dsv
+[29.280s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo/environment/path.sh
+[29.281s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo/environment/path.dsv
+[29.281s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo/local_setup.bash
+[29.281s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo/local_setup.sh
+[29.281s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo/local_setup.zsh
+[29.282s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo/local_setup.dsv
+[29.282s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo/package.dsv
+[29.282s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/ament_index/resource_index/packages/xarm_gazebo
+[29.283s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo/cmake/xarm_gazeboConfig.cmake
+[29.283s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo/cmake/xarm_gazeboConfig-version.cmake
+[29.283s] -- Installing: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_gazebo/share/xarm_gazebo/package.xml
+[29.291s] Invoked command in '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_gazebo' returned '0': AMENT_PREFIX_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_description:/opt/ros/foxy LD_LIBRARY_PATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_controller/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_api/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk/lib:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_msgs/lib/python3.8/site-packages:/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/uf_ros_lib/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_gazebo

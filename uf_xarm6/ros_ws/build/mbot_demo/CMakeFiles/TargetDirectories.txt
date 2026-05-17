@@ -1,0 +1,9 @@
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/mbot_demo/CMakeFiles/install/strip.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/mbot_demo/CMakeFiles/install/local.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/mbot_demo/CMakeFiles/install.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/mbot_demo/CMakeFiles/list_install_components.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/mbot_demo/CMakeFiles/rebuild_cache.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/mbot_demo/CMakeFiles/edit_cache.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/mbot_demo/CMakeFiles/test.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/mbot_demo/CMakeFiles/mbot_demo_uninstall.dir
+/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/mbot_demo/CMakeFiles/uninstall.dir

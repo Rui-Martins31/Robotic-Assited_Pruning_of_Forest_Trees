@@ -1,0 +1,31 @@
+[0.070s] Invoking command in '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/xarm_sdk -DCMAKE_INSTALL_PREFIX=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk
+[0.563s] -- The C compiler identification is GNU 9.4.0
+[0.563s] -- The CXX compiler identification is GNU 9.4.0
+[0.564s] -- Check for working C compiler: /usr/bin/cc
+[0.564s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.564s] -- Detecting C compiler ABI info
+[0.564s] -- Detecting C compiler ABI info - done
+[0.564s] -- Detecting C compile features
+[0.564s] -- Detecting C compile features - done
+[0.564s] -- Check for working CXX compiler: /usr/bin/c++
+[0.696s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.696s] -- Detecting CXX compiler ABI info
+[0.847s] -- Detecting CXX compiler ABI info - done
+[0.865s] -- Detecting CXX compile features
+[0.865s] -- Detecting CXX compile features - done
+[0.869s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.916s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.916s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.319s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[1.467s] CMake Error at CMakeLists.txt:57 (message):
+[1.467s]   xarm_sdk contains sub-modules, Please use the following command to get or
+[1.467s]   update the sub-module code first
+[1.467s] 
+[1.467s]     $ git pull
+[1.467s]     $ git submodule sync
+[1.468s]     $ git submodule update --init --remote
+[1.468s] 
+[1.468s] 
+[1.468s] -- Configuring incomplete, errors occurred!
+[1.469s] See also "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk/CMakeFiles/CMakeOutput.log".
+[1.479s] Invoked command in '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk' returned '1': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/xarm_sdk -DCMAKE_INSTALL_PREFIX=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk

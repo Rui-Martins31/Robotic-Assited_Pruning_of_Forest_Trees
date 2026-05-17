@@ -1,0 +1,111 @@
+[0.537s] Invoking command in '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/realsense_gazebo_plugin': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/thirdparty/realsense_gazebo_plugin -DCMAKE_INSTALL_PREFIX=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/realsense_gazebo_plugin
+[0.651s] -- The C compiler identification is GNU 9.4.0
+[0.755s] -- The CXX compiler identification is GNU 9.4.0
+[0.762s] -- Check for working C compiler: /usr/bin/cc
+[0.912s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.914s] -- Detecting C compiler ABI info
+[1.063s] -- Detecting C compiler ABI info - done
+[1.080s] -- Detecting C compile features
+[1.080s] -- Detecting C compile features - done
+[1.084s] -- Check for working CXX compiler: /usr/bin/c++
+[1.242s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[1.243s] -- Detecting CXX compiler ABI info
+[1.408s] -- Detecting CXX compiler ABI info - done
+[1.428s] -- Detecting CXX compile features
+[1.428s] -- Detecting CXX compile features - done
+[1.432s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[1.479s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[1.479s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.856s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[1.934s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.945s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[2.092s] -- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[2.141s] -- Found FastRTPS: /opt/ros/foxy/include  
+[2.272s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.362s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[2.364s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[2.365s] -- Looking for pthread.h
+[2.494s] -- Looking for pthread.h - found
+[2.495s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[2.630s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[2.631s] -- Looking for pthread_create in pthreads
+[2.759s] -- Looking for pthread_create in pthreads - not found
+[2.759s] -- Looking for pthread_create in pthread
+[2.896s] -- Looking for pthread_create in pthread - found
+[2.899s] -- Found Threads: TRUE  
+[3.157s] -- Found gazebo_ros: 3.5.3 (/opt/ros/foxy/share/gazebo_ros/cmake)
+[3.175s] -- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.1") 
+[3.178s] -- Checking for module 'bullet>=2.82'
+[3.206s] --   Found bullet, version 2.88
+[3.418s] -- Found ccd: /usr/include (found suitable version "2.0", minimum required is "2.0") 
+[3.524s] -- Found fcl: /usr/include (found suitable version "0.5.0", minimum required is "0.3.2") 
+[3.644s] -- Found assimp: /usr/include (found version "5.0.0") 
+[3.683s] -- Found DART: /usr/include (Required is at least version "6.6") found components: dart 
+[3.726s] -- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found suitable version "1.71.0", minimum required is "1.40.0") found components: thread system filesystem program_options regex iostreams date_time 
+[3.759s] -- Found Protobuf: /usr/lib/aarch64-linux-gnu/libprotobuf.so;-lpthread (found version "3.6.1") 
+[3.767s] -- Looking for ignition-math6 -- found version 6.15.1
+[3.776s] -- Searching for dependencies of ignition-math6
+[3.779s] -- Looking for OGRE...
+[3.780s] -- OGRE_PREFIX_WATCH changed.
+[3.789s] -- Checking for module 'OGRE'
+[3.818s] --   Found OGRE, version 1.9.0
+[3.893s] -- Found Ogre Ghadamon (1.9.0)
+[3.906s] -- Found OGRE: optimized;/usr/lib/aarch64-linux-gnu/libOgreMain.so;debug;/usr/lib/aarch64-linux-gnu/libOgreMain.so
+[3.924s] -- Looking for OGRE_Paging...
+[3.933s] -- Found OGRE_Paging: optimized;/usr/lib/aarch64-linux-gnu/libOgrePaging.so;debug;/usr/lib/aarch64-linux-gnu/libOgrePaging.so
+[3.934s] -- Looking for OGRE_Terrain...
+[3.942s] -- Found OGRE_Terrain: optimized;/usr/lib/aarch64-linux-gnu/libOgreTerrain.so;debug;/usr/lib/aarch64-linux-gnu/libOgreTerrain.so
+[3.942s] -- Looking for OGRE_Property...
+[3.951s] -- Found OGRE_Property: optimized;/usr/lib/aarch64-linux-gnu/libOgreProperty.so;debug;/usr/lib/aarch64-linux-gnu/libOgreProperty.so
+[3.951s] -- Looking for OGRE_RTShaderSystem...
+[3.960s] -- Found OGRE_RTShaderSystem: optimized;/usr/lib/aarch64-linux-gnu/libOgreRTShaderSystem.so;debug;/usr/lib/aarch64-linux-gnu/libOgreRTShaderSystem.so
+[3.960s] -- Looking for OGRE_Volume...
+[3.969s] -- Found OGRE_Volume: optimized;/usr/lib/aarch64-linux-gnu/libOgreVolume.so;debug;/usr/lib/aarch64-linux-gnu/libOgreVolume.so
+[3.969s] -- Looking for OGRE_Overlay...
+[3.977s] -- Found OGRE_Overlay: optimized;/usr/lib/aarch64-linux-gnu/libOgreOverlay.so;debug;/usr/lib/aarch64-linux-gnu/libOgreOverlay.so
+[4.171s] -- Looking for ignition-math6 -- found version 6.15.1
+[4.173s] -- Looking for ignition-transport8 -- found version 8.3.0
+[4.174s] -- Searching for dependencies of ignition-transport8
+[4.206s] -- Found Protobuf: /usr/lib/aarch64-linux-gnu/libprotobuf.so;-lpthread (found suitable version "3.6.1", minimum required is "3") 
+[4.225s] -- Config-file not installed for ZeroMQ -- checking for pkg-config
+[4.234s] -- Checking for module 'libzmq >= 4'
+[4.264s] --   Found libzmq , version 4.3.2
+[4.342s] -- Found ZeroMQ: TRUE (Required is at least version "4") 
+[4.352s] -- Checking for module 'uuid'
+[4.382s] --   Found uuid, version 2.34.0
+[4.470s] -- Found UUID: TRUE  
+[4.473s] -- Looking for ignition-msgs5 -- found version 5.10.0
+[4.474s] -- Searching for dependencies of ignition-msgs5
+[4.509s] -- Looking for ignition-math6 -- found version 6.15.1
+[4.519s] -- Checking for module 'tinyxml2'
+[4.552s] --   Found tinyxml2, version 6.2.0
+[4.646s] -- Looking for ignition-msgs5 -- found version 5.10.0
+[4.648s] -- Looking for ignition-common3 -- found version 3.14.2
+[4.649s] -- Searching for dependencies of ignition-common3
+[4.649s] -- Looking for dlfcn.h - found
+[4.651s] -- Looking for libdl - found
+[4.653s] -- Found DL: TRUE  
+[4.669s] -- Searching for <ignition-common3> component [graphics]
+[4.672s] -- Looking for ignition-common3-graphics -- found version 3.14.2
+[4.673s] -- Searching for dependencies of ignition-common3-graphics
+[4.674s] -- Looking for ignition-math6 -- found version 6.15.1
+[4.678s] -- Looking for ignition-fuel_tools4 -- found version 4.6.0
+[4.679s] -- Searching for dependencies of ignition-fuel_tools4
+[4.846s] -- Found CURL: /usr/lib/aarch64-linux-gnu/libcurl.so (found version "7.68.0")  
+[4.860s] -- Checking for module 'jsoncpp'
+[4.898s] --   Found jsoncpp, version 1.7.4
+[4.990s] -- Found JSONCPP: TRUE  
+[5.001s] -- Checking for module 'libzip'
+[5.037s] --   Found libzip, version 1.5.1
+[5.137s] -- Found ZIP: TRUE  
+[5.138s] -- Looking for ignition-common3 -- found version 3.14.2
+[5.139s] -- Looking for ignition-math6 -- found version 6.15.1
+[5.139s] -- Looking for ignition-msgs5 -- found version 5.10.0
+[5.142s] -- Gazebo version: 11.11
+[5.152s] -- Found image_transport: 2.4.0 (/opt/ros/foxy/share/image_transport/cmake)
+[5.421s] -- Found camera_info_manager: 2.4.0 (/opt/ros/foxy/share/camera_info_manager/cmake)
+[5.453s] -- Setting yaml-cpp_DIR to: '/opt/ros/foxy/share/yaml_cpp_vendor/cmake/../../../opt/yaml_cpp_vendor/lib/cmake/yaml-cpp'
+[5.622s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[5.746s] -- Configuring done
+[5.808s] -- Generating done
+[5.840s] -- Build files have been written to: /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/realsense_gazebo_plugin

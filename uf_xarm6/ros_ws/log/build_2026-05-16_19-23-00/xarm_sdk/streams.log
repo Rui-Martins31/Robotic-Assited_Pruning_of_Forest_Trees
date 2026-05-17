@@ -1,0 +1,16 @@
+[0.074s] Invoking command in '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/xarm_sdk -DCMAKE_INSTALL_PREFIX=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk
+[0.549s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.549s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.549s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.650s] -- Configuring incomplete, errors occurred!
+[0.650s] See also "/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk/CMakeFiles/CMakeOutput.log".
+[0.659s] CMake Error at CMakeLists.txt:57 (message):
+[0.659s]   xarm_sdk contains sub-modules, Please use the following command to get or
+[0.659s]   update the sub-module code first
+[0.659s] 
+[0.659s]     $ git pull
+[0.659s]     $ git submodule sync
+[0.660s]     $ git submodule update --init --remote
+[0.660s] 
+[0.660s] 
+[0.663s] Invoked command in '/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/build/xarm_sdk' returned '1': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/src/xarm_sdk -DCMAKE_INSTALL_PREFIX=/home/castrolab-agx-orin/Documents/Robotic-Assited_Pruning_of_Forest_Trees/uf_xarm6/ros_ws/install/xarm_sdk
