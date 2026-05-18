@@ -7,6 +7,7 @@ import numpy as np
 
 import rclpy
 from rclpy.node import Node
+from rclpy.qos import qos_profile_sensor_data
 
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Point
@@ -23,17 +24,20 @@ from . import _globals
 # Constants
 NODE_NAME:       str   = 'detect_branch_by_color'
 
-SUB_TOPIC_NAME_IMAGE_RGB:       str = 'camera/image'
-SUB_TOPIC_NAME_IMAGE_DEPTH:     str = 'camera/depth_image'
+SUB_TOPIC_NAME_IMAGE_RGB:       str = 'camera/color/image_raw'
+# SUB_TOPIC_NAME_IMAGE_DEPTH:     str = 'camera/aligned_depth_to_color/image_raw'
+SUB_TOPIC_NAME_IMAGE_DEPTH:     str = 'camera/depth/image_rect_raw'
 PUB_TOPIC_NAME_POS_IMAGE_FRAME: str = 'yolo/position_vector_image_frame'
 PUB_TOPIC_NAME_POS_WORLD_FRAME: str = 'yolo/position_vector_world_frame'
+PUB_TOPIC_NAME_IMAGE_DEBUG:     str = 'yolo/image_debug'
 TIMER_DELAY:     float = 0.05
 
 PATH_SAVE_IMAGE: str   = './output/image_detection/'
-BOOL_SAVE_IMAGE: bool  = True
+BOOL_SAVE_IMAGE: bool  = False
 
-COLOR_BRANCH_LOWER: np.ndarray = np.array([0, 0, 100])
-COLOR_BRANCH_UPPER: np.ndarray = np.array([0, 0, 255])
+# Blue HSV
+COLOR_BRANCH_LOWER = np.array([100, 90, 70])
+COLOR_BRANCH_UPPER = np.array([130, 255, 255])
 
 MAX_BRANCH_DEPTH: float = 10.0  # meters
 
@@ -47,13 +51,13 @@ class CameraImageSubscriber(Node):
             Image,
             SUB_TOPIC_NAME_IMAGE_RGB,
             self.listener_image_rgb_callback,
-            10
+            qos_profile_sensor_data
         )
         self.subscription_image_depth = self.create_subscription(
             Image,
             SUB_TOPIC_NAME_IMAGE_DEPTH,
             self.listener_image_depth_callback,
-            10
+            qos_profile_sensor_data
         )
         self.subscription_image_rgb # prevent unused variable warning
         self.subscription_image_depth
@@ -69,8 +73,14 @@ class CameraImageSubscriber(Node):
             PUB_TOPIC_NAME_POS_WORLD_FRAME,
             10
         )
+        self.publisher_image_debug = self.create_publisher(
+            Image,
+            PUB_TOPIC_NAME_IMAGE_DEBUG,
+            10
+        )
         self.publisher_image_frame # prevent unused variable warning
         self.publisher_world_frame
+        self.publisher_image_debug
 
         # Service
         self.client_compute_world_position = self.create_client(YOLOPoint, 'compute_world_position')
@@ -92,20 +102,23 @@ class CameraImageSubscriber(Node):
 
 
     def listener_image_rgb_callback(self, msg: Image):
-        # self.get_logger().info(f"Receiving image: {msg.data}")
+        # self.get_logger().info(f"Receiving image RGB...")
         self.image_rgb = msg
 
     def listener_image_depth_callback(self, msg: Image):
+        # self.get_logger().info(f"Receiving image Depth...")
         self.image_depth = msg
 
     def timer_callback(self):
+        # self.get_logger().info(f"Timer...")
         if (self.image_rgb is None) or (self.image_depth is None):
             return
-        
+
         try:
             # Convert to OpenCV
             cv_image_rgb   = self.bridge.imgmsg_to_cv2(self.image_rgb, desired_encoding='bgr8')
-            cv_image_depth = self.bridge.imgmsg_to_cv2(self.image_depth, desired_encoding='passthrough')
+            cv_image_depth = self.bridge.imgmsg_to_cv2(self.image_depth, desired_encoding='16UC1')
+            cv_image_depth = cv_image_depth.astype(np.float32) / 1000.0
             
             # Image processing
             # Resize
@@ -120,14 +133,10 @@ class CameraImageSubscriber(Node):
                 interpolation=cv2.INTER_LINEAR
             )
 
-            # Equalization
-            # img_yuv        = cv2.cvtColor(cv_image_rgb, cv2.COLOR_BGR2YUV)
-            # img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
-            # cv_image_rgb       = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
-
-            # Get branch mask by color (BGR thresholds)
+            # Get branch mask by color
+            cv_image_hsv = cv2.cvtColor(cv_image_rgb, cv2.COLOR_BGR2HSV)
             mask_branch = cv2.inRange(
-                cv_image_rgb,
+                cv_image_hsv,
                 COLOR_BRANCH_LOWER,
                 COLOR_BRANCH_UPPER
             )
@@ -136,7 +145,7 @@ class CameraImageSubscriber(Node):
             # Avoids pixels with huge depth values
             depth_valid   = (
                 np.isfinite(cv_image_depth) &
-                (cv_image_depth > 0) &
+                (cv_image_depth > 0.001) &
                 (cv_image_depth < MAX_BRANCH_DEPTH)
             ).astype(np.uint8) * 255
             combined_mask = cv2.bitwise_and(mask_branch, depth_valid)
@@ -204,6 +213,10 @@ class CameraImageSubscriber(Node):
                 cv2.imwrite(f'{PATH_SAVE_IMAGE}img_{self.image_count}.png', cv_image_rgb)
                 self.get_logger().info("Saved image.")
 
+            # Publish debug image
+            self.publisher_image_debug.publish(self.bridge.cv2_to_imgmsg(cv_image_rgb, encoding='bgr8'))
+            # self.publisher_image_debug.publish(self.bridge.cv2_to_imgmsg(mask_branch, encoding='mono8'))
+
             # Publish
             if detected:
                 # Image frame
@@ -244,7 +257,8 @@ class CameraImageSubscriber(Node):
     def fit_line_to_mask(
             self,
             mask_branch: np.ndarray,
-        ) -> tuple[tuple[int,int], tuple[int,int]]:
+        # ) -> tuple[tuple[int,int], tuple[int,int]]:
+        ):
 
         # Scatter points across the mask
         yx     = np.argwhere(mask_branch > 0)

@@ -22,6 +22,9 @@ NODE_NAME: str = 'compute_world_position'
 SRV_NAME: str  = 'compute_world_position'
 SUB_TOPIC_NAME_TF: str = '/tf'
 
+TF_LINK_NAME_BASE: str = 'link_base'
+TF_LINK_NAME_CAM:  str = 'link6'
+
 class ComputeWorldPosition(Node):
 
     def __init__(self):
@@ -61,8 +64,8 @@ class ComputeWorldPosition(Node):
         try:
             now = rclpy.time.Time()
             t   = self.tf_buffer.lookup_transform(
-                'world',
-                'camera_link',
+                TF_LINK_NAME_BASE,
+                TF_LINK_NAME_CAM,
                 now
             )
 
@@ -81,7 +84,8 @@ class ComputeWorldPosition(Node):
     def get_homogeneous_matrix(self, pos, rot):
         # Create the rotation matrix from the quaternion (x, y, z, w)
         quat = [rot.x, rot.y, rot.z, rot.w]
-        rot_matrix = R.from_quat(quat).as_matrix()
+        r = R.from_quat(quat)
+        rot_matrix = r.as_matrix() if hasattr(r, 'as_matrix') else r.as_dcm()
 
         # Create a homogeneous matrix
         T           = np.eye(4)

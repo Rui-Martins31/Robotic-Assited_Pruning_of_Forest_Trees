@@ -28,7 +28,10 @@ def generate_launch_description():
             'enable_color': True,
             'enable_depth': True,
             'pointcloud.enable': LaunchConfiguration('enable_pointcloud'),
-            'enable_sync': False,
+            'pointcloud.ordered_pc': False,
+            'enable_sync': True,
+            'rgb_camera.profile': '640x480x30',
+            'depth_module.profile': '640x480x15',
         }],
         output='screen',
     )

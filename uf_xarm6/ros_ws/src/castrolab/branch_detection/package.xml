@@ -17,6 +17,8 @@
   <depend>python3-numpy</depend>
   <depend>cv_bridge</depend>
 
+  <exec_depend>python3-ultralytics</exec_depend>
+
   <export>
     <build_type>ament_python</build_type>
   </export>
