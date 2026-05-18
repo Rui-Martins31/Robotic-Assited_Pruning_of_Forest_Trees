@@ -13,7 +13,7 @@ ARM_IP_ADDRESS: str = '192.168.1.207'
 ARM_TARGET_POSITION = {
     "x"     : 300, 
     "y"     : 0, 
-    "z"     : 350, 
+    "z"     : 550, 
     "roll"  : 180, 
     "pitch" : 0, 
     "yaw"   : 0

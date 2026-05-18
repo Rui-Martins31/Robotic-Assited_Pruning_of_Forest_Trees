@@ -1,0 +1,322 @@
+import os
+
+import cv2
+from cv_bridge import CvBridge
+
+import numpy as np
+from ultralytics import YOLO
+
+import rclpy
+from rclpy.node import Node
+from ament_index_python.packages import get_package_share_directory
+
+from sensor_msgs.msg import Image
+from geometry_msgs.msg import Point
+
+from custom_interfaces.srv import YOLOPoint
+
+from . import _globals
+
+
+### TODO_
+## Instead of just selecting the first result that comes from YOLO,
+## we should instead filter the results and only process the ones
+## regarding branches.
+##
+## Later use the fitted line to find the cutting points.
+
+
+# Constants
+NODE_NAME:       str   = 'detect_branch'
+
+SUB_TOPIC_NAME_IMAGE_RGB:       str = 'camera/image'
+SUB_TOPIC_NAME_IMAGE_DEPTH:     str = 'camera/depth_image'
+PUB_TOPIC_NAME_POS_IMAGE_FRAME: str = 'yolo/position_vector_image_frame'
+PUB_TOPIC_NAME_POS_WORLD_FRAME: str = 'yolo/position_vector_world_frame'
+TIMER_DELAY:     float = 0.05# 1.0
+
+PATH_SAVE_IMAGE: str   = './output/image_detection/'
+BOOL_SAVE_IMAGE: bool  = True
+
+YOLO_MODEL_NAME: str   = 'yolo_syn_data_model.pt' #'yolo_tree_detection.pt' #'yolov8n.pt'
+
+MAX_BRANCH_DEPTH: float = 10.0  # meters
+
+class CameraImageSubscriber(Node):
+
+    def __init__(self):
+        super().__init__(NODE_NAME)
+
+        # Subscriber
+        self.subscription_image_rgb = self.create_subscription(
+            Image,
+            SUB_TOPIC_NAME_IMAGE_RGB,
+            self.listener_image_rgb_callback,
+            10
+        )
+        self.subscription_image_depth = self.create_subscription(
+            Image,
+            SUB_TOPIC_NAME_IMAGE_DEPTH,
+            self.listener_image_depth_callback,
+            10
+        )
+        self.subscription_image_rgb # prevent unused variable warning
+        self.subscription_image_depth
+
+        # Publisher
+        self.publisher_image_frame = self.create_publisher(
+            Point,
+            PUB_TOPIC_NAME_POS_IMAGE_FRAME,
+            10
+        )
+        self.publisher_world_frame = self.create_publisher(
+            Point,
+            PUB_TOPIC_NAME_POS_WORLD_FRAME,
+            10
+        )
+        self.publisher_image_frame # prevent unused variable warning
+        self.publisher_world_frame
+
+        # Service
+        self.client_compute_world_position = self.create_client(YOLOPoint, 'compute_world_position')
+
+        # Timer
+        self.timer = self.create_timer(
+            TIMER_DELAY,
+            self.timer_callback
+        )
+        self.timer
+
+        # Image
+        os.makedirs(PATH_SAVE_IMAGE, exist_ok=True) # create dir
+        self.image_rgb: Image | None   = None
+        self.image_depth: Image | None = None
+        self.image_count: int          = 0
+
+        self.bridge: CvBridge = CvBridge()
+
+        # YOLO
+        model_path: str       = os.path.join(get_package_share_directory('branch_detection'), 'models', YOLO_MODEL_NAME)
+        self.yolo_model: YOLO = YOLO(model_path)
+
+
+    def listener_image_rgb_callback(self, msg: Image):
+        # self.get_logger().info(f"Receiving image: {msg.data}")
+        self.image_rgb = msg
+
+    def listener_image_depth_callback(self, msg: Image):
+        self.image_depth = msg
+
+    def timer_callback(self):
+        if (self.image_rgb is None) or (self.image_depth is None):
+            return
+        
+        try:
+            # Convert to OpenCV
+            cv_image_rgb   = self.bridge.imgmsg_to_cv2(self.image_rgb, desired_encoding='bgr8')
+            cv_image_depth = self.bridge.imgmsg_to_cv2(self.image_depth, desired_encoding='passthrough')
+            
+            # Image processing
+            # Resize
+            cv_image_rgb = cv2.resize(
+                cv_image_rgb,
+                (_globals.IMAGE_WIDTH, _globals.IMAGE_HEIGHT),
+                interpolation=cv2.INTER_LINEAR
+            )
+            cv_image_depth = cv2.resize(
+                cv_image_depth,
+                (_globals.IMAGE_WIDTH, _globals.IMAGE_HEIGHT),
+                interpolation=cv2.INTER_LINEAR
+            )
+
+            # Equalization
+            # img_yuv        = cv2.cvtColor(cv_image_rgb, cv2.COLOR_BGR2YUV)
+            # img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
+            # cv_image_rgb       = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
+
+            # YOLO inference
+            results = self.yolo_model(
+                cv_image_rgb,
+                conf    = 0.5,
+                verbose = False
+            )
+
+            # Default values
+            cx: float      = float(_globals.IMAGE_WIDTH/2)
+            cy: float      = float(_globals.IMAGE_HEIGHT/2)
+            detected: bool = False
+
+            # Iterate over detections
+            for result in results:
+                boxes = result.boxes
+                masks = result.masks
+                for i, box in enumerate(boxes):
+                    # Get coordinates, confidence and class
+                    x1, y1, x2, y2 = map(int, box.xyxy[0])
+                    cx, cy, w, h   = box.xywh[0]
+                    conf           = box.conf[0]
+                    cls            = box.cls[0]
+
+                    # Draw segmentation mask
+                    if masks is not None:
+                        mask_xy = masks.xy[i]
+                        if len(mask_xy) > 0:
+
+                            # Binary mask
+                            polygon     = mask_xy.astype(np.int32)
+                            h, w        = cv_image_rgb.shape[:2]
+                            binary_mask = np.zeros((h, w), dtype=np.uint8)
+                            cv2.fillPoly(binary_mask, [polygon], 255)
+
+                            # Depth map masks YOLO's mask
+                            # Avoids pixels with huge depth values
+                            depth_valid   = (
+                                np.isfinite(cv_image_depth) &
+                                (cv_image_depth > 0) &
+                                (cv_image_depth < MAX_BRANCH_DEPTH)
+                            ).astype(np.uint8) * 255
+                            combined_mask = cv2.bitwise_and(binary_mask, depth_valid)
+                            if cv2.countNonZero(combined_mask) > 0:
+                                binary_mask = combined_mask
+
+                            ## DEBUG
+                            # Draw mask
+                            overlay = cv_image_rgb.copy()
+                            overlay[binary_mask > 0] = (0, 255, 0)
+                            cv2.addWeighted(overlay, 0.4, cv_image_rgb, 0.6, 0, cv_image_rgb)
+                            contours, _ = cv2.findContours(binary_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                            cv2.drawContours(cv_image_rgb, contours, -1, (0, 255, 0), 2)
+
+                            # Mask's centroid
+                            M = cv2.moments(binary_mask)
+                            if M['m00'] != 0:
+                                cx = M['m10'] / M['m00']
+                                cy = M['m01'] / M['m00']
+                                
+                                # Snap it to mask
+                                if binary_mask[int(cy), int(cx)] == 0:
+                                    yx      = np.argwhere(binary_mask > 0)
+                                    dists   = np.sum((yx - np.array([cy, cx])) ** 2, axis=1)
+                                    nearest = yx[np.argmin(dists)]
+                                    cy, cx  = float(nearest[0]), float(nearest[1])
+
+                            # Fit line to mask
+                            line_pt1, line_pt2 = self.fit_line_to_mask(binary_mask)
+                            cv2.line(cv_image_rgb, line_pt1, line_pt2, (0, 165, 255), 2)
+                    else:
+                        cv2.rectangle(cv_image_rgb, (x1, y1), (x2, y2), (0, 255, 0), 2)
+
+                    ## DEBUG
+                    self.get_logger().info(f"Detected class {cls} with {conf:.2f} confidence.")
+                    self.get_logger().info(f"Center of bounding box: ({cx},{cy})")
+                    self.get_logger().info(f"Depth: {float(cv_image_depth[int(cy), int(cx)])}")
+
+                    ## DEBUG
+                    # Center point and line
+                    cv2.circle(cv_image_rgb, (int(cx), int(cy)), 5, (0, 0, 255), -1)
+                    cv2.line(
+                        cv_image_rgb,
+                        (int(_globals.IMAGE_WIDTH/2), int(_globals.IMAGE_HEIGHT/2)),
+                        (int(cx), int(cy)),
+                        (255, 0, 0),
+                        5
+                    ) # Line between the bounding box and the center of the image
+
+                    # Text label
+                    label = f"{self.yolo_model.names[int(cls)]} {conf:.2f}"
+                    self.get_logger().info(f"{label = }")
+                    cv2.putText(
+                        cv_image_rgb,
+                        label,
+                        (int(cx), int(cy) + 20),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.5,
+                        (255, 255, 0),
+                        2
+                    )
+
+                    ## DEBUG
+                    detected = True
+                    break # Stop at first box
+
+            # Save
+            if BOOL_SAVE_IMAGE:
+                self.image_count += 1
+                cv2.imwrite(f'{PATH_SAVE_IMAGE}img_{self.image_count}.png', cv_image_rgb)
+                self.get_logger().info("Saved image.")
+
+            # Publish
+            if detected:
+                # Image frame
+                pub_msg: Point = Point()
+                pub_msg.x = float((cx - _globals.IMAGE_WIDTH/2)/_globals.IMAGE_WIDTH)
+                pub_msg.y = float((cy - _globals.IMAGE_HEIGHT/2)/_globals.IMAGE_HEIGHT)
+                pub_msg.z = 0.0
+                self.publisher_image_frame.publish(pub_msg)
+                self.get_logger().info(f"Publishing (image_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})")
+
+                # World frame
+                request = YOLOPoint.Request()
+                request.x_pixel = float(cx)
+                request.y_pixel = float(cy)
+                request.depth   = float(cv_image_depth[int(cy), int(cx)])
+
+                future = self.client_compute_world_position.call_async(request)
+                future.add_done_callback(self._world_position_callback)
+
+        except Exception as e:
+            self.get_logger().error(f"Error: {e}\n")
+            return
+
+    def _world_position_callback(self, future: rclpy.task.Future) -> None:
+        try:
+            result: YOLOPoint.Response = future.result()
+            pub_msg   = Point()
+            pub_msg.x = result.x_world
+            pub_msg.y = result.y_world
+            pub_msg.z = result.z_world
+            
+            self.publisher_world_frame.publish(pub_msg)
+            self.get_logger().info(f"Publishing (world_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})\n")
+
+        except Exception as e:
+            self.get_logger().error(f"Service call failed: {e}")
+
+    def fit_line_to_mask(
+            self,
+            binary_mask: np.ndarray,
+        ) -> tuple[tuple[int,int], tuple[int,int]]:
+
+        # Scatter points across the mask
+        yx     = np.argwhere(binary_mask > 0)
+        points = yx[:, ::-1].reshape(-1, 1, 2).astype(np.float32)
+
+        # Fit line to points
+        vx, vy, x0, y0 = cv2.fitLine(
+            points,
+            cv2.DIST_L2,
+            0,
+            0.01,
+            0.01
+        ).flatten()
+
+        scale: int           = max(binary_mask.shape[:2])
+        pt1: tuple[int, int] = (int(x0 - vx * scale), int(y0 - vy * scale))
+        pt2: tuple[int, int] = (int(x0 + vx * scale), int(y0 + vy * scale))
+
+        return pt1, pt2
+
+
+def main(args=None):
+    rclpy.init(args=args)
+
+    camera_image_subscriber = CameraImageSubscriber()
+
+    rclpy.spin(camera_image_subscriber)
+
+    camera_image_subscriber.destroy_node()
+    rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()

@@ -3,3 +3,8 @@
 
 # Random files
 ._*
+
+# Colcon folders
+build/*
+install/*
+log/*
