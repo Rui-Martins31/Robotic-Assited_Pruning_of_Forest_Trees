@@ -44,8 +44,19 @@ def generate_launch_description():
         output='screen',
     )
 
+    # Connects the RealSense TF tree (camera_link → ...) to the robot TF tree (... → link_eef).
+    # Placeholder identity transform — replace x/y/z/qx/qy/qz/qw once camera extrinsics are calibrated.
+    camera_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='eef_to_camera_link',
+        arguments=['0', '0', '0', '0', '0', '0', '1', 'link_eef', 'camera_link'],
+        output='screen',
+    )
+
     return LaunchDescription([
         enable_pointcloud_arg,
         realsense_node,
+        camera_tf,
         rviz_node,
     ])

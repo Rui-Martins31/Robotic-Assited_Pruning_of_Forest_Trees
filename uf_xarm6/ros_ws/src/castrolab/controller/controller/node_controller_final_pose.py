@@ -18,7 +18,7 @@ SUB_TOPIC_NAME_WORLD_POSITION: str = '/yolo/position_vector_world_frame'
 SERVICE_PLAN_POSE: str = 'xarm_pose_plan'
 SERVICE_EXEC_PLAN: str = 'xarm_exec_plan'
 
-ARM_JOINT_NAME_BASE: str = 'link1'
+ARM_JOINT_NAME_BASE: str = 'link_base'
 ARM_JOINT_NAME_CAM:  str = 'link_eef'
 
 
@@ -35,6 +35,21 @@ class ArmController(Node):
         self._exec_client.wait_for_service()
         self.get_logger().info('Services ready.')
 
+        # TF2
+        self.tf_buffer   = Buffer()
+        self.tf_listener = TransformListener(self.tf_buffer, self)
+
+        self.get_logger().info('Waiting for TF tree (link_base -> link_eef)...')
+        while rclpy.ok():
+            if self.tf_buffer.can_transform(
+                ARM_JOINT_NAME_BASE,
+                ARM_JOINT_NAME_CAM,
+                rclpy.time.Time()
+            ):
+                break
+            rclpy.spin_once(self, timeout_sec=0.1)
+        self.get_logger().info('TF tree ready.')
+
         # Subscriber
         self.subscription = self.create_subscription(
             Point,
@@ -43,10 +58,6 @@ class ArmController(Node):
             10
         )
         self.is_executing: bool = False
-
-        # TF2
-        self.tf_buffer   = Buffer()
-        self.tf_listener = TransformListener(self.tf_buffer, self)
 
     def subscription_callback(self, msg: Point) -> None:
         if not self.is_executing:
@@ -148,19 +159,26 @@ class ArmController(Node):
         joint_name_base: str = ARM_JOINT_NAME_BASE,
         joint_name_target: str = ARM_JOINT_NAME_CAM
     ) -> np.ndarray:
-        try:
-            t = self.tf_buffer.lookup_transform(
-                joint_name_base,
-                joint_name_target,
-                rclpy.time.Time(),
-                timeout=rclpy.duration.Duration(seconds=1.0)
-            )
-            p = t.transform.translation
-            return np.array([float(p.x), float(p.y), float(p.z)])
+        
+        attempts: int = 5
 
-        except TransformException as ex:
-            self.get_logger().warn(f'Could not get EEF position: {ex}')
-            return np.array([0.0, 0.0, 0.0])
+        for _ in range(attempts):
+            try:
+                t = self.tf_buffer.lookup_transform(
+                    joint_name_base,
+                    joint_name_target,
+                    rclpy.time.Time(),
+                    timeout=rclpy.duration.Duration(seconds=1.0)
+                )
+                p = t.transform.translation
+
+                self.get_logger().info(f'Current position: {[float(p.x), float(p.y), float(p.z)]}')
+                return np.array([float(p.x), float(p.y), float(p.z)])
+
+            except TransformException as ex:
+                self.get_logger().warn(f'Could not get EEF position: {ex}')
+
+        return np.array([0.0, 0.0, 0.0])
 
 
 def main():
