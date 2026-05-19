@@ -12,3 +12,6 @@ files__pycache__/
 build/*
 install/*
 log/*
+
+# Debug
+output/*
