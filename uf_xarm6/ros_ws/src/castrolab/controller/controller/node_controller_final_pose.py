@@ -39,7 +39,7 @@ class ArmController(Node):
         self.tf_buffer   = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
 
-        self.get_logger().info('Waiting for TF tree (link_base -> link_eef)...')
+        self.get_logger().info(f'Waiting for TF tree ({ARM_JOINT_NAME_BASE} -> {ARM_JOINT_NAME_CAM})...')
         while rclpy.ok():
             if self.tf_buffer.can_transform(
                 ARM_JOINT_NAME_BASE,
@@ -108,11 +108,11 @@ class ArmController(Node):
         self.get_logger().info('Planning succeeded, executing...')
 
         # Execute
-        # exec_request = PlanExec.Request()
-        # exec_request.wait = True
+        exec_request = PlanExec.Request()
+        exec_request.wait = True
 
-        # exec_future = self._exec_client.call_async(exec_request)
-        # exec_future.add_done_callback(self._exec_response_callback)
+        exec_future = self._exec_client.call_async(exec_request)
+        exec_future.add_done_callback(self._exec_response_callback)
 
     def _exec_response_callback(self, future) -> None:
         result = future.result()
