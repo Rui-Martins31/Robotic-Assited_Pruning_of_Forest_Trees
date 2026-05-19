@@ -23,7 +23,7 @@ SRV_NAME: str  = 'compute_world_position'
 SUB_TOPIC_NAME_TF: str = '/tf'
 
 TF_LINK_NAME_BASE: str = 'link_base'
-TF_LINK_NAME_CAM:  str = 'link6'
+TF_LINK_NAME_CAM:  str = 'link_eef'
 
 class ComputeWorldPosition(Node):
 
@@ -135,11 +135,17 @@ class ComputeWorldPosition(Node):
         # Point in camera optical frame
         point_camera_optical: np.ndarray = depth * (np.linalg.inv(K_matrix) @ point_pixel)
 
-        # Camera optical frame to camera_link body frame
+        # Camera optical frame to link6/link_eef body frame.
+        # Derived from URDF chain: optical→camera_depth (rpy=-π/2,0,-π/2)
+        # then camera_link→link_eef (rpy=π,-π/2,0).
+        # Result: optical_z (depth) maps to link6_z, NOT link6_x.
+        # [ 0,  0,  1],
+        #     [-1,  0,  0],
+        #     [ 0, -1,  0]
         R_optical_to_body: np.ndarray = np.array([
-            [ 0,  0,  1],
-            [-1,  0,  0],
-            [ 0, -1,  0]
+            [ 0, -1,  0],
+            [ 1,  0,  0],
+            [ 0,  0,  1]
         ], dtype=float)
         point_camera: np.ndarray = R_optical_to_body @ point_camera_optical
 
