@@ -41,6 +41,8 @@ COLOR_BRANCH_UPPER = np.array([130, 255, 255])
 
 MAX_BRANCH_DEPTH: float = 10.0  # meters
 
+POINT_PER_BRANCH: int   = 5
+
 class CameraImageSubscriber(Node):
 
     def __init__(self):
@@ -135,7 +137,7 @@ class CameraImageSubscriber(Node):
 
             # Get branch mask by color
             cv_image_hsv = cv2.cvtColor(cv_image_rgb, cv2.COLOR_BGR2HSV)
-            mask_branch = cv2.inRange(
+            mask_branch  = cv2.inRange(
                 cv_image_hsv,
                 COLOR_BRANCH_LOWER,
                 COLOR_BRANCH_UPPER
@@ -182,7 +184,25 @@ class CameraImageSubscriber(Node):
 
                 # Fit line to mask
                 line_pt1, line_pt2 = self.fit_line_to_mask(mask_branch)
-                cv2.line(cv_image_rgb, line_pt1, line_pt2, (0, 165, 255), 2)
+                # cv2.line(cv_image_rgb, line_pt1, line_pt2, (0, 165, 255), 2)
+
+                # Scatter points along the line
+                line_mask = np.zeros_like(cv_image_rgb)
+                cv2.line(
+                    line_mask,
+                    line_pt1, line_pt2,
+                    (0, 165, 255), 2
+                )
+                line_mask      = cv2.bitwise_and(line_mask, line_mask, mask = mask_branch)
+                line_points    = self.line_extract_n_point(
+                    mask       = cv2.cvtColor(line_mask, cv2.COLOR_BGR2GRAY),
+                    num_points = POINT_PER_BRANCH
+                )
+    
+                ## DEBUG
+                cv_image_rgb = cv2.add(cv_image_rgb, line_mask)
+                for (px, py) in line_points:
+                    cv2.circle(cv_image_rgb, (px, py), 5, (0, 255, 255), -1)
 
                 ## DEBUG
                 self.get_logger().info(f"Centroid: ({cx:.1f}, {cy:.1f})")
@@ -240,7 +260,11 @@ class CameraImageSubscriber(Node):
             self.get_logger().error(f"Error: {e}\n")
             return
 
-    def _world_position_callback(self, future: rclpy.task.Future) -> None:
+    def _world_position_callback(
+        self,
+        future: rclpy.task.Future
+    ) -> None:
+        
         try:
             result: YOLOPoint.Response = future.result()
             pub_msg   = Point()
@@ -255,10 +279,10 @@ class CameraImageSubscriber(Node):
             self.get_logger().error(f"Service call failed: {e}")
 
     def fit_line_to_mask(
-            self,
-            mask_branch: np.ndarray,
-        # ) -> tuple[tuple[int,int], tuple[int,int]]:
-        ):
+        self,
+        mask_branch: np.ndarray,
+    # ) -> tuple[tuple[int,int], tuple[int,int]]:
+    ):
 
         # Scatter points across the mask
         yx     = np.argwhere(mask_branch > 0)
@@ -278,6 +302,31 @@ class CameraImageSubscriber(Node):
         pt2: tuple[int, int] = (int(x0 + vx * scale), int(y0 + vy * scale))
 
         return pt1, pt2
+    
+    def line_extract_n_point(
+        self,
+        mask: np.ndarray,
+        num_points: int
+    ) -> np.ndarray:
+        # Check mask's values
+        pixels = cv2.findNonZero(mask)
+        if pixels is None:
+            return []
+        
+        pts = pixels.reshape(-1, 2)
+        
+        # Extremas
+        pt1 = pts[np.argmin(pts[:, 0])]
+        pt2 = pts[np.argmax(pts[:, 0])]
+        
+        # Get N points
+        x_vals = np.linspace(pt1[0], pt2[0], num_points)
+        y_vals = np.linspace(pt1[1], pt2[1], num_points)
+        
+        # Coordinate pairs
+        # round to nearest pixel integer
+        sampled_points = np.stack((x_vals, y_vals), axis=-1).astype(int)
+        return sampled_points
 
 
 def main(args=None):
