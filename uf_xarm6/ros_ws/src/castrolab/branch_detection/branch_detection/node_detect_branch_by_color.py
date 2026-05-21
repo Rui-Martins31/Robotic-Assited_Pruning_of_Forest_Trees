@@ -154,6 +154,9 @@ class CameraImageSubscriber(Node):
             if cv2.countNonZero(combined_mask) > 0:
                 mask_branch = combined_mask
 
+            # Keep only the largest patch in the mask
+            mask_branch = self.mask_filter_largest_patch(mask_branch)
+
             ## DEBUG
             # Draw mask
             overlay = cv_image_rgb.copy()
@@ -327,6 +330,27 @@ class CameraImageSubscriber(Node):
         # round to nearest pixel integer
         sampled_points = np.stack((x_vals, y_vals), axis=-1).astype(int)
         return sampled_points
+    
+    def mask_filter_largest_patch(
+        self,
+        mask: np.ndarray
+    ) -> np.ndarray:
+        # Connected components
+        num_labels, labels, stats, centroids = cv2.connectedComponentsWithStats(mask, connectivity=8)
+        
+        # No patches found
+        if num_labels <= 1:
+            return np.zeros_like(mask)
+        
+        # Area
+        areas              = stats[:, cv2.CC_STAT_AREA]
+        largest_label_id   = np.argmax(areas[1:]) + 1
+        
+        # New mask from patch
+        largest_patch_mask = np.zeros_like(mask)
+        largest_patch_mask[labels == largest_label_id] = 255
+        
+        return largest_patch_mask
 
 
 def main(args=None):
