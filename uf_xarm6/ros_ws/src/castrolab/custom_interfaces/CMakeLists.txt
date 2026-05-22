@@ -8,13 +8,15 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 
-#find_package(geometry_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/YOLOPoint.msg"
+  "msg/BufferPoints.msg"
   "srv/YOLOPoint.srv"
-  #DEPENDENCIES geometry_msgs
+  "srv/BufferYOLOPoint.srv"
+  DEPENDENCIES geometry_msgs
 )
 
 if(BUILD_TESTING)

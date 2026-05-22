@@ -1,0 +1,22 @@
+# Request
+
+# When the branch detection node fits a line to the detected branch, it samples N points
+# along that line and requests their world-frame coordinates in a single batch call:
+#           -> x_pixels: array of x pixel coordinates of each sampled point;
+#           -> y_pixels: array of y pixel coordinates of each sampled point;
+#           -> depths:   depth value (in metres) at each pixel, validated before sending.
+
+float64[] x_pixels
+float64[] y_pixels
+float64[] depths
+
+---
+
+# Response
+
+# Outputs the world-frame coordinates for each input point:
+#           -> points: array of points (x, y, z) in the robot base frame;
+#           -> size:   number of points returned.
+
+geometry_msgs/Point[] points
+int32 size

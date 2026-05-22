@@ -13,13 +13,15 @@ from tf2_ros.transform_listener import TransformListener
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
-from custom_interfaces.srv import YOLOPoint
+from custom_interfaces.srv import YOLOPoint, BufferYOLOPoint
+from geometry_msgs.msg import Point
 from tf2_msgs.msg import TFMessage
 
 # Constants
 NODE_NAME: str = 'compute_world_position'
 
-SRV_NAME: str  = 'compute_world_position'
+SRV_NAME_POINT:    str = 'compute_world_position'
+SRV_NAME_BUFFER:   str = 'compute_world_position_buffer'
 SUB_TOPIC_NAME_TF: str = '/tf'
 
 TF_LINK_NAME_BASE: str = 'link_base'
@@ -30,16 +32,21 @@ class ComputeWorldPosition(Node):
     def __init__(self):
         super().__init__(NODE_NAME)
         
-        # Service
-        self.service = self.create_service(
-            YOLOPoint, 
-            SRV_NAME,
-            self.service_yolo_result_callback
-        )
-
         # TF
         self.tf_buffer   = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
+
+        # Service
+        self.service_point = self.create_service(
+            YOLOPoint,
+            SRV_NAME_POINT,
+            self.service_yolo_result_callback
+        )
+        self.service_buffer = self.create_service(
+            BufferYOLOPoint,
+            SRV_NAME_BUFFER,
+            self.service_buffer_callback
+        )
 
     def service_yolo_result_callback(self, request: YOLOPoint.Request, response: YOLOPoint.Response) -> YOLOPoint.Response:
         # Get current joint pose
@@ -57,6 +64,34 @@ class ComputeWorldPosition(Node):
         response.y_world = float(point[1])
         response.z_world = float(point[2])
 
+        return response
+
+    def service_buffer_callback(
+        self,
+        request: BufferYOLOPoint.Request,
+        response: BufferYOLOPoint.Response
+    ) -> BufferYOLOPoint.Response:
+        # Get current joint pose
+        curr_joint_pose = self.get_current_joint_pose()
+
+        # Compute coordinates
+        world_points = []
+        for i in range(len(request.x_pixels)):
+            pt = self.pixel_to_world_coord(
+                x_pixel           = request.x_pixels[i],
+                y_pixel           = request.y_pixels[i],
+                depth             = request.depths[i],
+                H_camera_to_world = curr_joint_pose
+            ).flatten()
+
+            p     = Point()
+            p.x   = float(pt[0])
+            p.y   = float(pt[1])
+            p.z   = float(pt[2])
+            world_points.append(p)
+
+        response.points = world_points
+        response.size   = len(world_points)
         return response
 
     # Utils
@@ -135,13 +170,7 @@ class ComputeWorldPosition(Node):
         # Point in camera optical frame
         point_camera_optical: np.ndarray = depth * (np.linalg.inv(K_matrix) @ point_pixel)
 
-        # Camera optical frame to link6/link_eef body frame.
-        # Derived from URDF chain: optical→camera_depth (rpy=-π/2,0,-π/2)
-        # then camera_link→link_eef (rpy=π,-π/2,0).
-        # Result: optical_z (depth) maps to link6_z, NOT link6_x.
-        # [ 0,  0,  1],
-        #     [-1,  0,  0],
-        #     [ 0, -1,  0]
+        # Camera optical frame to camera body frame
         R_optical_to_body: np.ndarray = np.array([
             [ 0, -1,  0],
             [ 1,  0,  0],
@@ -149,7 +178,7 @@ class ComputeWorldPosition(Node):
         ], dtype=float)
         point_camera: np.ndarray = R_optical_to_body @ point_camera_optical
 
-        # Camera frame to world frame
+        # Camera body frame to world frame
         point_camera_h: np.ndarray = np.vstack([point_camera, [[1.0]]])  # homogeneous
 
         # Point in world frame

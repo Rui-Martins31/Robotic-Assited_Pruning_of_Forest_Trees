@@ -27,6 +27,7 @@ setup(
     entry_points={
         'console_scripts': [
             'node_controller_final_pose = controller.node_controller_final_pose:main',
+            'node_controller_buffer = controller.node_controller_buffer:main',
             'node_goto_initial_pose = controller.node_goto_initial_pose:main',
         ],
     },

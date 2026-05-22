@@ -11,8 +11,9 @@ from rclpy.qos import qos_profile_sensor_data
 
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Point
+from custom_interfaces.msg import BufferPoints
 
-from custom_interfaces.srv import YOLOPoint
+from custom_interfaces.srv import YOLOPoint, BufferYOLOPoint
 
 from . import _globals
 
@@ -24,12 +25,17 @@ from . import _globals
 # Constants
 NODE_NAME:       str   = 'detect_branch_by_color'
 
-SUB_TOPIC_NAME_IMAGE_RGB:       str = 'camera/color/image_raw'
-# SUB_TOPIC_NAME_IMAGE_DEPTH:     str = 'camera/aligned_depth_to_color/image_raw'
-SUB_TOPIC_NAME_IMAGE_DEPTH:     str = 'camera/depth/image_rect_raw'
-PUB_TOPIC_NAME_POS_IMAGE_FRAME: str = 'yolo/position_vector_image_frame'
-PUB_TOPIC_NAME_POS_WORLD_FRAME: str = 'yolo/position_vector_world_frame'
-PUB_TOPIC_NAME_IMAGE_DEBUG:     str = 'yolo/image_debug'
+SUB_TOPIC_NAME_IMAGE_RGB:       str = '/camera/color/image_raw'
+# SUB_TOPIC_NAME_IMAGE_DEPTH:     str = '/camera/aligned_depth_to_color/image_raw'
+SUB_TOPIC_NAME_IMAGE_DEPTH:     str = '/camera/depth/image_rect_raw'
+PUB_TOPIC_NAME_POS_IMAGE_FRAME: str = '/yolo/position_vector_image_frame'
+PUB_TOPIC_NAME_POS_WORLD_FRAME: str = '/yolo/position_vector_world_frame'
+PUB_TOPIC_NAME_POS_BUFFER:      str = '/yolo/buffer_positions'
+PUB_TOPIC_NAME_IMAGE_DEBUG:     str = '/yolo/image_debug'
+
+SRV_NAME_POINT:    str = 'compute_world_position'
+SRV_NAME_BUFFER:   str = 'compute_world_position_buffer'
+
 TIMER_DELAY:     float = 0.05
 
 PATH_SAVE_IMAGE: str   = './output/image_detection/'
@@ -80,12 +86,19 @@ class CameraImageSubscriber(Node):
             PUB_TOPIC_NAME_IMAGE_DEBUG,
             10
         )
+        self.publisher_buffer = self.create_publisher(
+            BufferPoints,
+            PUB_TOPIC_NAME_POS_BUFFER,
+            10
+        )
         self.publisher_image_frame # prevent unused variable warning
         self.publisher_world_frame
         self.publisher_image_debug
+        self.publisher_buffer
 
         # Service
-        self.client_compute_world_position = self.create_client(YOLOPoint, 'compute_world_position')
+        self.client_compute_world_position        = self.create_client(YOLOPoint, SRV_NAME_POINT)
+        self.client_compute_world_position_buffer = self.create_client(BufferYOLOPoint, SRV_NAME_BUFFER)
 
         # Timer
         self.timer = self.create_timer(
@@ -259,6 +272,31 @@ class CameraImageSubscriber(Node):
                 future = self.client_compute_world_position.call_async(request)
                 future.add_done_callback(self._world_position_callback)
 
+                # Buffer
+                valid_x_pixels: list = []
+                valid_y_pixels: list = []
+                valid_depths:   list = []
+
+                for (px, py) in line_points:
+                    px_c = int(np.clip(px, 0, _globals.IMAGE_WIDTH  - 1))
+                    py_c = int(np.clip(py, 0, _globals.IMAGE_HEIGHT - 1))
+                    d    = float(cv_image_depth[py_c, px_c])
+                    # Check depth value
+                    if not np.isfinite(d) or d <= 0.001 or d >= MAX_BRANCH_DEPTH:
+                        continue
+
+                    valid_x_pixels.append(float(px_c))
+                    valid_y_pixels.append(float(py_c))
+                    valid_depths.append(d)
+
+                if valid_x_pixels:
+                    buf_req          = BufferYOLOPoint.Request()
+                    buf_req.x_pixels = valid_x_pixels
+                    buf_req.y_pixels = valid_y_pixels
+                    buf_req.depths   = valid_depths
+                    buf_future       = self.client_compute_world_position_buffer.call_async(buf_req)
+                    buf_future.add_done_callback(self._buffer_position_callback)
+
         except Exception as e:
             self.get_logger().error(f"Error: {e}\n")
             return
@@ -280,6 +318,21 @@ class CameraImageSubscriber(Node):
 
         except Exception as e:
             self.get_logger().error(f"Service call failed: {e}")
+
+    def _buffer_position_callback(
+        self,
+        future: rclpy.task.Future
+    ) -> None:
+        try:
+            result: BufferYOLOPoint.Response = future.result()
+            pub_msg        = BufferPoints()
+            pub_msg.size   = result.size
+            pub_msg.points = list(result.points)
+            self.publisher_buffer.publish(pub_msg)
+            self.get_logger().info(f"Publishing (buffer): {pub_msg.size} points: {pub_msg.points}")
+
+        except Exception as e:
+            self.get_logger().error(f"Buffer service call failed: {e}")
 
     def fit_line_to_mask(
         self,
