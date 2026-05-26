@@ -16,6 +16,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/BufferPoints.msg"
   "srv/YOLOPoint.srv"
   "srv/BufferYOLOPoint.srv"
+  "action/MoveToPoint.action"
   DEPENDENCIES geometry_msgs
 )
 
