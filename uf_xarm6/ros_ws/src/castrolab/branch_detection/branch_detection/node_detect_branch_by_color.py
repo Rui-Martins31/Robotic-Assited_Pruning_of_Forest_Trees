@@ -42,7 +42,7 @@ PATH_SAVE_IMAGE: str   = './output/image_detection/'
 BOOL_SAVE_IMAGE: bool  = False
 
 # Blue HSV
-COLOR_BRANCH_LOWER = np.array([100, 90, 70])
+COLOR_BRANCH_LOWER = np.array([80, 90, 70])
 COLOR_BRANCH_UPPER = np.array([130, 255, 255])
 
 MAX_BRANCH_DEPTH: float = 10.0  # meters

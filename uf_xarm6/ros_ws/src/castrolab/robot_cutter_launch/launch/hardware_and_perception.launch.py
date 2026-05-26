@@ -58,15 +58,6 @@ def generate_launch_description():
         ]))
     )
 
-    # # Controller
-    # controller = IncludeLaunchDescription(
-    #     PythonLaunchDescriptionSource(PathJoinSubstitution([
-    #         FindPackageShare('controller'),
-    #         'launch',
-    #         'controller_final_pose.launch.py',
-    #     ]))
-    # )
-
     # Initial pose
     goto_initial_pose = Node(
         package='controller',
@@ -81,5 +72,4 @@ def generate_launch_description():
         camera_view,
         branch_detection,
         goto_initial_pose,
-        # controller,
     ])

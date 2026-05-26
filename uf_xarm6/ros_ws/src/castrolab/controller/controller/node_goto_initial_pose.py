@@ -8,7 +8,8 @@ NODE_NAME: str = 'goto_initial_pose'
 SERVICE_PLAN_JOINT: str = 'xarm_joint_plan'
 SERVICE_EXEC_PLAN:  str = 'xarm_exec_plan'
 
-DEFAULT_JOINT_ANGLES: list = [-2.0944,-0.785398,-0.785398,0.0,0.0,0.0] # rads
+# DEFAULT_JOINT_ANGLES: list = [-2.0944,-0.785398,-0.785398,0.0,0.0,0.0] # rads
+DEFAULT_JOINT_ANGLES: list = [-2.0944,-1.309,-0.523599,0.0,0.610865,0.0] # rads
 
 
 class GotoInitialPose(Node):

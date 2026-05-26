@@ -21,7 +21,8 @@ SERVICE_PLAN_JOINT: str    = '/xarm_joint_plan'
 SERVICE_EXEC_PLAN:  str    = '/xarm_exec_plan'
 ARM_JOINT_NAME_BASE: str   = 'link_base'
 ARM_JOINT_NAME_CAM:  str   = 'link_eef'
-DEFAULT_JOINT_ANGLES: list = [-2.0944,-0.785398,-0.785398,0.0,0.0,0.0] # rads
+# DEFAULT_JOINT_ANGLES: list = [-2.0944,-0.785398,-0.785398,0.0,0.0,0.0] # rads
+DEFAULT_JOINT_ANGLES: list = [-2.0944,-1.309,-0.523599,0.0,0.610865,0.0] # rads
 
 class ArmController(Node):
     def __init__(self):
@@ -94,7 +95,7 @@ class ArmController(Node):
                 
         finally:
             # self.is_executing = False
-            pass
+            self.get_logger().infor('End of execution!')
 
     def plan_and_execute(self, msg: Point) -> bool:
         self.get_logger().info(f'Target: ({msg.x:.3f}, {msg.y:.3f}, {msg.z:.3f})')
