@@ -1,25 +1,26 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
-from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
 
-    # State machine
-    
+    # Action server
+    move_to_point = Node(
+        package='controller',
+        executable='node_move_to_point',
+        name='move_to_point',
+        output='screen',
+    )
 
-    # Controller
-    controller = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(PathJoinSubstitution([
-            FindPackageShare('controller'),
-            'launch',
-            'controller_final_pose.launch.py',
-        ]))
+    # State machine
+    state_machine = Node(
+        package='controller',
+        executable='node_state_machine',
+        name='state_machine',
+        output='screen',
     )
 
     return LaunchDescription([
-        controller,
+        move_to_point,
+        state_machine,
     ])
