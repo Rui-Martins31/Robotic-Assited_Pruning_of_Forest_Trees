@@ -22,7 +22,10 @@ def generate_launch_description():
             'launch',
             'xarm6_moveit_realmove.launch.py',
         ])),
-        launch_arguments={'robot_ip': LaunchConfiguration('robot_ip')}.items(),
+        launch_arguments={
+            'robot_ip': LaunchConfiguration('robot_ip'),
+            'report_type': 'rich',
+        }.items(),
     )
 
     # MoveIt Planner

@@ -69,28 +69,23 @@ class GotoInitialPose(Node):
 
         # Plan
         self.get_logger().info(f'Planning to joint angles: {DEFAULT_JOINT_ANGLES}')
-        plan_request = PlanJoint.Request()
+        plan_request        = PlanJoint.Request()
         plan_request.target = DEFAULT_JOINT_ANGLES
 
-        future = self._plan_client.call_async(plan_request)
-        rclpy.spin_until_future_complete(self, future)
-
-        result = future.result()
+        result = self._plan_client.call(plan_request)
         if result is None or not result.success:
             response.success = False
             response.message = 'Planning failed.'
             self.get_logger().error(response.message)
+            self._is_executing = False
             return response
 
         # Execute
         self.get_logger().info('Planning succeeded, executing...')
-        exec_request = PlanExec.Request()
+        exec_request      = PlanExec.Request()
         exec_request.wait = True
 
-        future = self._exec_client.call_async(exec_request)
-        rclpy.spin_until_future_complete(self, future)
-
-        result = future.result()
+        result = self._exec_client.call(exec_request)
         if result is None or not result.success:
             response.success = False
             response.message = 'Execution failed.'
@@ -100,6 +95,7 @@ class GotoInitialPose(Node):
             response.message = 'Execution succeeded.'
             self.get_logger().info(response.message)
 
+        self._is_executing = False
         return response
 
 

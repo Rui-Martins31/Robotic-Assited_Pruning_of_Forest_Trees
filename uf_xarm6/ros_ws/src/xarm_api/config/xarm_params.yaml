@@ -53,7 +53,7 @@ ufactory_driver:
       get_linear_motor_sco: false         # The old name is get_linear_track_sco, please use the new one
       set_mode: true
       set_state: true
-      set_collision_sensitivity: false
+      set_collision_sensitivity: true #false
       set_teach_sensitivity: false
       set_gripper_mode: false
       set_gripper_enable: false
