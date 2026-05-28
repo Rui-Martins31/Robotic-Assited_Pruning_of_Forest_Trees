@@ -1,12 +1,16 @@
 import rclpy
 from rclpy.node import Node
+from rclpy.callback_groups import ReentrantCallbackGroup
+from rclpy.executors import MultiThreadedExecutor
 
 from xarm_msgs.srv import PlanJoint, PlanExec
+from std_srvs.srv import Trigger
 
 NODE_NAME: str = 'goto_initial_pose'
 
-SERVICE_PLAN_JOINT: str = 'xarm_joint_plan'
-SERVICE_EXEC_PLAN:  str = 'xarm_exec_plan'
+SRV_PLAN_JOINT: str = 'xarm_joint_plan'
+SRV_EXEC_PLAN:  str = 'xarm_exec_plan'
+SRV_GOTO_INIT:  str = NODE_NAME
 
 # DEFAULT_JOINT_ANGLES: list = [-2.0944,-0.785398,-0.785398,0.0,0.0,0.0] # rads
 DEFAULT_JOINT_ANGLES: list = [-2.0944,-1.309,-0.523599,0.0,0.610865,0.0] # rads
@@ -16,52 +20,93 @@ class GotoInitialPose(Node):
     def __init__(self):
         super().__init__(NODE_NAME)
 
-        self._plan_client = self.create_client(PlanJoint, SERVICE_PLAN_JOINT)
-        self._exec_client = self.create_client(PlanExec,  SERVICE_EXEC_PLAN)
+        callback_group    = ReentrantCallbackGroup()
 
-        self.get_logger().info(f'Waiting for {SERVICE_PLAN_JOINT} and {SERVICE_EXEC_PLAN} services...')
+        # X-arm services
+        self._plan_client = self.create_client(PlanJoint, SRV_PLAN_JOINT, callback_group=callback_group)
+        self._exec_client = self.create_client(PlanExec,  SRV_EXEC_PLAN,  callback_group=callback_group)
+
+        self.get_logger().info(f'Waiting for {SRV_PLAN_JOINT} and {SRV_EXEC_PLAN} services...')
         self._plan_client.wait_for_service()
         self._exec_client.wait_for_service()
         self.get_logger().info('Services ready.')
 
-        self._send_plan()
+        # Go to initial pose service
+        self.src_goto_initial_pose = self.create_service(
+            Trigger,
+            SRV_GOTO_INIT,
+            self._srv_goto_initial_pose_callback,
+            callback_group=callback_group
+        )
+        self._is_executing: bool = False
 
-    def _send_plan(self) -> None:
-        angles: list = DEFAULT_JOINT_ANGLES
-        self.get_logger().info(f'Planning to joint angles: {angles}')
+        # Start up
+        self._init_timer = self.create_timer(
+            0.1,
+            self._on_startup,
+            callback_group=callback_group
+        )
 
-        request = PlanJoint.Request()
-        request.target = angles
+    # Start up
+    def _on_startup(self) -> None:
+        self._init_timer.cancel()
+        request  = Trigger.Request()
+        response = Trigger.Response()
+        self._srv_goto_initial_pose_callback(request, response)
 
-        future = self._plan_client.call_async(request)
-        future.add_done_callback(self._plan_response_callback)
+    # Service callback
+    def _srv_goto_initial_pose_callback(
+        self,
+        request: Trigger.Request,
+        response: Trigger.Response
+    ) -> Trigger.Response:
 
-    def _plan_response_callback(self, future) -> None:
+        # Check
+        if self._is_executing:
+            response.success = False
+            response.message = 'Executing another service call.'
+            return response
+
+        # Plan
+        self.get_logger().info(f'Planning to joint angles: {DEFAULT_JOINT_ANGLES}')
+        plan_request = PlanJoint.Request()
+        plan_request.target = DEFAULT_JOINT_ANGLES
+
+        future = self._plan_client.call_async(plan_request)
+        rclpy.spin_until_future_complete(self, future)
+
         result = future.result()
         if result is None or not result.success:
-            self.get_logger().error('Planning failed.')
-            rclpy.shutdown()
-            return
+            response.success = False
+            response.message = 'Planning failed.'
+            self.get_logger().error(response.message)
+            return response
 
+        # Execute
         self.get_logger().info('Planning succeeded, executing...')
+        exec_request = PlanExec.Request()
+        exec_request.wait = True
 
-        request = PlanExec.Request()
-        request.wait = True
+        future = self._exec_client.call_async(exec_request)
+        rclpy.spin_until_future_complete(self, future)
 
-        future = self._exec_client.call_async(request)
-        future.add_done_callback(self._exec_response_callback)
-
-    def _exec_response_callback(self, future) -> None:
         result = future.result()
         if result is None or not result.success:
-            self.get_logger().error('Execution failed.')
+            response.success = False
+            response.message = 'Execution failed.'
+            self.get_logger().error(response.message)
         else:
-            self.get_logger().info('Execution succeeded. Shutting down.')
-        rclpy.shutdown()
+            response.success = True
+            response.message = 'Execution succeeded.'
+            self.get_logger().info(response.message)
+
+        return response
 
 
 def main():
     rclpy.init()
     node = GotoInitialPose()
-    rclpy.spin(node)
+    executor = MultiThreadedExecutor()
+    executor.add_node(node)
+    executor.spin()
     node.destroy_node()
