@@ -3,7 +3,7 @@
 <package format="3">
   <name>custom_interfaces</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Custom messages, services and actions.</description>
   <maintainer email="ruimartins203@gmail.com">rui</maintainer>
   <license>TODO: License declaration</license>
 

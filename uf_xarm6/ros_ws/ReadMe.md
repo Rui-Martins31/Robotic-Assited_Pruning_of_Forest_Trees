@@ -1,56 +1,64 @@
-# xarm_ros2
+# Robotic-Assisted Pruning of Forest Trees
 
-For simplified Chinese version: [简体中文版](./ReadMe_cn.md)
+This workspace is a fork of UFactory's [`xarm_ros2`](https://github.com/xArm-Developer/xarm_ros2) stack, augmented with custom packages under [`src/castrolab/`](src/castrolab) that add the perception and motion logic for the pruning task. The original UFactory documentation is preserved **below the horizontal rule** at the end of this section.
+
+## System overview
+
+A camera mounted near the end-effector observes a branch. A detector segments the branch, fits a line to it and samples several equally-spaced **cutting points** along that line. Each point's pixel coordinates and depth are converted into the robot base frame, and a state machine drives the arm to each point in turn through a `MoveToPoint` action server, returning home between points.
+
+## The castrolab packages
+
+| Package | Purpose | Docs |
+|---------|---------|------|
+| [`custom_interfaces`](src/castrolab/custom_interfaces) | Custom messages, services and the `MoveToPoint` action | [README](src/castrolab/custom_interfaces/README.md) |
+| [`branch_detection`](src/castrolab/branch_detection) | Branch segmentation (Color or YOLO), line fitting, point sampling and pixel->world service | [README](src/castrolab/branch_detection/doc/README.md) |
+| [`controller`](src/castrolab/controller) | State machine, `MoveToPoint` action server and homing service that drive the arm to detected points | [README](src/castrolab/controller/README.md) |
+| [`realsense_view`](src/castrolab/realsense_view) | RealSense D455 initialization and RViz2 visualisation | [README](src/castrolab/realsense_view/README.md) |
+| [`robot_cutter_launch`](src/castrolab/robot_cutter_launch) | Top-level launch that starts the whole system | [README](src/castrolab/robot_cutter_launch/README.md) |
+
+## Build & run
+
+Build the whole workspace (see the UFactory instructions below for ROS 2 / MoveIt 2 / RealSense prerequisites), from the `ros_ws` directory:
+
+```bash
+colcon build
+source install/setup.bash
+```
+
+The system is brought up in layers from the [`robot_cutter_launch`](src/castrolab/robot_cutter_launch) package. The usual run uses two terminals (each with the workspace sourced):
+
+```bash
+# Terminal 1: robot, camera, detection and homing
+ros2 launch robot_cutter_launch hardware_and_perception.launch.py robot_ip:=192.168.1.207
+
+# Terminal 2: motion controllers (action server and state machine)
+ros2 launch robot_cutter_launch controllers.launch.py
+```
+
+For vision-only work (no robot), run `perception.launch.py` on its own.
+
+***Notes:***
+- `robot_ip` (default `192.168.1.207`) is the IP address of the xArm6.
+- The default detector is the **color** one. Switch to YOLO by changing the included launch file in `robot_cutter_launch` (see its [README](src/castrolab/robot_cutter_launch/README.md)).
+- Run `controllers.launch.py` only after `hardware_and_perception.launch.py`, because the controllers need the planner services and the `/goto_initial_pose` service to already be up.
+
+## Relationship to the UFactory packages
+
+The castrolab packages build on top of the UFactory stack rather than replacing it.
+
+&nbsp;
+
+---
+
+# UFactory X-arm ROS2
 
 ## 1. Introduction
 
-&ensp;&ensp;&ensp;&ensp;This repository contains simulation models, and corresponding motion planning and controlling demos of the xArm series from UFACTORY. The development and test environment is as follows
-- Ubuntu 20.04 + ROS Foxy
-- Ubuntu 20.04 + ROS Galactic
-- Ubuntu 22.04 + ROS Humble
-- Ubuntu 24.04 + ROS Jazzy
-- Ubuntu 22.04 + ROS Rolling
-
-&ensp;&ensp;&ensp;&ensp;Please switch to the corresponding code branch according to different ros2 versions (no corresponding code branch means it has not been tested in this version)
-- Foxy: [foxy](https://github.com/xArm-Developer/xarm_ros2/tree/foxy)
-- Galactic: [galactic](https://github.com/xArm-Developer/xarm_ros2/tree/galactic)
-- Humble: [humble](https://github.com/xArm-Developer/xarm_ros2/tree/humble)
-- Jazzy: [jazzy](https://github.com/xArm-Developer/xarm_ros2/tree/jazzy)
-- Rolling: [rolling](https://github.com/xArm-Developer/xarm_ros2/tree/rolling)
-
-## 2. Update History    
-- moveit dual arm control (under single rviz GUI), each arm can be separately configured（e.g. DOF, add_gripper, etc）
-- add support for Gazebo simulation, can be controlled by moveit.
-- support adding customized tool model.  
-- (2022-09-07) Change the parameter type of service (__set_tgpio_modbus_timeout__/__getset_tgpio_modbus_data__), and add parameters to support transparent transmission
-- (2022-09-07) Change topic name (xarm_states to robot_states)
-- (2022-09-07) Update submodule xarm-sdk to version 1.11.0
-- (2022-09-09) [Beta]Support Humble version
-- (2022-10-10) xarm_api adds some services
-- (2022-12-15) Add parameter `add_realsense_d435i` to load RealSense D435i camera model and support gazebo simulation
-- (2023-03-29) Added the launch parameter `model1300` (default is false), and replaced the model of the end of the xarm robot arm with the 1300 series
-- (2023-04-20) Update the URDF file, adapt to ROS1 and ROS2, and load the inertia parameters of the link from the configuration file according to the SN
-- (2023-04-20) Added the launch parameter `add_d435i_links` (default is false), which supports adding the link relationship between D435i cameras when loading the RealSense D435i model. It is only useful when `add_realsense_d435i` is true
-- (2023-04-20) Lite6 supports `add_realsense_d435i` and `add_d435i_links` parameters
-- (2023-04-20) Added the launch parameter `robot_sn`, supports loading the inertia parameters of the corresponding joint link, and automatically overrides the `model1300` parameters
-- (2023-04-20) Added launch parameters `attach_to`/`attach_xyz`/`attach_rpy` to support attaching the robot arm model to other models
-- (2023-06-07) Added support for UFACTORY850 robotic arm
-- (2023-10-12) Added the generation and use of joint kinematics parameter files
-- (2024-01-17) Added support for xarm7_mirror model robotic arm
-- (2024-02-27) Added support for Bio Gripper (parameter `add_bio_gripper`, Lite6 is not supported)
-- (2024-04-12) Added __uf_ros_lib__ to encapsulate certain functions for calling (including __MoveItConfigsBuilder__), see [Documentation](./uf_ros_lib/Readme.md)
-- (2024-10-11) Added [mbot_demo](demo/mbot_demo/readme.md) to demonstrate how to build a xarm robot on the chassis 
-- (2024-11-05) Support Jazzy version
-- (2024-12-02) Add detailed ReadMe instructions for xarm_api wrapped services.
-
+&ensp;&ensp;&ensp;&ensp;This repository contains simulation models, and corresponding motion planning and controlling demos of the xArm series from UFACTORY. The development and test environment works with Ubuntu 20.04 and ROS2 Foxy.
 
 ## 3. Preparation
 
-- ### 3.1 Install [ROS2](https://docs.ros.org/) 
-  - [Foxy](https://docs.ros.org/en/ros2_documentation/foxy/Installation.html)
-  - [Galactic](https://docs.ros.org/en/ros2_documentation/galactic/Installation.html)
-  - [Humble](https://docs.ros.org/en/ros2_documentation/humble/Installation.html)
-  - [Jazzy](https://docs.ros.org/en/ros2_documentation/jazzy/Installation.html)
+- ### 3.1 Install [ROS2 Foxy](https://docs.ros.org/en/ros2_documentation/foxy/Installation.html)
 
 - ### 3.2 Install [Moveit2](https://moveit.ros.org/install-moveit2/binary/)  
 

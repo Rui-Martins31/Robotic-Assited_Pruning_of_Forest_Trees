@@ -3,7 +3,7 @@
 <package format="3">
   <name>controller</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Motion controllers that drive the xArm6 to the detected branch positions via the xarm_planner services.</description>
   <maintainer email="ruimartins203@gmail.com">rui</maintainer>
   <license>TODO: License declaration</license>
 

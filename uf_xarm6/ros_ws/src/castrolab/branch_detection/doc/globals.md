@@ -4,20 +4,20 @@
 
 ## Overview
 
-This file centralises all global constants, such as  camera intrinsics and image configuration, used across the `branch_detection` package.
+This file centralises the global constants shared across the `branch_detection` package. Both detector nodes resize every frame to `IMAGE_WIDTH x IMAGE_HEIGHT`, and the intrinsics are derived from that resized resolution and the camera's horizontal field of view, so the `compute_world_position` projection is consistent with what the detectors actually process.
 
 ---
 
 ## Constants
 
-### Image Dimensions
+### Image dimensions
 
 | Constant | Description |
 |----------|-------------|
-| `IMAGE_WIDTH` | Width to which all images are resized before YOLO inference and depth lookup (pixels) |
-| `IMAGE_HEIGHT` | Height to which all images are resized before YOLO inference and depth lookup (pixels) |
+| `IMAGE_WIDTH` | Width to which all images are resized before processing (pixels) |
+| `IMAGE_HEIGHT` | Height to which all images are resized before processing (pixels) |
 
-### Camera Intrinsics
+### Camera intrinsics *(Used in gazebo only)*
 
 | Constant | Description |
 |----------|-------------|
