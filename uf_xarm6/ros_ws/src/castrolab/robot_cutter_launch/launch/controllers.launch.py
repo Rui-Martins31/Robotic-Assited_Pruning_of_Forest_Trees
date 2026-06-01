@@ -6,9 +6,9 @@ def generate_launch_description():
 
     # Robot state monitor
     robot_state_monitor = Node(
-        package='error_monitoring',
-        executable='node_error_monitor',
-        name='error_monitor',
+        package='system_monitoring',
+        executable='node_monitor',
+        name='monitor',
         output='screen',
     )
 

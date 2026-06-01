@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'error_monitoring'
+package_name = 'system_monitoring'
 
 setup(
     name=package_name,
@@ -15,7 +15,7 @@ setup(
     zip_safe=True,
     maintainer='rui',
     maintainer_email='ruimartins203@gmail.com',
-    description='Monitors robot errors and warnings',
+    description='General-purpose monitoring for robot errors, warnings, state, and mode',
     license='TODO: License declaration',
     extras_require={
         'test': [
@@ -24,7 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'node_error_monitor = error_monitoring.node_error_monitor:main',
+            'node_monitor = system_monitoring.node_monitor:main',
         ],
     },
 )

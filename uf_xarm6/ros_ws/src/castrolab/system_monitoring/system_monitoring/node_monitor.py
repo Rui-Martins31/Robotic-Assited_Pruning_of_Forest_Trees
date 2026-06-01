@@ -8,7 +8,7 @@ from xarm_msgs.srv import Call
 from std_msgs.msg import Empty
 
 # Constants
-NODE_NAME: str = 'error_monitor'
+NODE_NAME: str = 'monitor'
 
 SUB_TOPIC_ROBOT_STATES:    str = '/xarm/robot_states'
 PUB_TOPIC_ERROR_COLLISION: str = '/monitoring/collision_caused_abnormal_current'
@@ -21,7 +21,7 @@ SRV_CLEAN_WARN:    str = '/xarm/clean_warn'
 SRV_MOTION_ENABLE: str = '/xarm/motion_enable'
 
 
-class ErrorMonitorNode(Node):
+class MonitorNode(Node):
 
     def __init__(self):
         super().__init__(NODE_NAME)
@@ -156,7 +156,7 @@ class ErrorMonitorNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = ErrorMonitorNode()
+    node = MonitorNode()
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
