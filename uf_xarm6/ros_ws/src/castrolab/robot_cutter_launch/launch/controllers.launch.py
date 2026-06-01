@@ -4,14 +4,6 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
 
-    # Robot state monitor
-    robot_state_monitor = Node(
-        package='system_monitoring',
-        executable='node_monitor',
-        name='monitor',
-        output='screen',
-    )
-
     # Action server
     move_to_point = Node(
         package='controller',
@@ -29,7 +21,6 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        robot_state_monitor,
         move_to_point,
         state_machine,
     ])
