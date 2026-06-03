@@ -1,0 +1,11 @@
+# Request
+
+uint8 collision_sensitivity
+uint8 state
+uint8 mode
+
+---
+# Response
+
+bool success
+string message

@@ -76,6 +76,25 @@ Batch version of the above that converts N pixels and depths to N world-frame po
 | `size` | `int32` | Number of points returned |
 | `points` | `geometry_msgs/Point[]` | Points `(x, y, z)` in the robot base frame (meters) |
 
+### `srv/RobotConfig.srv`
+
+Configure the robot according to a set of parameters.
+
+**Request**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `collision_sensitivity` | `uint8` | Robot collision sensitivity |
+| `state` | `uint8` | Robot state |
+| `mode` | `uint8` | Robot mode |
+
+**Response**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `success` | `bool` | Whether the service was successful or not |
+| `message` | `string` | Debug message |
+
 ---
 
 ## Actions
