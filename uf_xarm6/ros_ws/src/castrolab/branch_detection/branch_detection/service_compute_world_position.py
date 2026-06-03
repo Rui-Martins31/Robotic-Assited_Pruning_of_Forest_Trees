@@ -11,7 +11,6 @@ from tf2_ros.buffer import Buffer
 from tf2_ros.transform_listener import TransformListener
 
 import numpy as np
-from scipy.spatial.transform import Rotation as R
 
 from custom_interfaces.srv import YOLOPoint, BufferYOLOPoint
 from geometry_msgs.msg import Point
@@ -48,7 +47,11 @@ class ComputeWorldPosition(Node):
             self.service_buffer_callback
         )
 
-    def service_yolo_result_callback(self, request: YOLOPoint.Request, response: YOLOPoint.Response) -> YOLOPoint.Response:
+    def service_yolo_result_callback(
+        self,
+        request: YOLOPoint.Request,
+        response: YOLOPoint.Response
+    ) -> YOLOPoint.Response:
         # Get current joint pose
         curr_joint_pose = self.get_current_joint_pose()
 
@@ -118,9 +121,12 @@ class ComputeWorldPosition(Node):
 
     def get_homogeneous_matrix(self, pos, rot):
         # Create the rotation matrix from the quaternion (x, y, z, w)
-        quat = [rot.x, rot.y, rot.z, rot.w]
-        r = R.from_quat(quat)
-        rot_matrix = r.as_matrix() if hasattr(r, 'as_matrix') else r.as_dcm()
+        rot_matrix = self.quat_to_matrix(
+            rot.x,
+            rot.y,
+            rot.z,
+            rot.w
+        )
 
         # Create a homogeneous matrix
         T           = np.eye(4)
@@ -128,6 +134,20 @@ class ComputeWorldPosition(Node):
         T[0:3, 3]   = [pos.x, pos.y, pos.z]
 
         return T
+
+    @staticmethod
+    def quat_to_matrix(x, y, z, w):
+
+        n = np.sqrt(x * x + y * y + z * z + w * w)
+        if n == 0.0:
+            return np.eye(3)
+        x, y, z, w = x / n, y / n, z / n, w / n
+
+        return np.array([
+            [1 - 2 * (y * y + z * z), 2 * (x * y - z * w),     2 * (x * z + y * w)],
+            [2 * (x * y + z * w),     1 - 2 * (x * x + z * z), 2 * (y * z - x * w)],
+            [2 * (x * z - y * w),     2 * (y * z + x * w),     1 - 2 * (x * x + y * y)]
+        ])
 
     def pixel_to_world_coord(
         self,
