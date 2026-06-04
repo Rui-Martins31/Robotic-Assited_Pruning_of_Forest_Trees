@@ -12,6 +12,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.executors import MultiThreadedExecutor
 from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
+from rclpy.timer import Timer
 
 from xarm_msgs.srv import SetInt16
 from xarm_msgs.srv import Call
@@ -39,6 +40,9 @@ class ConfigureRobot(Node):
         # Callback groups
         self._cb_group_srv_robot_config = MutuallyExclusiveCallbackGroup()
         self._cb_group_clients          = MutuallyExclusiveCallbackGroup()
+
+        # One-shot timer
+        self._startup_timer: Timer 
 
         # Service
         self.srv_robot_configuration = self.create_service(
@@ -87,6 +91,23 @@ class ConfigureRobot(Node):
         self.get_logger().info('Services ready.')
 
         return True
+
+    # Startup configuration (one-shot)
+    def start_configuration(self) -> None:
+
+        self.get_logger().info('Running startup configuration...')
+
+        req  = RobotConfig.Request()
+        resp = RobotConfig.Response()
+        resp = self._robot_configuration_callback(req, resp)
+
+        if resp.success:
+            self.get_logger().info(f'Startup configuration OK: {resp.message}')
+        else:
+            self.get_logger().error(f'Startup configuration FAILED: {resp.message}')
+
+        # One-shot timer
+        self._startup_timer.cancel()
 
     # Robot configuration
     def _robot_configuration_callback(
@@ -181,9 +202,18 @@ def main():
     rclpy.init()
     node = ConfigureRobot()
     try:
+        # Start service
         if not node.start_service():
             node.get_logger().error('Required services unavailable. Shutting down.')
             return
+
+        # Start configuration
+        node._startup_timer = node.create_timer(
+            0.1,
+            node.start_configuration,
+        )
+
+        # Spin service
         executor = MultiThreadedExecutor()
         executor.add_node(node)
         executor.spin()

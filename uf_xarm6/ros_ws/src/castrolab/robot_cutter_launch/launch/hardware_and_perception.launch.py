@@ -68,6 +68,13 @@ def generate_launch_description():
         output='screen',
     )
 
+    # Service configure robot
+    srv_robot_configuration = Node(
+        package    = 'system_monitoring',
+        executable = 'service_robot_configuration',
+        output     = 'screen',
+    )
+
     return LaunchDescription([
         robot_ip_arg,
         moveit_visualizer,
@@ -75,4 +82,5 @@ def generate_launch_description():
         camera_view,
         branch_detection,
         goto_initial_pose,
+        srv_robot_configuration,
     ])
