@@ -1,3 +1,8 @@
+## Notes:
+# Error/Warn codes: uf_xarm/ros_ws/src/xarm_sdk/cxx/doc/xarm_api_code.md
+# State/Modes list: uf_xarm/ros_ws/src/xarm_msgs/msg/RobotMsg.md
+# Collision range:  uf_xarm/ros_ws/src/xarm_sdk/cxx/doc/xarm_cplus_api.md
+
 import rclpy
 from rclpy.node import Node
 
@@ -117,11 +122,15 @@ class MonitorNode(Node):
             self.pub_error_collision.publish(Empty())
 
     def _handle_warn(self, warn: int) -> None:
-        # Warn: warning code from the robot controller (0 = no warning)
-        #   Non-zero values indicate a recoverable condition.
-        #   Full warning code table: xarm SDK docs / xarm_api error_warn.md
+        warn_codes: dict[int, str] = {
+            11: "uxbus queue is full",
+            12: "parameter error",
+            13: "the instruction does not exist",
+            14: "command has no solution",
+            15: "modbus cmd full",
+        }
 
-        self.get_logger().warn(f'Robot warning code: {warn}')
+        self.get_logger().warn(f'Robot warning code: {warn_codes[warn]}')
 
     def _handle_state(self, state: int) -> None:
         # State: current robot state

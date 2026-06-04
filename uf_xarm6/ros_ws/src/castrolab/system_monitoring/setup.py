@@ -28,6 +28,7 @@ setup(
     entry_points={
         'console_scripts': [
             'node_monitor = system_monitoring.node_monitor:main',
+            'service_configure_robot = system_monitoring.service_configure_robot:main',
         ],
     },
 )
