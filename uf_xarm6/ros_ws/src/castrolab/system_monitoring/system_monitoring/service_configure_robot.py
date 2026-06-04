@@ -1,12 +1,7 @@
 ## Notes:
 # Error/Warn codes: uf_xarm/ros_ws/src/xarm_sdk/cxx/doc/xarm_api_code.md
 # State/Modes list: uf_xarm/ros_ws/src/xarm_msgs/msg/RobotMsg.md
-# Collision range:  uf_xarm/ros_ws/src/xarm_sdk/cxx/doc/xarm_cplus_api.md
-
-## TODOS
-# 1. Add error/warn reset.
-# 2. Add mode reset
-
+# Collision range:  uf_xarm/ros_ws/src/xarm_sdk/cxx/doc/xarm_cplus_api.mds
 
 import rclpy
 from rclpy.node import Node
