@@ -14,12 +14,10 @@ from std_srvs.srv import Trigger
 NODE_NAME: str            = 'state_machine'
 
 SUB_TOPIC_BUFFER:     str = '/yolo/buffer_positions'
-ACTION_MOVE_TO_POINT: str = 'move_to_point'
+ACTION_MOVE_TO_POINT: str = '/move_to_point'
 SRV_GOTO_INIT:        str = '/goto_initial_pose'
 
-SRV_COLLISION_SENSITIVITY: str = '/xarm/set_collision_sensitivity'
-SRV_SET_STATE: str             = '/xarm/set_state'
-COLLISION_SENSITIVITY: int     = 5
+SRV_TIMEOUT:          float = 5.0
 
 
 class State(Enum):
@@ -65,6 +63,8 @@ class StateMachine(Node):
             callback_group=self._callback_group
         )
         self._action_client.wait_for_server()
+        while not self._action_client.wait_for_server(timeout_sec=SRV_TIMEOUT):
+            self.get_logger().info(f'Action {ACTION_MOVE_TO_POINT} not available, waiting...')
 
         # Goto_initial_pose service
         self.srv_goto_init_client = self.create_client(
@@ -72,42 +72,11 @@ class StateMachine(Node):
             SRV_GOTO_INIT,
             callback_group=self._callback_group
         )
-        while not self.srv_goto_init_client.wait_for_service(timeout_sec=1.0):
+        while not self.srv_goto_init_client.wait_for_service(timeout_sec=SRV_TIMEOUT):
             self.get_logger().info(f'Service {SRV_GOTO_INIT} not available, waiting...')
 
-        # Collision configuration
-        self._collision_client  = self.create_client(SetInt16, SRV_COLLISION_SENSITIVITY, callback_group=self._callback_group)
-        self._set_state_client  = self.create_client(SetInt16, SRV_SET_STATE,             callback_group=self._callback_group)
-
-        self._init_timer = self.create_timer(0.5, self._configure_robot, callback_group=self._callback_group)
-
-    # Robot configuration
-    def _configure_robot(self) -> None:
-        self._init_timer.cancel()
-
-        if not self._collision_client.service_is_ready():
-            self.get_logger().warn('[INIT] set_collision_sensitivity service not available. Is it enabled in xarm_api/config/xarm_params.yaml?')
-            self.get_logger().info('[IDLE] Waiting for buffer points...')
-            return
-
-        req = SetInt16.Request()
-        req.data = COLLISION_SENSITIVITY
-        future = self._collision_client.call_async(req)
-        future.add_done_callback(self._on_collision_sensitivity_set)
-
-    def _on_collision_sensitivity_set(self, future) -> None:
-        resp = future.result()
-        if resp.ret != 0:
-            self.get_logger().warn(f'[INIT] set_collision_sensitivity failed (ret={resp.ret})')
-
-        req = SetInt16.Request()
-        req.data = 0
-        future2 = self._set_state_client.call_async(req)
-        future2.add_done_callback(self._on_state_reset)
-
-    def _on_state_reset(self, future) -> None:
-        self.get_logger().info(f'[INIT] Collision sensitivity set to {COLLISION_SENSITIVITY}. Robot ready.')
-        self.get_logger().info('[IDLE] Waiting for buffer points...')
+        # Start
+        self._transition_to(State.IDLE)
 
     # Subscription
     def _subscription_callback(self, msg: BufferPoints) -> None:
@@ -124,7 +93,6 @@ class StateMachine(Node):
             State.HOME:      self.on_home,
         }
         handlers[new_state](msg)
-
 
     # States
     def on_idle(self, _=None) -> None:
