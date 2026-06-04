@@ -10,6 +10,7 @@
 
 import rclpy
 from rclpy.node import Node
+from rclpy.duration import Duration
 from rclpy.executors import MultiThreadedExecutor
 from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
 from rclpy.timer import Timer
@@ -17,21 +18,25 @@ from rclpy.timer import Timer
 from xarm_msgs.srv import SetInt16
 from xarm_msgs.srv import Call
 from custom_interfaces.srv import RobotConfig
+from controller_manager_msgs.srv import SwitchController
 
 # Constants
 SRV_NAME:                  str    = 'robot_configuration'
 
 SRV_COLLISION_SENSITIVITY: str    = '/xarm/set_collision_sensitivity'
 SRV_SET_STATE:             str    = '/xarm/set_state'
+SRV_SET_MODE:              str    = '/xarm/set_mode'
 SRV_CLEAN_ERROR:           str    = '/xarm/clean_error'
 SRV_CLEAN_WARN:            str    = '/xarm/clean_warn'
+SRV_SWITCH_CONTROLLER:     str    = '/controller_manager/switch_controller'
 
 SRV_TIMEOUT:               float  = 5.0
 
 # Configuration
 CONFIG_COLLISION_SENSITIVITY: int = 5
 CONFIG_STATE:                 int = 0
-CONFIG_MODE:                  int = 0
+CONFIG_MODE:                  int = 1
+CONFIG_CONTROLLER:            str = 'xarm6_traj_controller'
 
 class ConfigureRobot(Node):
     def __init__(self):
@@ -57,8 +62,12 @@ class ConfigureRobot(Node):
         # Collision configuration
         self.client_set_collision = self.create_client(SetInt16, SRV_COLLISION_SENSITIVITY, callback_group = self._cb_group_clients)
         self.client_set_state     = self.create_client(SetInt16, SRV_SET_STATE,             callback_group = self._cb_group_clients)
+        self.client_set_mode      = self.create_client(SetInt16, SRV_SET_MODE,              callback_group = self._cb_group_clients)
         self.client_clean_error   = self.create_client(Call,     SRV_CLEAN_ERROR,           callback_group = self._cb_group_clients)
         self.client_clean_warn    = self.create_client(Call,     SRV_CLEAN_WARN,            callback_group = self._cb_group_clients)
+
+        # Controller (re)activation
+        self.client_switch_controller = self.create_client(SwitchController, SRV_SWITCH_CONTROLLER, callback_group = self._cb_group_clients)
 
     # Start up procedure
     def start_service(
@@ -87,7 +96,14 @@ class ConfigureRobot(Node):
         if not self.client_clean_warn.wait_for_service(timeout_sec):
             self.get_logger().warn("/xarm/clean_warn service not available.")
             return False
-        
+
+        if not self.client_switch_controller.wait_for_service(timeout_sec):
+            self.get_logger().warn(
+                f"{SRV_SWITCH_CONTROLLER} service not available. "
+                "Is controller_manager running?"
+            )
+            return False
+
         self.get_logger().info('Services ready.')
 
         return True
@@ -156,6 +172,15 @@ class ConfigureRobot(Node):
             self.response.message = f"/xarm/set_collision_sensitivity failed (ret={ret_collision.message})"
             return self.response
         
+        # Set Mode
+        req                         = SetInt16.Request()
+        req.data                    = request_dict["mode"]
+        ret_mode: SetInt16.Response = self.client_set_mode.call(req)
+        if ret_mode.ret != 0:
+            self.response.success = False
+            self.response.message = f"/xarm/set_state failed (ret={ret_mode.message})"
+            return self.response
+        
         # Set State
         req                          = SetInt16.Request()
         req.data                     = request_dict["state"]
@@ -164,7 +189,20 @@ class ConfigureRobot(Node):
             self.response.success = False
             self.response.message = f"/xarm/set_state failed (ret={ret_state.message})"
             return self.response
-        
+
+        # (Re)activate the trajectory controller
+        req                                   = SwitchController.Request()
+        req.start_controllers                 = [CONFIG_CONTROLLER]
+        req.stop_controllers                  = []
+        req.strictness                        = SwitchController.Request.BEST_EFFORT
+        req.start_asap                        = True
+        req.timeout                           = Duration(seconds=int(SRV_TIMEOUT)).to_msg()
+        ret_switch: SwitchController.Response = self.client_switch_controller.call(req)
+        if not ret_switch.ok:
+            self.response.success = False
+            self.response.message = f"{SRV_SWITCH_CONTROLLER} failed to start {CONFIG_CONTROLLER}"
+            return self.response
+
         # Return
         self.response.success = True
         self.response.message = "Robot configured."
