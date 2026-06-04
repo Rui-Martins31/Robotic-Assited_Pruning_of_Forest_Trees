@@ -119,6 +119,21 @@ class ConfigureRobot(Node):
         # Get parsed request
         request_dict = self.parse_request(request)
 
+        # Clear errors
+        req       = Call.Request()
+        ret_error = self.client_clean_error.call(req)
+        if ret_error.ret != 0:
+            self.response.success = False
+            self.response.message = f"/xarm/clean_error failed (ret={ret_error.message})"
+            return self.response
+        
+        # Clear warns
+        ret_warn = self.client_clean_warn.call(req)
+        if ret_warn.ret != 0:
+            self.response.success = False
+            self.response.message = f"/xarm/clean_warn failed (ret={ret_warn.message})"
+            return self.response
+
         # Set State
         req                          = SetInt16.Request()
         req.data                     = CONFIG_STATE # reset
