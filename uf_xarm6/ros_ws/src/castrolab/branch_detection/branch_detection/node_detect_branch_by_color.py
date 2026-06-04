@@ -221,8 +221,8 @@ class CameraImageSubscriber(Node):
                     cv2.circle(cv_image_rgb, (px, py), 5, (0, 255, 255), -1)
 
                 ## DEBUG
-                self.get_logger().info(f"Centroid: ({cx:.1f}, {cy:.1f})")
-                self.get_logger().info(f"Depth: {float(cv_image_depth[int(cy), int(cx)]):.3f}")
+                # self.get_logger().info(f"Centroid: ({cx:.1f}, {cy:.1f})")
+                # self.get_logger().info(f"Depth: {float(cv_image_depth[int(cy), int(cx)]):.3f}")
 
                 ## DEBUG
                 # Center point and line to image center
@@ -261,7 +261,7 @@ class CameraImageSubscriber(Node):
                 pub_msg.y = float((cy - _globals.IMAGE_HEIGHT/2)/_globals.IMAGE_HEIGHT)
                 pub_msg.z = 0.0
                 self.publisher_image_frame.publish(pub_msg)
-                self.get_logger().info(f"Publishing (image_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})")
+                # self.get_logger().info(f"Publishing (image_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})")
 
                 # World frame
                 request = YOLOPoint.Request()
@@ -314,7 +314,7 @@ class CameraImageSubscriber(Node):
             pub_msg.z = result.z_world
             
             self.publisher_world_frame.publish(pub_msg)
-            self.get_logger().info(f"Publishing (world_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})\n")
+            # self.get_logger().info(f"Publishing (world_frame): ({pub_msg.x}, {pub_msg.y}, {pub_msg.z})\n")
 
         except Exception as e:
             self.get_logger().error(f"Service call failed: {e}")
@@ -329,7 +329,7 @@ class CameraImageSubscriber(Node):
             pub_msg.size   = result.size
             pub_msg.points = list(result.points)
             self.publisher_buffer.publish(pub_msg)
-            self.get_logger().info(f"Publishing (buffer): {pub_msg.size} points: {pub_msg.points}")
+            # self.get_logger().info(f"Publishing (buffer): {pub_msg.size} points: {pub_msg.points}")
 
         except Exception as e:
             self.get_logger().error(f"Buffer service call failed: {e}")

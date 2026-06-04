@@ -63,9 +63,9 @@ def generate_launch_description():
 
     # Initial pose
     goto_initial_pose = Node(
-        package='controller',
-        executable='node_goto_initial_pose',
-        output='screen',
+        package    = 'controller',
+        executable = 'node_goto_initial_pose',
+        output     = 'screen',
     )
 
     # Service configure robot

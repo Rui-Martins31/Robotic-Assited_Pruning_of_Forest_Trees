@@ -31,7 +31,7 @@ SRV_TIMEOUT:               float  = 5.0
 # Configuration
 CONFIG_COLLISION_SENSITIVITY: int = 5
 CONFIG_STATE:                 int = 0
-CONFIG_MODE:                  int = 1
+CONFIG_MODE:                  int = 0
 
 class ConfigureRobot(Node):
     def __init__(self):
@@ -92,12 +92,16 @@ class ConfigureRobot(Node):
 
         return True
 
-    # Startup configuration (one-shot)
+    # Start up configuration
     def start_configuration(self) -> None:
 
         self.get_logger().info('Running startup configuration...')
 
-        req  = RobotConfig.Request()
+        req  = RobotConfig.Request(
+            collision_sensitivity = CONFIG_COLLISION_SENSITIVITY,
+            state                 = CONFIG_STATE,
+            mode                  = CONFIG_MODE,
+        )
         resp = RobotConfig.Response()
         resp = self._robot_configuration_callback(req, resp)
 

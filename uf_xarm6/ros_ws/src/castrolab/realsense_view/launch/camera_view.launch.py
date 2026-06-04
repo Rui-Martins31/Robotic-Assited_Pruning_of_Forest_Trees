@@ -39,13 +39,14 @@ def generate_launch_description():
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
-        name='rviz2',
+        name='rviz2_camera_view',
         arguments=['-d', rviz_config],
         output='screen',
     )
 
-    # Connects the RealSense TF tree (camera_link → ...) to the robot TF tree (... → link_eef).
-    # Placeholder identity transform — replace x/y/z/qx/qy/qz/qw once camera extrinsics are calibrated.
+    # Connects the RealSense TF tree to the robot TF tree.
+    # Placeholder identity transform. 
+    # To be replaced x/y/z/qx/qy/qz/qw once camera extrinsics are calibrated.
     camera_tf = Node(
         package='tf2_ros',
         executable='static_transform_publisher',

@@ -110,12 +110,12 @@ class ComputeWorldPosition(Node):
             # Get rotation and position
             pos = t.transform.translation
             rot = t.transform.rotation
-            self.get_logger().info(f'Joint is at: {pos.x}, {pos.y}, {pos.z}')
+            # self.get_logger().info(f'Joint is at: {pos.x}, {pos.y}, {pos.z}')
 
             return self.get_homogeneous_matrix(pos, rot)
 
         except TransformException as ex:
-            self.get_logger().info(f'Could not transform: {ex}')
+            # self.get_logger().info(f'Could not transform: {ex}')
 
             return np.eye(4)
 
