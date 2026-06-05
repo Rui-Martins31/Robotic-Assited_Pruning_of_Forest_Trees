@@ -5,12 +5,14 @@
 
 import rclpy
 from rclpy.node import Node
+from rclpy.executors import MultiThreadedExecutor
+from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
 
 from xarm_msgs.msg import RobotMsg
-from xarm_msgs.srv import SetInt16
 from xarm_msgs.srv import SetInt16ById
 from xarm_msgs.srv import Call
-from std_msgs.msg import Empty
+from custom_interfaces.msg import Error
+from custom_interfaces.srv import RobotConfig
 
 # Constants
 NODE_NAME: str = 'monitor'
@@ -18,12 +20,10 @@ NODE_NAME: str = 'monitor'
 SUB_TOPIC_ROBOT_STATES:    str = '/xarm/robot_states'
 PUB_TOPIC_ERROR_COLLISION: str = '/monitoring/collision_caused_abnormal_current'
 
-SRV_SET_STATE:     str = '/xarm/set_state'
-SRV_SET_MODE:      str = '/xarm/set_mode'
-SRV_SET_COLLISION: str = '/xarm/set_collision_sensitivity'
 SRV_CLEAN_ERROR:   str = '/xarm/clean_error'
 SRV_CLEAN_WARN:    str = '/xarm/clean_warn'
 SRV_MOTION_ENABLE: str = '/xarm/motion_enable'
+SRV_ROBOT_CONFIG:  str = '/robot_configuration'
 
 
 class MonitorNode(Node):
@@ -31,28 +31,32 @@ class MonitorNode(Node):
     def __init__(self):
         super().__init__(NODE_NAME)
 
+        # Flags
+        self.flag_error_detected: bool = False
+
+        # Callback groups
+        self._cb_group_pubsub  = MutuallyExclusiveCallbackGroup()
+        self._cb_group_clients = MutuallyExclusiveCallbackGroup()
+
         # X-arm services
-        self.client_set_state     = self.create_client(SetInt16, SRV_SET_STATE)
-        self.client_set_mode      = self.create_client(SetInt16, SRV_SET_MODE)
-        self.client_set_collision = self.create_client(SetInt16, SRV_SET_COLLISION)
-        self.client_clean_error   = self.create_client(Call, SRV_CLEAN_ERROR)
-        self.client_clean_warn    = self.create_client(Call, SRV_CLEAN_WARN)
-        self.client_motion_enable = self.create_client(SetInt16ById, SRV_MOTION_ENABLE)
+        self.client_clean_error   = self.create_client(Call,         SRV_CLEAN_ERROR,   callback_group=self._cb_group_clients)
+        self.client_clean_warn    = self.create_client(Call,         SRV_CLEAN_WARN,    callback_group=self._cb_group_clients)
+        self.client_motion_enable = self.create_client(SetInt16ById, SRV_MOTION_ENABLE, callback_group=self._cb_group_clients)
+        self.client_robot_config  = self.create_client(RobotConfig,  SRV_ROBOT_CONFIG,  callback_group=self._cb_group_clients)
 
         self.get_logger().info('Waiting for services...')
-        self.client_set_state.wait_for_service()
-        self.client_set_mode.wait_for_service()
-        self.client_set_collision.wait_for_service()
         self.client_clean_error.wait_for_service()
         self.client_clean_warn.wait_for_service()
         self.client_motion_enable.wait_for_service()
+        self.client_robot_config.wait_for_service()
         self.get_logger().info('Services ready.')
 
         # Publishers
         self.pub_error_collision = self.create_publisher(
-            Empty,
+            Error,
             PUB_TOPIC_ERROR_COLLISION,
-            10
+            10,
+            callback_group=self._cb_group_pubsub,
         )
 
         # Robot States subscription
@@ -61,6 +65,7 @@ class MonitorNode(Node):
             SUB_TOPIC_ROBOT_STATES,
             self._robot_states_callback,
             10,
+            callback_group=self._cb_group_pubsub,
         )
         self.get_logger().info('Monitoring Errors!')
 
@@ -119,7 +124,24 @@ class MonitorNode(Node):
         self.get_logger().error(f'Robot error code: {error_codes[err]}')
 
         if err == 31:
-            self.pub_error_collision.publish(Empty())
+            if not self.flag_error_detected:
+                # Error message for state machine
+                msg_error: Error  = Error()
+                msg_error.error   = True
+                msg_error.message = f'Robot error code: {error_codes[err]}'
+                self.pub_error_collision.publish(msg_error)
+
+                # Reconfigure robot
+                req: RobotConfig.Request  = RobotConfig.Request()
+                req.collision_sensitivity = -1 # Trigger default value
+                req.state                 = -1 # Trigger default value
+                req.mode                  = -1 # Trigger default value
+                ret_config = self.client_robot_config.call(req)
+                if not ret_config.success:
+                    self.get_logger().error(f"{ret_config.message}")
+                else: 
+                    self.get_logger().info(f"{ret_config.message}")
+                    self.flag_error_detected = True
 
     def _handle_warn(self, warn: int) -> None:
         warn_codes: dict[int, str] = {
@@ -149,6 +171,24 @@ class MonitorNode(Node):
         }
         self.get_logger().info(f'Robot state: {states[state]}')
 
+        if (    states[state] == "SLEEPING"
+            and self.flag_error_detected):
+            msg_error: Error  = Error()
+            msg_error.error   = False
+            msg_error.message = f'Error cleared.'
+            self.pub_error_collision.publish(msg_error)
+            self.flag_error_detected = False
+
+        if (    states[state] == "CONFIG_CHANGED"
+            and self.flag_error_detected):
+            # Reconfigure robot
+            req: RobotConfig.Request  = RobotConfig.Request()
+            req.collision_sensitivity = -1 # Trigger default value
+            req.state                 = -1 # Trigger default value
+            req.mode                  = -1 # Trigger default value
+            self.client_robot_config.call(req)
+
+
     def _handle_mode(self, mode: int) -> None:
         # Mode: current control mode
         #   0: POSITION mode    — standard position control via controller box API
@@ -166,9 +206,17 @@ class MonitorNode(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = MonitorNode()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+    # rclpy.spin(node)
+    # node.destroy_node()
+    # rclpy.shutdown()
+    try:
+        # Spin node
+        executor = MultiThreadedExecutor()
+        executor.add_node(node)
+        executor.spin()
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
 
 
 if __name__ == '__main__':

@@ -3,6 +3,7 @@
 
 # Random files
 ._*
+.vscode
 
 # Colcon folders
 build/*
