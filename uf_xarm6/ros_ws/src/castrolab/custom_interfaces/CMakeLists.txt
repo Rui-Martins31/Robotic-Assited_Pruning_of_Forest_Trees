@@ -14,6 +14,7 @@ find_package(rosidl_default_generators REQUIRED)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/YOLOPoint.msg"
   "msg/BufferPoints.msg"
+  "msg/Error.msg"
   "srv/YOLOPoint.srv"
   "srv/BufferYOLOPoint.srv"
   "srv/RobotConfig.srv"
