@@ -18,10 +18,6 @@ from custom_interfaces.srv import YOLOPoint, BufferYOLOPoint
 from . import _globals
 
 
-### TODO_
-## Later use the fitted line to find the cutting points.
-
-
 # Constants
 NODE_NAME:       str   = 'detect_branch_by_color'
 
@@ -39,7 +35,7 @@ SRV_NAME_BUFFER:   str = 'compute_world_position_buffer'
 TIMER_DELAY:     float = 0.05
 
 PATH_SAVE_IMAGE: str   = './output/image_detection/'
-BOOL_SAVE_IMAGE: bool  = False
+BOOL_SAVE_IMAGE: bool  = True
 
 # Blue HSV
 COLOR_BRANCH_LOWER = np.array([80, 90, 70])
